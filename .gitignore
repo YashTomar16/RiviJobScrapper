@@ -24,7 +24,8 @@ logs/*.log
 logs/runs/*
 !logs/.gitkeep
 !logs/runs/.gitkeep
-data/rivi.db
+# Keep data/rivi.db tracked so Streamlit Cloud can show scraped jobs.
+# Local journal files stay ignored:
 data/rivi.db-*
 data/reports/*
 !data/reports/.gitkeep
