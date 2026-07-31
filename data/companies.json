@@ -6,8 +6,8 @@
     "career_page": "",
     "career_page_status": "fail:TimeoutError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "ABRDN Emerging Markets Equity Income (ASE: AEF)",
@@ -16,8 +16,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "AIG Asset Management (U.S.)",
@@ -26,8 +26,8 @@
     "career_page": "",
     "career_page_status": "no_website",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "AQR Capital Management",
@@ -56,8 +56,8 @@
     "career_page": "",
     "career_page_status": "fail:ConnectError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Aegon USA Investment Management",
@@ -106,8 +106,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "American Century Investments",
@@ -146,8 +146,8 @@
     "career_page": "",
     "career_page_status": "fail:403",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Arrowstreet Capital",
@@ -196,8 +196,8 @@
     "career_page": "",
     "career_page_status": "fail:ConnectError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "BNY Mellon Investment Management",
@@ -206,8 +206,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Balyasny Asset Management",
@@ -266,8 +266,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "BlackRock",
@@ -286,8 +286,8 @@
     "career_page": "",
     "career_page_status": "no_website",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Blue Owl Capital (NYS: OWL)",
@@ -306,8 +306,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Boston Partners",
@@ -336,8 +336,8 @@
     "career_page": "",
     "career_page_status": "fail:TimeoutError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Breckinridge Capital Advisors",
@@ -346,8 +346,8 @@
     "career_page": "",
     "career_page_status": "fail:403",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Bridgewater Associates",
@@ -446,8 +446,8 @@
     "career_page": "",
     "career_page_status": "fail:403",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Cerberus Capital Management",
@@ -486,8 +486,8 @@
     "career_page": "",
     "career_page_status": "fail:403",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "ClearBridge Investments",
@@ -500,14 +500,24 @@
     "skip_reason": ""
   },
   {
+    "company_name": "Cohen & Steers",
+    "category": "Asset Managers",
+    "website": "https://www.cohenandsteers.com",
+    "career_page": "https://boards.greenhouse.io/cohensteers",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
     "company_name": "Cohen & Steers Select Preferred & Income Fund (NYS: PSF)",
     "category": "Asset Managers",
     "website": "",
     "career_page": "",
     "career_page_status": "no_website",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "Fund listing without website; use parent Cohen & Steers"
   },
   {
     "company_name": "Columbia Management",
@@ -536,8 +546,8 @@
     "career_page": "",
     "career_page_status": "fail:ConnectError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Crescent Capital Group",
@@ -596,8 +606,8 @@
     "career_page": "",
     "career_page_status": "fail:ConnectError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "EARNEST Partners",
@@ -616,8 +626,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Eaton Vance",
@@ -626,8 +636,8 @@
     "career_page": "",
     "career_page_status": "fail:403",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Edward D. Jones & Co.",
@@ -646,8 +656,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Element Capital Management",
@@ -656,8 +666,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Elliott Investment Management",
@@ -706,8 +716,8 @@
     "career_page": "",
     "career_page_status": "fail:ConnectError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Fidelity Management & Research Company",
@@ -716,8 +726,8 @@
     "career_page": "",
     "career_page_status": "fail:ConnectError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Field Street Capital Management",
@@ -726,8 +736,8 @@
     "career_page": "",
     "career_page_status": "fail:ConnectError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "First Trust Portfolios",
@@ -736,8 +746,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Fisher Investments (Asset Management)",
@@ -746,8 +756,8 @@
     "career_page": "",
     "career_page_status": "fail:403",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Fort Washington Investment Advisors",
@@ -756,8 +766,8 @@
     "career_page": "",
     "career_page_status": "fail:ConnectError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Franklin Resources",
@@ -816,8 +826,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Garda Capital Partners",
@@ -846,8 +856,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Goldman Sachs Asset Management",
@@ -856,8 +866,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Grantham, Mayo, Van Otterloo",
@@ -886,8 +896,8 @@
     "career_page": "",
     "career_page_status": "no_website",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Hamilton Lane",
@@ -926,8 +936,8 @@
     "career_page": "",
     "career_page_status": "fail:TimeoutError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Holocene Advisors",
@@ -956,8 +966,8 @@
     "career_page": "",
     "career_page_status": "fail:TimeoutError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Income Research & Management",
@@ -986,8 +996,8 @@
     "career_page": "",
     "career_page_status": "fail:ConnectError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "J.P. Morgan Private Bank",
@@ -1036,8 +1046,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Lazard (NYS: LAZ)",
@@ -1076,8 +1086,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Loomis, Sayles & Company",
@@ -1146,8 +1156,8 @@
     "career_page": "",
     "career_page_status": "fail:ConnectError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Manulife John Hancock Investments",
@@ -1156,8 +1166,8 @@
     "career_page": "",
     "career_page_status": "fail:403",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Mariner Wealth Advisors",
@@ -1176,8 +1186,8 @@
     "career_page": "",
     "career_page_status": "fail:ConnectError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Millennium Management",
@@ -1196,8 +1206,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Morgan Stanley Investment Management",
@@ -1206,8 +1216,8 @@
     "career_page": "",
     "career_page_status": "fail:ConnectError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "NISA Investment Advisors",
@@ -1226,8 +1236,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Neuberger Berman",
@@ -1246,8 +1256,8 @@
     "career_page": "",
     "career_page_status": "fail:ConnectError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "New York Life Investment Management",
@@ -1326,8 +1336,8 @@
     "career_page": "",
     "career_page_status": "fail:ConnectError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "PGIM Quantitative Solutions",
@@ -1346,8 +1356,8 @@
     "career_page": "",
     "career_page_status": "fail:TimeoutError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "PRIMECAP Management Company",
@@ -1356,8 +1366,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Pacific Investment Management Company",
@@ -1426,8 +1436,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Putnam Investments",
@@ -1476,8 +1486,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "RhumbLine",
@@ -1516,8 +1526,8 @@
     "career_page": "",
     "career_page_status": "fail:403",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Sanders Capital",
@@ -1576,8 +1586,8 @@
     "career_page": "",
     "career_page_status": "no_website",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Silver Point Capital",
@@ -1646,8 +1656,8 @@
     "career_page": "",
     "career_page_status": "fail:ConnectError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Templeton Emerging Markets Group",
@@ -1656,8 +1666,8 @@
     "career_page": "",
     "career_page_status": "no_website",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Tenaron Capital Management",
@@ -1666,8 +1676,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "The Capital Group Companies",
@@ -1766,8 +1776,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "UBS Hedge Fund Solutions",
@@ -1776,8 +1786,8 @@
     "career_page": "",
     "career_page_status": "no_website",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "VanEck",
@@ -1876,8 +1886,8 @@
     "career_page": "",
     "career_page_status": "fail:403",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "iCapital Advisors - affiiated advisor of iCapital Network",
@@ -1916,8 +1926,8 @@
     "career_page": "",
     "career_page_status": "fail:403",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "BNP Paribas Corporate and Institutional Banking",
@@ -1926,8 +1936,8 @@
     "career_page": "",
     "career_page_status": "fail:TimeoutError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Bank of America (NYS: BAC)",
@@ -2016,8 +2026,8 @@
     "career_page": "",
     "career_page_status": "fail:403",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Centerview Partners",
@@ -2036,8 +2046,8 @@
     "career_page": "",
     "career_page_status": "fail:521",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Citigroup (NYS: C)",
@@ -2096,8 +2106,8 @@
     "career_page": "",
     "career_page_status": "fail:403",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Deutsche Bank (ETR: DBK)",
@@ -2116,8 +2126,8 @@
     "career_page": "",
     "career_page_status": "no_website",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Eastdil Secured",
@@ -2176,8 +2186,8 @@
     "career_page": "",
     "career_page_status": "no_website",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Haitong International Securities Group",
@@ -2226,8 +2236,8 @@
     "career_page": "",
     "career_page_status": "fail:ConnectError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "J.P. Morgan (New York)",
@@ -2276,8 +2286,8 @@
     "career_page": "",
     "career_page_status": "fail:TimeoutError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Keefe, Bruyette & Woods",
@@ -2286,8 +2296,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "KeyBank (NYS: KEY)",
@@ -2336,8 +2346,8 @@
     "career_page": "",
     "career_page_status": "fail:ConnectError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Marcus & Millichap (NYS: MMI)",
@@ -2386,8 +2396,8 @@
     "career_page": "",
     "career_page_status": "fail:404",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "National Bank Financial Markets",
@@ -2446,8 +2456,8 @@
     "career_page": "",
     "career_page_status": "fail:403",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Piper Sandler (NYS: PIPR)",
@@ -2486,8 +2496,8 @@
     "career_page": "",
     "career_page_status": "fail:TimeoutError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Robert W. Baird & Co.",
@@ -2606,8 +2616,8 @@
     "career_page": "",
     "career_page_status": "no_website",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "UBS Loan Finance",
@@ -2616,8 +2626,8 @@
     "career_page": "",
     "career_page_status": "no_website",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "UniCredit Corporate & Investment Banking",
@@ -2626,8 +2636,8 @@
     "career_page": "",
     "career_page_status": "fail:ConnectError",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   },
   {
     "company_name": "Wedbush Securities",
@@ -2666,7 +2676,7 @@
     "career_page": "",
     "career_page_status": "no_website",
     "career_page_source": "",
-    "skip": false,
-    "skip_reason": ""
+    "skip": true,
+    "skip_reason": "no_career_page"
   }
 ]

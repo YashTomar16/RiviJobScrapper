@@ -42,6 +42,53 @@ def _db_path(settings) -> Path:
 
 
 @st.cache_data(ttl=30)
+def load_companies_from_db() -> tuple[list[dict], dict]:
+    """Eligible companies for the active monitoring set (+ optional skipped)."""
+    from sqlalchemy import select
+
+    from rivi.config import get_settings
+    from rivi.db import session_scope
+    from rivi.models import Company
+
+    settings = get_settings()
+    if not _db_path(settings).exists():
+        # Fallback to CSV registry
+        rows = load_companies_csv()
+        eligible = [
+            r
+            for r in rows
+            if (r.get("career_page") or "").strip()
+            and str(r.get("skip", "false")).lower() not in {"true", "1", "yes"}
+        ]
+        return eligible, {
+            "total": len(rows),
+            "eligible": len(eligible),
+            "skipped": len(rows) - len(eligible),
+            "source": "csv",
+        }
+
+    with session_scope(settings) as session:
+        all_rows = list(session.scalars(select(Company).order_by(Company.name)))
+        eligible_rows = [c for c in all_rows if c.is_eligible]
+        payload = [
+            {
+                "company_name": c.name,
+                "category": c.category,
+                "website": c.website,
+                "career_page": c.career_page,
+                "career_page_status": c.career_page_status,
+                "skip": c.skip,
+            }
+            for c in eligible_rows
+        ]
+        return payload, {
+            "total": len(all_rows),
+            "eligible": len(eligible_rows),
+            "skipped": sum(1 for c in all_rows if c.skip),
+            "source": "db",
+        }
+
+
 def load_companies_csv() -> list[dict]:
     import csv
 
@@ -329,7 +376,7 @@ def main() -> None:
         unsafe_allow_html=True,
     )
 
-    companies = load_companies_csv()
+    companies, registry = load_companies_from_db()
     jobs, meta = load_jobs_from_db()
     weeks = load_week_ids()
     coverage = load_coverage()
@@ -342,12 +389,12 @@ def main() -> None:
             week = None
             st.caption("No insight weeks yet.")
         st.divider()
-        st.markdown("### Registry")
-        st.metric("Companies", len(companies))
+        st.markdown("### Active set")
+        st.metric("Eligible companies", registry.get("eligible") or len(companies))
         st.metric("In-scope open roles", len(jobs))
-        if coverage:
-            st.metric("Eligible", coverage.get("eligible") or 0)
-            st.metric("Missing career page", coverage.get("missing_career_page") or 0)
+        skipped = registry.get("skipped") or 0
+        if skipped:
+            st.caption(f"{skipped} registry rows skipped (no career page / excluded)")
         if st.button("Refresh data"):
             st.cache_data.clear()
             st.rerun()
@@ -397,8 +444,12 @@ def main() -> None:
             _job_table(view, key="all_jobs")
 
     with tab_companies:
+        st.caption(
+            f"Showing **{len(companies)} eligible** companies with career pages "
+            f"(skipped/non-scrapeable rows hidden)."
+        )
         if not companies:
-            st.write("No companies.csv found.")
+            st.write("No eligible companies found.")
         else:
             st.dataframe(companies, use_container_width=True, hide_index=True)
 
@@ -406,19 +457,21 @@ def main() -> None:
         if not coverage:
             st.write("Coverage unavailable without database.")
         else:
-            c1, c2, c3, c4 = st.columns(4)
-            c1.metric("Total", coverage["total"])
-            c2.metric("Eligible", coverage["eligible"])
-            c3.metric("Missing career", coverage["missing_career_page"])
-            c4.metric("Skipped", coverage["skipped"])
+            c1, c2, c3 = st.columns(3)
+            c1.metric("Eligible (active)", coverage["eligible"])
+            c2.metric("Skipped", coverage["skipped"])
+            c3.metric("Registry total", coverage["total"])
+            st.caption(
+                "Active monitoring uses eligible companies only. "
+                "Skipped rows are missing a career page or were excluded."
+            )
             by_cat = coverage.get("by_category") or {}
             if by_cat:
                 rows = [
                     {
                         "Category": name,
-                        "Total": stats.get("total", 0),
                         "Eligible": stats.get("eligible", 0),
-                        "Missing career": stats.get("missing_career", 0),
+                        "Skipped / missing": stats.get("total", 0) - stats.get("eligible", 0),
                     }
                     for name, stats in by_cat.items()
                 ]
