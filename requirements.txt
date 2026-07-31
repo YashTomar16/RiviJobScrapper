@@ -1,6 +1,8 @@
 # Pin-friendly install: pip install -r requirements.txt
 # Prefer: pip install -e .
+# Streamlit Cloud uses this file (Main file path: streamlit_app.py)
 
+streamlit>=1.32
 httpx>=0.27
 pydantic>=2.6
 pydantic-settings>=2.2
