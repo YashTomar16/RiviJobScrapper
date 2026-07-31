@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Coverage · Rivi{% endblock %}
+{% block content %}
+<header class="page-header">
+  <div>
+    <p class="breadcrumb">Enablement / Coverage</p>
+    <h1>Coverage health</h1>
+    <p class="lede">Career-page resolution across the company registry.</p>
+  </div>
+</header>
+<section class="stats-strip">
+  <div class="stat-tile"><span class="stat-val">{{ report.total }}</span><span class="stat-label">Total</span></div>
+  <div class="stat-tile"><span class="stat-val">{{ report.eligible }}</span><span class="stat-label">Eligible</span></div>
+  <div class="stat-tile"><span class="stat-val">{{ report.missing_career_page }}</span><span class="stat-label">Missing career</span></div>
+  <div class="stat-tile"><span class="stat-val">{{ report.skipped }}</span><span class="stat-label">Skipped</span></div>
+</section>
+<section class="panel">
+  <h2>Unresolved</h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>Company</th><th>Category</th><th>Website</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      {% for u in report.unresolved[:100] %}
+      <tr>
+        <td>{{ u.company_name }}</td>
+        <td>{{ u.category }}</td>
+        <td class="truncate">{{ u.website or '—' }}</td>
+        <td>{{ u.career_page_status }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="4" class="muted">All resolved.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

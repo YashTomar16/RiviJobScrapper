@@ -1,0 +1,84 @@
+from rivi.classifier import classify_title
+
+
+def test_engineering_ic():
+    c = classify_title("Senior Software Engineer")
+    assert c.in_scope
+    assert c.function == "Engineering"
+    assert c.seniority_band == "IC"
+
+
+def test_vp_engineering():
+    c = classify_title("VP Engineering")
+    assert c.in_scope
+    assert c.function == "Engineering"
+    assert c.seniority_band in {"VP", "SVP"}
+
+
+def test_cto():
+    c = classify_title("Chief Technology Officer")
+    assert c.in_scope
+    assert c.seniority_band == "C-level"
+
+
+def test_product_manager():
+    c = classify_title("Product Manager")
+    assert c.in_scope
+    assert c.function == "Product"
+    assert c.seniority_band == "Manager"
+
+
+def test_ml_engineer():
+    c = classify_title("Machine Learning Engineer")
+    assert c.in_scope
+    assert c.function == "Machine Learning"
+
+
+def test_ai_scientist():
+    c = classify_title("AI Research Scientist")
+    assert c.in_scope
+    assert c.function in {"AI", "Machine Learning"}
+
+
+def test_exclude_sales():
+    c = classify_title("Account Executive")
+    assert not c.in_scope
+
+
+def test_exclude_product_marketing():
+    c = classify_title("Product Marketing Manager")
+    assert not c.in_scope
+
+
+def test_exclude_hr():
+    c = classify_title("HR Business Partner")
+    assert not c.in_scope
+
+
+def test_exclude_director_operations():
+    c = classify_title("Director of Operations")
+    assert not c.in_scope
+
+
+def test_exclude_cfo():
+    c = classify_title("Chief Financial Officer")
+    assert not c.in_scope
+
+
+def test_exclude_sales_engineer():
+    c = classify_title("Sales Engineer")
+    assert not c.in_scope
+
+
+def test_head_of_data():
+    c = classify_title("Head of Data Science")
+    assert c.in_scope
+    assert c.function == "Data"
+    assert c.seniority_band == "Head"
+
+
+def test_quant_developer_in_scope():
+    c = classify_title("Quantitative Developer")
+    # developer keyword → Engineering
+    assert c.in_scope
+    assert c.function == "Engineering"

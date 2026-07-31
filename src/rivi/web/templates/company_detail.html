@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}{{ company.name }} · Rivi{% endblock %}
+{% block content %}
+<header class="page-header">
+  <div>
+    <p class="breadcrumb"><a href="/companies">Companies</a> / {{ company.name }}</p>
+    <h1>{{ company.name }}</h1>
+    <p class="lede">{{ company.category }} · {% if company.is_eligible %}eligible{% else %}not eligible{% endif %}</p>
+    {% if company.website %}<p><a href="{{ company.website }}" target="_blank" rel="noopener">Website</a></p>{% endif %}
+    {% if company.career_page %}<p><a href="{{ company.career_page }}" target="_blank" rel="noopener">Career page</a> · {{ company.career_page_status }}</p>{% endif %}
+  </div>
+  <div class="header-actions">
+    <form method="post" action="/companies/{{ company.id }}/deep-dive">
+      <button class="btn btn-primary" type="submit">Groq deep-dive</button>
+    </form>
+  </div>
+</header>
+
+{% if deep_dive %}
+<section class="panel">
+  <h2>Company deep-dive</h2>
+  {% if deep_dive.llm_status == 'success' and deep_dive.groq %}
+  <div class="brief-prose">{{ deep_dive.groq.executive_brief }}</div>
+  {% if deep_dive.groq.priority_companies %}
+  <h3>Priorities</h3>
+  <ul class="priority-list">
+    {% for p in deep_dive.groq.priority_companies %}
+    <li><strong>{{ p.company }}</strong> — {{ p.rationale }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% if deep_dive.groq.outreach_angles %}
+  <h3>Outreach angles</h3>
+  <ul class="angle-list">
+    {% for a in deep_dive.groq.outreach_angles %}
+    <li><strong>{{ a.company }}</strong> — {{ a.angle }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% else %}
+  <div class="section-message error">Deep-dive failed: {{ deep_dive.error or deep_dive.llm_status }}</div>
+  {% endif %}
+</section>
+{% endif %}
+
+<section class="panel">
+  <h2>In-scope roles</h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>Title</th><th>Function</th><th>Seniority</th><th>Status</th><th>First seen</th><th>Last seen</th></tr>
+    </thead>
+    <tbody>
+      {% for j in jobs %}
+      <tr>
+        <td>{% if j.job_url %}<a href="{{ j.job_url }}" target="_blank" rel="noopener">{{ j.title }}</a>{% else %}{{ j.title }}{% endif %}</td>
+        <td>{{ j.function }}</td>
+        <td>{{ j.seniority_band }}</td>
+        <td><span class="lozenge {% if j.status == 'open' %}lozenge-success{% else %}lozenge-removed{% endif %}">{{ j.status }}</span></td>
+        <td>{{ j.first_seen_week }}</td>
+        <td>{{ j.last_seen_week }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="6" class="muted">No in-scope jobs stored.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

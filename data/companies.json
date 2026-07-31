@@ -1,0 +1,2672 @@
+[
+  {
+    "company_name": "969 Capital",
+    "category": "Asset Managers",
+    "website": "https://www.969capital.com",
+    "career_page": "",
+    "career_page_status": "fail:TimeoutError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "ABRDN Emerging Markets Equity Income (ASE: AEF)",
+    "category": "Asset Managers",
+    "website": "https://www.aberdeeninvestments.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "AIG Asset Management (U.S.)",
+    "category": "Asset Managers",
+    "website": "",
+    "career_page": "",
+    "career_page_status": "no_website",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "AQR Capital Management",
+    "category": "Asset Managers",
+    "website": "https://www.aqr.com",
+    "career_page": "https://careers.aqr.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Acadian Asset Management",
+    "category": "Asset Managers",
+    "website": "https://www.acadian-asset.com",
+    "career_page": "https://www.acadian-asset.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Adage Capital Management",
+    "category": "Asset Managers",
+    "website": "https://www.adagecapital.com",
+    "career_page": "",
+    "career_page_status": "fail:ConnectError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Aegon USA Investment Management",
+    "category": "Asset Managers",
+    "website": "https://www.aegoninvestments.com",
+    "career_page": "https://www.aegonam.com/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "AlTi Global (NAS: ALTI)",
+    "category": "Asset Managers",
+    "website": "https://www.alti-global.com",
+    "career_page": "https://alti-global.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "AllianceBernstein",
+    "category": "Asset Managers",
+    "website": "https://www.alliancebernstein.com",
+    "career_page": "https://abglobal.wd1.myworkdayjobs.com/alliancebernsteincareers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Allspring Global Investments",
+    "category": "Asset Managers",
+    "website": "https://www.allspringglobal.com",
+    "career_page": "https://www.allspringglobal.com/corporate/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Alphadyne Asset Management",
+    "category": "Asset Managers",
+    "website": "https://www.adyne.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "American Century Investments",
+    "category": "Asset Managers",
+    "website": "https://www.americancentury.com",
+    "career_page": "https://www.americancentury.com/about/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Apogem Capital",
+    "category": "Asset Managers",
+    "website": "https://www.apogemcapital.com",
+    "career_page": "https://apogemcapital.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Ares Management (NYS: ARES)",
+    "category": "Asset Managers",
+    "website": "https://www.aresmgmt.com",
+    "career_page": "https://www.ares.com/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Argent Wealth Management",
+    "category": "Asset Managers",
+    "website": "https://www.argentwm.com",
+    "career_page": "",
+    "career_page_status": "fail:403",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Arrowstreet Capital",
+    "category": "Asset Managers",
+    "website": "https://www.arrowstreetcapital.com",
+    "career_page": "https://www.arrowstreetcapital.com/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Artisan Partners Asset Management (NYS: APAM)",
+    "category": "Asset Managers",
+    "website": "https://www.artisanpartners.com",
+    "career_page": "https://www.artisanpartners.com/content/artisanpartners/en_us/careers/our-people.html",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Audax Group",
+    "category": "Asset Managers",
+    "website": "https://www.audaxgroup.com",
+    "career_page": "https://www.audaxgroup.com/leadership",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Avantis Investors",
+    "category": "Asset Managers",
+    "website": "https://avantisinvestors.com",
+    "career_page": "https://americancentury.wd5.myworkdayjobs.com/AvantisCareers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Avondale Conquest",
+    "category": "Asset Managers",
+    "website": "https://www.conquestfund.com",
+    "career_page": "",
+    "career_page_status": "fail:ConnectError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "BNY Mellon Investment Management",
+    "category": "Asset Managers",
+    "website": "https://www.bnymellonim.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Balyasny Asset Management",
+    "category": "Asset Managers",
+    "website": "https://www.bamfunds.com",
+    "career_page": "https://www.bamfunds.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Bank of New York Mellon",
+    "category": "Asset Managers",
+    "website": "https://www.bny.com",
+    "career_page": "https://www.bny.com/corporate/global/en/about-us/careers/work-with-us.html",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Barings",
+    "category": "Asset Managers",
+    "website": "https://www.barings.com",
+    "career_page": "https://www.barings.com/guest/about/careers/student",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Baron Capital (New York)",
+    "category": "Asset Managers",
+    "website": "https://baroncapitalgroup.com",
+    "career_page": "https://www.baroncapitalgroup.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Barrow Hanley Global Investors",
+    "category": "Asset Managers",
+    "website": "https://www.barrowhanley.com",
+    "career_page": "https://barrowhanleyglobal.applytojob.com/apply/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Benefit Street Partners",
+    "category": "Asset Managers",
+    "website": "https://www.benefitstreetpartners.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "BlackRock",
+    "category": "Asset Managers",
+    "website": "https://www.blackrock.com",
+    "career_page": "https://careers.blackrock.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Blackstone Alternative Asset Management",
+    "category": "Asset Managers",
+    "website": "",
+    "career_page": "",
+    "career_page_status": "no_website",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Blue Owl Capital (NYS: OWL)",
+    "category": "Asset Managers",
+    "website": "https://www.blueowl.com",
+    "career_page": "https://www.blueowl.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Bossert Capital",
+    "category": "Asset Managers",
+    "website": "https://www.bossertcapital.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Boston Partners",
+    "category": "Asset Managers",
+    "website": "https://www.bostonpartners.com",
+    "career_page": "https://www.bostonpartners.com/about-us/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Bracebridge Capital",
+    "category": "Asset Managers",
+    "website": "https://www.bracebridgecapital.com",
+    "career_page": "https://www.bracebridgecapital.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Brandes Investment Partners",
+    "category": "Asset Managers",
+    "website": "https://www.brandes.com",
+    "career_page": "",
+    "career_page_status": "fail:TimeoutError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Breckinridge Capital Advisors",
+    "category": "Asset Managers",
+    "website": "https://breckinridge.com",
+    "career_page": "",
+    "career_page_status": "fail:403",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Bridgewater Associates",
+    "category": "Asset Managers",
+    "website": "https://www.bridgewater.com",
+    "career_page": "https://www.bridgewater.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Brinker Capital",
+    "category": "Asset Managers",
+    "website": "https://www.brinkercapital.com",
+    "career_page": "https://orion.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Brookfield Asset Management",
+    "category": "Asset Managers",
+    "website": "https://bam.brookfield.com",
+    "career_page": "https://bam.brookfield.com/page-not-found",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Brookfield Public Securities Group",
+    "category": "Asset Managers",
+    "website": "https://publicsecurities.brookfield.com",
+    "career_page": "https://www.brookfield.com/careers/life-at-brookfield",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Brown Advisory",
+    "category": "Asset Managers",
+    "website": "https://www.brownadvisory.com",
+    "career_page": "https://www.brownadvisory.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "CIBC Private Wealth Management",
+    "category": "Asset Managers",
+    "website": "https://www.private-wealth.us.cibc.com",
+    "career_page": "https://private-wealth.us.cibc.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "CSCA Capital Advisors",
+    "category": "Asset Managers",
+    "website": "https://www.cscapitaladvisors.com",
+    "career_page": "https://www.cscapitaladvisors.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Calamos Investments",
+    "category": "Asset Managers",
+    "website": "https://www.calamos.com",
+    "career_page": "https://www.calamos.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "California State Teachers' Retirement System",
+    "category": "Asset Managers",
+    "website": "https://www.calstrs.com",
+    "career_page": "https://www.calstrs.com/careers-at-calstrs",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Carlyle Aviation Partners",
+    "category": "Asset Managers",
+    "website": "https://www.carlyle.aero",
+    "career_page": "",
+    "career_page_status": "fail:403",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Cerberus Capital Management",
+    "category": "Asset Managers",
+    "website": "https://www.cerberus.com",
+    "career_page": "https://www.cerberus.com/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Chandler Asset Management",
+    "category": "Asset Managers",
+    "website": "https://www.chandlerasset.com",
+    "career_page": "https://recruiting.paylocity.com/recruiting/jobs/All/30f164f5-e2e4-4b53-a1b7-cfb725d76986/Chandler-Asset-Management-Inc",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Chevy Chase Trust",
+    "category": "Asset Managers",
+    "website": "https://www.chevychasetrust.com",
+    "career_page": "https://chevychasetrust.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Citadel Enterprise Americas",
+    "category": "Asset Managers",
+    "website": "https://www.citadel.com",
+    "career_page": "",
+    "career_page_status": "fail:403",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "ClearBridge Investments",
+    "category": "Asset Managers",
+    "website": "https://www.clearbridge.com",
+    "career_page": "https://www.clearbridge.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Cohen & Steers Select Preferred & Income Fund (NYS: PSF)",
+    "category": "Asset Managers",
+    "website": "",
+    "career_page": "",
+    "career_page_status": "no_website",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Columbia Management",
+    "category": "Asset Managers",
+    "website": "https://www.columbiathreadneedle.com",
+    "career_page": "https://www.columbiathreadneedleus.com/careers",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Conning",
+    "category": "Asset Managers",
+    "website": "https://www.conning.com",
+    "career_page": "https://www.conning.com/about-us/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Counterpoint Global",
+    "category": "Asset Managers",
+    "website": "https://Subsidiary of Morgan Stanley",
+    "career_page": "",
+    "career_page_status": "fail:ConnectError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Crescent Capital Group",
+    "category": "Asset Managers",
+    "website": "https://www.crescentcap.com",
+    "career_page": "https://www.crescentcap.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Davidson Kempner Capital Management",
+    "category": "Asset Managers",
+    "website": "https://www.davidsonkempner.com",
+    "career_page": "https://www.davidsonkempner.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Dimensional Fund Advisors",
+    "category": "Asset Managers",
+    "website": "https://www.dimensional.com",
+    "career_page": "https://careers.dimensional.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Direxion",
+    "category": "Asset Managers",
+    "website": "https://www.direxion.com",
+    "career_page": "https://www.direxion.com/contact",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "DoubleLine",
+    "category": "Asset Managers",
+    "website": "https://www.doubleline.com",
+    "career_page": "https://www.paycomonline.net/v4/ats/web.php/portal/38CBF00EC5A30DD0F5859FC6251BFD31/career-page",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Duff & Phelps Utility and Corporate Bond Trust",
+    "category": "Asset Managers",
+    "website": "https://www.ducfund.com",
+    "career_page": "",
+    "career_page_status": "fail:ConnectError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "EARNEST Partners",
+    "category": "Asset Managers",
+    "website": "https://www.earnestpartners.com",
+    "career_page": "https://www.earnestpartners.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Eagle Asset Management",
+    "category": "Asset Managers",
+    "website": "https://www.eagleasset.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Eaton Vance",
+    "category": "Asset Managers",
+    "website": "https://www.eatonvance.com",
+    "career_page": "",
+    "career_page_status": "fail:403",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Edward D. Jones & Co.",
+    "category": "Asset Managers",
+    "website": "https://www.edwardjones.com",
+    "career_page": "https://careers.edwardjones.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Eldridge (New York)",
+    "category": "Asset Managers",
+    "website": "https://www.eldridge.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Element Capital Management",
+    "category": "Asset Managers",
+    "website": "https://www.elementcapital.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Elliott Investment Management",
+    "category": "Asset Managers",
+    "website": "https://www.elliottmgmt.com",
+    "career_page": "https://www.elliottmgmt.com/contact/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Ergo Partners",
+    "category": "Asset Managers",
+    "website": "https://www.ergopartners.com",
+    "career_page": "https://www.ergopartners.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Farallon Capital Management",
+    "category": "Asset Managers",
+    "website": "https://www.faralloncapital.com",
+    "career_page": "https://www.faralloncapital.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Federated Hermes",
+    "category": "Asset Managers",
+    "website": "https://www.federatedhermes.com",
+    "career_page": "https://careers.federatedhermes.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Fidelity Investment Asset Management",
+    "category": "Asset Managers",
+    "website": "https://pyramis.fidelity.com/app/p/us/about-pyramis-global-advisors",
+    "career_page": "",
+    "career_page_status": "fail:ConnectError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Fidelity Management & Research Company",
+    "category": "Asset Managers",
+    "website": "https://Subsidiary of Fidelity Group",
+    "career_page": "",
+    "career_page_status": "fail:ConnectError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Field Street Capital Management",
+    "category": "Asset Managers",
+    "website": "https://www.fscm.com",
+    "career_page": "",
+    "career_page_status": "fail:ConnectError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "First Trust Portfolios",
+    "category": "Asset Managers",
+    "website": "https://www.ftportfolios.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Fisher Investments (Asset Management)",
+    "category": "Asset Managers",
+    "website": "https://www.fisherinvestments.com",
+    "career_page": "",
+    "career_page_status": "fail:403",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Fort Washington Investment Advisors",
+    "category": "Asset Managers",
+    "website": "https://fortwashington.com",
+    "career_page": "",
+    "career_page_status": "fail:ConnectError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Franklin Resources",
+    "category": "Asset Managers",
+    "website": "https://www.franklinresources.com",
+    "career_page": "https://www.franklinresources.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Future Standard (Philadelphia)",
+    "category": "Asset Managers",
+    "website": "https://www.futurestandard.com",
+    "career_page": "https://www.futurestandard.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "GCM Grosvenor (NAS: GCMG)",
+    "category": "Asset Managers",
+    "website": "https://www.gcmgrosvenor.com",
+    "career_page": "https://www.gcmgrosvenor.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "GQG Partners (ASX: GQG)",
+    "category": "Asset Managers",
+    "website": "https://gqg.com",
+    "career_page": "https://gqg.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "GW&K Investment Management",
+    "category": "Asset Managers",
+    "website": "https://www.gwkinvest.com",
+    "career_page": "https://www.gwkinvest.com/our-firm/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Galliard Capital Management",
+    "category": "Asset Managers",
+    "website": "https://www.galliard.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Garda Capital Partners",
+    "category": "Asset Managers",
+    "website": "https://www.gardacp.com",
+    "career_page": "https://www.gardacp.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Geode Capital Management",
+    "category": "Asset Managers",
+    "website": "https://www.geodecapital.com",
+    "career_page": "https://www.geodecapital.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "GoldenTree Asset Management",
+    "category": "Asset Managers",
+    "website": "https://www.goldentree.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Goldman Sachs Asset Management",
+    "category": "Asset Managers",
+    "website": "https://am.gs.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Grantham, Mayo, Van Otterloo",
+    "category": "Asset Managers",
+    "website": "https://www.gmo.com",
+    "career_page": "https://www.gmo.com/americas/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Guggenheim Investments",
+    "category": "Asset Managers",
+    "website": "https://www.guggenheiminvestments.com",
+    "career_page": "https://www.guggenheiminvestments.com/firm/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "HL Investment Advisors",
+    "category": "Asset Managers",
+    "website": "",
+    "career_page": "",
+    "career_page_status": "no_website",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Hamilton Lane",
+    "category": "Asset Managers",
+    "website": "https://www.hamiltonlane.com",
+    "career_page": "https://www.hamiltonlane.com/en-us/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "HarbourVest Partners",
+    "category": "Asset Managers",
+    "website": "https://www.harbourvest.com",
+    "career_page": "https://www.harbourvest.com/us/en/about-harbourvest/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Hartford Funds",
+    "category": "Asset Managers",
+    "website": "https://www.hartfordfunds.com",
+    "career_page": "https://www.hartfordfunds.com/ex-pages/vanity/careers.html",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Hartford Investment Management Company",
+    "category": "Asset Managers",
+    "website": "https://www.himco.com",
+    "career_page": "",
+    "career_page_status": "fail:TimeoutError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Holocene Advisors",
+    "category": "Asset Managers",
+    "website": "https://www.holocene.com",
+    "career_page": "https://www.holocene.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Hudson Advisors",
+    "category": "Asset Managers",
+    "website": "https://www.hudson-advisors.com",
+    "career_page": "https://www.hudson-advisors.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "III Capital Management",
+    "category": "Asset Managers",
+    "website": "https://iiicm.com",
+    "career_page": "",
+    "career_page_status": "fail:TimeoutError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Income Research & Management",
+    "category": "Asset Managers",
+    "website": "https://www.incomeresearch.com",
+    "career_page": "https://www.incomeresearch.com/careers-culture/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Invesco",
+    "category": "Asset Managers",
+    "website": "https://www.invesco.com",
+    "career_page": "https://careers.invesco.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Invesco Advisers",
+    "category": "Asset Managers",
+    "website": "https://Subsidiary of Invesco",
+    "career_page": "",
+    "career_page_status": "fail:ConnectError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "J.P. Morgan Private Bank",
+    "category": "Asset Managers",
+    "website": "https://privatebank.jpmorgan.com",
+    "career_page": "https://privatebank.jpmorgan.com/nam/en/about-us/private-bank-careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "JP Morgan Asset Management",
+    "category": "Asset Managers",
+    "website": "https://am.jpmorgan.com",
+    "career_page": "https://am.jpmorgan.com/sg/en/asset-management/institutional/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Jasper Ridge Partners",
+    "category": "Asset Managers",
+    "website": "https://www.jasperridge.com",
+    "career_page": "https://www.jasperridge.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Jennison Associates",
+    "category": "Asset Managers",
+    "website": "https://www.jennison.com",
+    "career_page": "https://www.jennison.com/campaignCountry/en/institutional/about-us/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "LSV Asset Management",
+    "category": "Asset Managers",
+    "website": "https://www.lsvasset.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Lazard (NYS: LAZ)",
+    "category": "Asset Managers",
+    "website": "https://www.lazard.com",
+    "career_page": "https://www.lazard.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Legal & General Investment Management America",
+    "category": "Asset Managers",
+    "website": "https://www.am.landg.us.com",
+    "career_page": "https://am.landg.us.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Level III Capital",
+    "category": "Asset Managers",
+    "website": "https://www.l3cap.com",
+    "career_page": "https://www.l3cap.com/about/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Lighthouse Investment Partners",
+    "category": "Asset Managers",
+    "website": "https://www.lighthousepartners.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Loomis, Sayles & Company",
+    "category": "Asset Managers",
+    "website": "https://www.loomissayles.com",
+    "career_page": "https://www.loomissayles.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Lord Abbett",
+    "category": "Asset Managers",
+    "website": "https://www.lordabbett.com",
+    "career_page": "https://www.lordabbett.com/careers",
+    "career_page_status": "ok:202",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Los Angeles Capital Management (LACM)",
+    "category": "Asset Managers",
+    "website": "https://lacapm.com",
+    "career_page": "https://lacapm.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "MFS Investment Management",
+    "category": "Asset Managers",
+    "website": "https://www.mfs.com",
+    "career_page": "https://www.mfs.com/en-us/investment-professional/about-mfs/careers.html",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "MIO Partners",
+    "category": "Asset Managers",
+    "website": "https://www.miopartners.com",
+    "career_page": "https://www.miopartners.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "MacKay Shields",
+    "category": "Asset Managers",
+    "website": "https://www.mackayshields.com",
+    "career_page": "https://www.mackayshields.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Man Numeric",
+    "category": "Asset Managers",
+    "website": "https://www.numeric.com",
+    "career_page": "",
+    "career_page_status": "fail:ConnectError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Manulife John Hancock Investments",
+    "category": "Asset Managers",
+    "website": "https://www.jhinvestments.com",
+    "career_page": "",
+    "career_page_status": "fail:403",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Mariner Wealth Advisors",
+    "category": "Asset Managers",
+    "website": "https://www.marinerwealthadvisors.com",
+    "career_page": "https://joinmariner.com/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "MetLife Investment Management",
+    "category": "Asset Managers",
+    "website": "https://www.investments.metlife.com",
+    "career_page": "",
+    "career_page_status": "fail:ConnectError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Millennium Management",
+    "category": "Asset Managers",
+    "website": "https://www.mlp.com",
+    "career_page": "https://www.mlp.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Mirae Asset Global Investments (USA)",
+    "category": "Asset Managers",
+    "website": "https://investments.miraeasset.us",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Morgan Stanley Investment Management",
+    "category": "Asset Managers",
+    "website": "https://Subsidiary of Morgan Stanley",
+    "career_page": "",
+    "career_page_status": "fail:ConnectError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "NISA Investment Advisors",
+    "category": "Asset Managers",
+    "website": "https://www.nisa.com",
+    "career_page": "https://careers.nisa.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Natixis Investment Managers",
+    "category": "Asset Managers",
+    "website": "https://www.im.natixis.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Neuberger Berman",
+    "category": "Asset Managers",
+    "website": "https://www.nb.com",
+    "career_page": "https://www.nb.com/who-we-are/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "New England Asset Management",
+    "category": "Asset Managers",
+    "website": "https://neamgroup.com",
+    "career_page": "",
+    "career_page_status": "fail:ConnectError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "New York Life Investment Management",
+    "category": "Asset Managers",
+    "website": "https://www.newyorklifeinvestments.com",
+    "career_page": "https://careers.newyorklife.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Newton Investment Management",
+    "category": "Asset Managers",
+    "website": "https://www.newtonim.com",
+    "career_page": "https://www.bny.com/corporate/global/en/about-us/careers/work-with-us.html",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Northern Trust",
+    "category": "Asset Managers",
+    "website": "https://www.northerntrust.com",
+    "career_page": "https://ntrs.wd1.myworkdayjobs.com/northerntrust",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Nuveen",
+    "category": "Asset Managers",
+    "website": "https://www.nuveen.com",
+    "career_page": "https://careers.tiaa.org:443/nuveen",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Oakmark Funds",
+    "category": "Asset Managers",
+    "website": "https://www.oakmark.com",
+    "career_page": "https://harrisassoc.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Oaktree Capital Management",
+    "category": "Asset Managers",
+    "website": "https://www.oaktreecapital.com",
+    "career_page": "https://www.oaktreecapital.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "PGIM",
+    "category": "Asset Managers",
+    "website": "https://www.pgim.com",
+    "career_page": "https://jobs.pgim.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "PGIM Fixed Income",
+    "category": "Asset Managers",
+    "website": "https://pgimfixedincome.com",
+    "career_page": "",
+    "career_page_status": "fail:ConnectError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "PGIM Quantitative Solutions",
+    "category": "Asset Managers",
+    "website": "https://www.pgimquantitativesolutions.com",
+    "career_page": "https://www.pgim.com/campaignCountry/en/institutional/businesses/quantitative-solutions",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "PPM America",
+    "category": "Asset Managers",
+    "website": "https://www.ppmamerica.com",
+    "career_page": "",
+    "career_page_status": "fail:TimeoutError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "PRIMECAP Management Company",
+    "category": "Asset Managers",
+    "website": "https://www.primecap.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Pacific Investment Management Company",
+    "category": "Asset Managers",
+    "website": "https://www.pimco.com",
+    "career_page": "https://www.pimco.com/gbl/en/about-us/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Parametric Portfolio Associates",
+    "category": "Asset Managers",
+    "website": "https://www.parametricportfolio.com",
+    "career_page": "https://www.parametricportfolio.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Penn Mutual Asset Management",
+    "category": "Asset Managers",
+    "website": "https://www.pennmutualam.com",
+    "career_page": "https://www.pennmutualam.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "PineBridge Investments",
+    "category": "Asset Managers",
+    "website": "https://www.pinebridge.com",
+    "career_page": "https://www.pinebridge.com/jobs",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Point72 Asset Management",
+    "category": "Asset Managers",
+    "website": "https://www.point72.com",
+    "career_page": "https://careers.point72.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Polen Capital",
+    "category": "Asset Managers",
+    "website": "https://www.polencapital.com",
+    "career_page": "https://www.polencapital.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Principal Global Investors",
+    "category": "Asset Managers",
+    "website": "https://www.principalam.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Putnam Investments",
+    "category": "Asset Managers",
+    "website": "https://www.putnam.com",
+    "career_page": "https://www.franklintempletoncareers.com/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Pzena Investment Management",
+    "category": "Asset Managers",
+    "website": "https://www.pzena.com",
+    "career_page": "https://www.pzena.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Quantitative Management Associates",
+    "category": "Asset Managers",
+    "website": "https://www.qma.com",
+    "career_page": "https://www.pgim.com/campaignCountry/en/institutional/investments/strategies/multi-asset/quantitative-solutions",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Redding Ridge Asset Management",
+    "category": "Asset Managers",
+    "website": "https://www.rram.com",
+    "career_page": "https://job-boards.greenhouse.io/reddingridge",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Renaissance Technologies",
+    "category": "Asset Managers",
+    "website": "https://www.renfund.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "RhumbLine",
+    "category": "Asset Managers",
+    "website": "https://www.rhumbline.com",
+    "career_page": "https://careers.rhumbline.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Russell Investments Group",
+    "category": "Asset Managers",
+    "website": "https://www.russellinvestments.com",
+    "career_page": "https://russellinvestments.com/content/ri/in/en-gb/about-us/careers.html",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "SEI Investments",
+    "category": "Asset Managers",
+    "website": "https://www.seic.com",
+    "career_page": "https://www.seic.com/careers/home",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "SLC Management",
+    "category": "Asset Managers",
+    "website": "https://www.slcmanagement.com",
+    "career_page": "",
+    "career_page_status": "fail:403",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Sanders Capital",
+    "category": "Asset Managers",
+    "website": "https://www.sanderscapital.com",
+    "career_page": "https://www.sanderscapital.com/careers",
+    "career_page_status": "ok:202",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Santander US",
+    "category": "Asset Managers",
+    "website": "https://www.santanderus.com",
+    "career_page": "https://www.santanderus.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Schonfeld Strategic Advisors",
+    "category": "Asset Managers",
+    "website": "https://www.schonfeld.com",
+    "career_page": "https://www.schonfeld.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Sculptor",
+    "category": "Asset Managers",
+    "website": "https://www.sculptor.com",
+    "career_page": "https://www.sculptor.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Select Equity Group",
+    "category": "Asset Managers",
+    "website": "https://www.selectequity.com",
+    "career_page": "https://www.selectequity.com/work-with-us/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Sentinel Asset Management (Certain Assets)",
+    "category": "Asset Managers",
+    "website": "",
+    "career_page": "",
+    "career_page_status": "no_website",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Silver Point Capital",
+    "category": "Asset Managers",
+    "website": "https://www.silverpointcapital.com",
+    "career_page": "https://www.silverpointcapital.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Silvercrest Asset Management Group (NAS: SAMG)",
+    "category": "Asset Managers",
+    "website": "https://www.silvercrestgroup.com",
+    "career_page": "https://www.silvercrestgroup.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Sound Point Capital Management",
+    "category": "Asset Managers",
+    "website": "https://www.soundpointcap.com",
+    "career_page": "https://www.soundpointcap.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "State Street Global Advisors",
+    "category": "Asset Managers",
+    "website": "https://www.ssga.com",
+    "career_page": "https://www.ssga.com/choose-your-location?origin=careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "StepStone Group (NAS: STEP)",
+    "category": "Asset Managers",
+    "website": "https://www.stepstonegroup.com",
+    "career_page": "https://www.stepstonegroup.com/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "T. Rowe Price Group",
+    "category": "Asset Managers",
+    "website": "https://www.troweprice.com",
+    "career_page": "https://www.troweprice.com/en/us/careers?van=Careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Teachers Advisors, LLC",
+    "category": "Asset Managers",
+    "website": "https://Subsidiary of TIAA",
+    "career_page": "",
+    "career_page_status": "fail:ConnectError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Templeton Emerging Markets Group",
+    "category": "Asset Managers",
+    "website": "",
+    "career_page": "",
+    "career_page_status": "no_website",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Tenaron Capital Management",
+    "category": "Asset Managers",
+    "website": "https://www.tenaroncapital.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "The Capital Group Companies",
+    "category": "Asset Managers",
+    "website": "https://www.capitalgroup.com",
+    "career_page": "https://www.capitalgroup.com/about-us/careers.html",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "The D. E. Shaw Group",
+    "category": "Asset Managers",
+    "website": "https://www.deshaw.com",
+    "career_page": "https://www.deshaw.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "The PGIM Private Capital",
+    "category": "Asset Managers",
+    "website": "https://www.prudentialprivatecapital.com",
+    "career_page": "https://www.prudentialprivatecapital.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "The TCW Group",
+    "category": "Asset Managers",
+    "website": "https://www.tcw.com",
+    "career_page": "https://www.tcw.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "The Vanguard Group",
+    "category": "Asset Managers",
+    "website": "https://www.vanguard.com",
+    "career_page": "https://www.vanguard.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Thornburg Investment Management",
+    "category": "Asset Managers",
+    "website": "https://www.thornburg.com",
+    "career_page": "https://www.thornburg.com/thornburg-investment-management-about-us/careers-culture/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Tidal Financial Group",
+    "category": "Asset Managers",
+    "website": "https://www.tidalfinancialgroup.com",
+    "career_page": "https://ats.rippling.com/open-roles/jobs",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Tudor Investment",
+    "category": "Asset Managers",
+    "website": "https://www.tudorfunds.com",
+    "career_page": "https://job-boards.greenhouse.io/tudorgroup?t=0k73iy1",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Two Sigma Investments",
+    "category": "Asset Managers",
+    "website": "https://www.twosigma.com",
+    "career_page": "https://careers.twosigma.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "U.S. Bancorp Asset Management",
+    "category": "Asset Managers",
+    "website": "https://www.usbancorpassetmanagement.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "UBS Hedge Fund Solutions",
+    "category": "Asset Managers",
+    "website": "",
+    "career_page": "",
+    "career_page_status": "no_website",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "VanEck",
+    "category": "Asset Managers",
+    "website": "https://www.vaneck.com",
+    "career_page": "https://www.vaneck.com/corp/en/?redirectVE=2&orig=/?404;https://www.vaneck.com/about/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Verition Fund Management",
+    "category": "Asset Managers",
+    "website": "https://www.verition.com",
+    "career_page": "https://www.verition.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Vest Group",
+    "category": "Asset Managers",
+    "website": "https://www.vestfin.com",
+    "career_page": "http://www.vestfin.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Victory Capital Management (NAS: VCTR)",
+    "category": "Asset Managers",
+    "website": "https://www.vcm.com",
+    "career_page": "https://www.vcm.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Viking Global Investors",
+    "category": "Asset Managers",
+    "website": "https://www.vikingglobal.com",
+    "career_page": "https://vikingglobal.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Virtus Investment Partners (NYS: VRTS)",
+    "category": "Asset Managers",
+    "website": "https://www.virtus.com",
+    "career_page": "https://www.virtus.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "WCM Investment Management",
+    "category": "Asset Managers",
+    "website": "https://www.wcminvest.com",
+    "career_page": "https://www.wcminvest.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Walleye Capital",
+    "category": "Asset Managers",
+    "website": "https://www.walleyecapital.com",
+    "career_page": "https://www.walleyecapital.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Wellington Management",
+    "category": "Asset Managers",
+    "website": "https://www.wellington.com",
+    "career_page": "https://www.wellington.com/en/about-us/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "WisdomTree (NYS: WT)",
+    "category": "Asset Managers",
+    "website": "https://www.wisdomtree.com",
+    "career_page": "",
+    "career_page_status": "fail:403",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "iCapital Advisors - affiiated advisor of iCapital Network",
+    "category": "Asset Managers",
+    "website": "https://icapital.com",
+    "career_page": "https://icapital.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "ABG Sundal Collier (OSL: ABG)",
+    "category": "Banks",
+    "website": "https://www.abgsc.com",
+    "career_page": "https://www.abgsc.com/working-at-abgsc/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "BB&T Capital Markets",
+    "category": "Banks",
+    "website": "https://www.bbtcapitalmarkets.com",
+    "career_page": "https://careers.truist.com/us/en",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "BMO Capital Markets",
+    "category": "Banks",
+    "website": "https://capitalmarkets.bmo.com/en",
+    "career_page": "",
+    "career_page_status": "fail:403",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "BNP Paribas Corporate and Institutional Banking",
+    "category": "Banks",
+    "website": "https://cib.bnpparibas",
+    "career_page": "",
+    "career_page_status": "fail:TimeoutError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Bank of America (NYS: BAC)",
+    "category": "Banks",
+    "website": "https://www.bankofamerica.com",
+    "career_page": "https://careers.bankofamerica.com/en-us",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Barclays Investment Bank",
+    "category": "Banks",
+    "website": "https://www.ib.barclays",
+    "career_page": "https://home.barclays/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Benjamin F. Edwards & Company",
+    "category": "Banks",
+    "website": "https://www.benjaminfedwards.com",
+    "career_page": "https://www.benjaminfedwards.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Brown Brothers Harriman",
+    "category": "Banks",
+    "website": "https://www.bbh.com",
+    "career_page": "https://www.bbh.com/us/en/careers.html",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "CIBC Capital Markets",
+    "category": "Banks",
+    "website": "https://www.cibccm.com",
+    "career_page": "https://cibccm.com/en/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "CIMB Group Holdings (KLS: 1023)",
+    "category": "Banks",
+    "website": "https://www.cimb.com",
+    "career_page": "https://www.cimb.com/en/careers/working-at-cimb.html",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "CITIC Securities (SHG: 600030)",
+    "category": "Banks",
+    "website": "https://www.citics.com",
+    "career_page": "https://careers.citics.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Canaccord Genuity (Toronto) (TSE: CF)",
+    "category": "Banks",
+    "website": "https://www.canaccordgenuity.com",
+    "career_page": "https://www.canaccordgenuity.com/global-careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Cantor Fitzgerald (New York)",
+    "category": "Banks",
+    "website": "https://www.cantorfitzgerald.com",
+    "career_page": "",
+    "career_page_status": "fail:403",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Centerview Partners",
+    "category": "Banks",
+    "website": "https://www.centerviewpartners.com",
+    "career_page": "https://www.centerviewpartners.com/careers.aspx",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "China International Capital Corporation (HKG: 03908)",
+    "category": "Banks",
+    "website": "https://www.cicc.com",
+    "career_page": "",
+    "career_page_status": "fail:521",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Citigroup (NYS: C)",
+    "category": "Banks",
+    "website": "https://www.citigroup.com",
+    "career_page": "https://jobs.citi.com/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Commonwealth Financial Network",
+    "category": "Banks",
+    "website": "https://www.commonwealth.com",
+    "career_page": "https://www.commonwealth.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Credit Agricole Corporate & Investment Bank",
+    "category": "Banks",
+    "website": "https://www.ca-cib.com",
+    "career_page": "https://jobs.ca-cib.com/accueil.aspx?LCID=1036",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Customers Bank (NYS: CUBI)",
+    "category": "Banks",
+    "website": "https://www.customersbank.com",
+    "career_page": "https://www.customersbank.com/join-our-team/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "D.A. Davidson Companies",
+    "category": "Banks",
+    "website": "https://www.dadavidson.com",
+    "career_page": "https://www.dadavidson.com/about-us/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "DC Advisory",
+    "category": "Banks",
+    "website": "https://www.dcadvisory.com",
+    "career_page": "",
+    "career_page_status": "fail:403",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Deutsche Bank (ETR: DBK)",
+    "category": "Banks",
+    "website": "https://www.db.com",
+    "career_page": "https://careers.db.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Deutsche Bank Securities",
+    "category": "Banks",
+    "website": "",
+    "career_page": "",
+    "career_page_status": "no_website",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Eastdil Secured",
+    "category": "Banks",
+    "website": "https://www.eastdilsecured.com",
+    "career_page": "https://www.eastdilsecured.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Evercore Group (NYS: EVR)",
+    "category": "Banks",
+    "website": "https://www.evercore.com",
+    "career_page": "https://www.evercore.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Financial Technology Partners",
+    "category": "Banks",
+    "website": "https://www.ftpartners.com",
+    "career_page": "https://www.ftpartners.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Greenhill & Company",
+    "category": "Banks",
+    "website": "https://www.greenhill.com",
+    "career_page": "https://www.mizuhogroup.com/americas/banking",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Guggenheim Partners",
+    "category": "Banks",
+    "website": "https://www.guggenheimpartners.com",
+    "career_page": "https://www.guggenheimpartners.com/firm/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "HSBC Global Banking and Markets",
+    "category": "Banks",
+    "website": "",
+    "career_page": "",
+    "career_page_status": "no_website",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Haitong International Securities Group",
+    "category": "Banks",
+    "website": "https://www.htisec.com",
+    "career_page": "https://www.htisec.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Harris Williams",
+    "category": "Banks",
+    "website": "https://www.harriswilliams.com",
+    "career_page": "https://www.harriswilliams.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Helaba Landesbank Hessen-Th\u00fcringen",
+    "category": "Banks",
+    "website": "https://www.helaba.com",
+    "career_page": "https://www.helaba.com/de/karriere/jobs-stellenangebote.php",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Houlihan Lokey (NYS: HLI)",
+    "category": "Banks",
+    "website": "https://www.hl.com",
+    "career_page": "https://hl.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "IberiaBank",
+    "category": "Banks",
+    "website": "https://www.iberiabank.com",
+    "career_page": "",
+    "career_page_status": "fail:ConnectError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "J.P. Morgan (New York)",
+    "category": "Banks",
+    "website": "https://www.jpmorgan.com",
+    "career_page": "https://www.jpmorganchase.com/careers?redirect=careers_jpm",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "JP Morgan Chase (NYS: JPM)",
+    "category": "Banks",
+    "website": "https://www.jpmorganchase.com",
+    "career_page": "https://www.jpmorganchase.com/careers?redirect=careers_jpm",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Janney (Philadelphia)",
+    "category": "Banks",
+    "website": "https://www.janney.com",
+    "career_page": "https://www.janney.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Jefferies Financial Group (NYS: JEF)",
+    "category": "Banks",
+    "website": "https://www.jefferies.com",
+    "career_page": "https://www.jefferies.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "KBCM Technology Group",
+    "category": "Banks",
+    "website": "https://www.pacific-crest.com",
+    "career_page": "",
+    "career_page_status": "fail:TimeoutError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Keefe, Bruyette & Woods",
+    "category": "Banks",
+    "website": "https://www.kbw.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "KeyBank (NYS: KEY)",
+    "category": "Banks",
+    "website": "https://www.key.com",
+    "career_page": "https://keybank.wd5.myworkdayjobs.com/External_Career_Site",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Lazard",
+    "category": "Banks",
+    "website": "https://www.lazard.com",
+    "career_page": "https://www.lazard.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Leerink Partners",
+    "category": "Banks",
+    "website": "https://www.leerink.com",
+    "career_page": "https://leerink.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Lincoln International",
+    "category": "Banks",
+    "website": "https://www.lincolninternational.com",
+    "career_page": "https://www.lincolninternational.com/careers-and-culture/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Macquarie Group",
+    "category": "Banks",
+    "website": "https://Macquarie Group Limited | Global Financial Services",
+    "career_page": "",
+    "career_page_status": "fail:ConnectError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Marcus & Millichap (NYS: MMI)",
+    "category": "Banks",
+    "website": "https://www.marcusmillichap.com",
+    "career_page": "https://www.marcusmillichap.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Mizuho Americas",
+    "category": "Banks",
+    "website": "https://mizuhoamericas.com",
+    "career_page": "https://www.mizuhogroup.com/americas/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Moelis & Company (NYS: MC)",
+    "category": "Banks",
+    "website": "https://www.moelis.com",
+    "career_page": "https://www.moelis.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Morgan Stanley (NYS: MS)",
+    "category": "Banks",
+    "website": "https://www.morganstanley.com",
+    "career_page": "https://www.morganstanley.com/people",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "NH Investment & Securities",
+    "category": "Banks",
+    "website": "https://www.nhsec.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "National Bank Financial Markets",
+    "category": "Banks",
+    "website": "https://www.nbfm.ca",
+    "career_page": "https://www.nbc.ca/en/capitalmarkets.html",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Nomura Holdings (TKS: 8604)",
+    "category": "Banks",
+    "website": "https://www.nomura.com",
+    "career_page": "https://careers.nomura.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "PJT Partners",
+    "category": "Banks",
+    "website": "https://www.pjtpartners.com",
+    "career_page": "https://www.pjtpartners.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Pareto Securities",
+    "category": "Banks",
+    "website": "https://www.paretosec.com",
+    "career_page": "https://paretosec.com/our-firm/career",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Perella Weinberg Partners (NAS: PWP)",
+    "category": "Banks",
+    "website": "https://www.pwpartners.com",
+    "career_page": "https://pwpartners.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Pinnacle Financial Partners (NYS: PNFP)",
+    "category": "Banks",
+    "website": "https://www.pnfp.com",
+    "career_page": "",
+    "career_page_status": "fail:403",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Piper Sandler (NYS: PIPR)",
+    "category": "Banks",
+    "website": "https://www.pipersandler.com",
+    "career_page": "https://www.pipersandler.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "RBC Capital Markets",
+    "category": "Banks",
+    "website": "https://www.rbccm.com",
+    "career_page": "https://www.rbccm.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Rand Merchant Bank",
+    "category": "Banks",
+    "website": "https://www.rmb.co.za",
+    "career_page": "https://careers.rmb.co.za",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Raymond James Financial (NYS: RJF)",
+    "category": "Banks",
+    "website": "https://www.raymondjames.com",
+    "career_page": "",
+    "career_page_status": "fail:TimeoutError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Robert W. Baird & Co.",
+    "category": "Banks",
+    "website": "https://www.rwbaird.com",
+    "career_page": "https://www.bairdcareers.com/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Rothschild & Co.",
+    "category": "Banks",
+    "website": "https://rothschildandco.com",
+    "career_page": "https://www.rothschildandco.com/en/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Santander Bank",
+    "category": "Banks",
+    "website": "https://www.santanderbank.com",
+    "career_page": "https://www.santandercareers.com/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Societe Generale (PAR: GLE)",
+    "category": "Banks",
+    "website": "https://www.societegenerale.com",
+    "career_page": "https://careers.societegenerale.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Societe Generale Corporate & Investment Banking",
+    "category": "Banks",
+    "website": "https://www.wholesale.banking.societegenerale.com",
+    "career_page": "https://wholesale.banking.societegenerale.com/en/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Solomon Partners (United States) - Multiple URL",
+    "category": "Banks",
+    "website": "https://www.solomonpartnersinc.com",
+    "career_page": "https://solomonpartnersinc.com/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Standard Chartered",
+    "category": "Banks",
+    "website": "https://sc.com",
+    "career_page": "https://www.sc.com/en/global-careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Stephens Inc",
+    "category": "Banks",
+    "website": "https://www.stephens.com",
+    "career_page": "https://www.stephens.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "SunTrust Bank",
+    "category": "Banks",
+    "website": "https://www.suntrust.com",
+    "career_page": "https://careers.truist.com/us/en",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": true,
+    "skip_reason": "Merged into Truist; no standalone careers board"
+  },
+  {
+    "company_name": "TD Securities",
+    "category": "Banks",
+    "website": "https://www.tdsecurities.com",
+    "career_page": "https://www.tdsecurities.com/ca/en/404",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "The Goldman Sachs Group (NYS: GS)",
+    "category": "Banks",
+    "website": "https://www.goldmansachs.com",
+    "career_page": "https://www.goldmansachs.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "UBS",
+    "category": "Banks",
+    "website": "",
+    "career_page": "",
+    "career_page_status": "no_website",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "UBS Loan Finance",
+    "category": "Banks",
+    "website": "",
+    "career_page": "",
+    "career_page_status": "no_website",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "UniCredit Corporate & Investment Banking",
+    "category": "Banks",
+    "website": "https://www.cib.unicredit.eu",
+    "career_page": "",
+    "career_page_status": "fail:ConnectError",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Wedbush Securities",
+    "category": "Banks",
+    "website": "https://www.wedbush.com",
+    "career_page": "https://wedbush.atsondemand.com/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Wells Fargo (NYS: WFC)",
+    "category": "Banks",
+    "website": "https://www.wellsfargo.com",
+    "career_page": "https://www.wellsfargojobs.com/en/jobs/?search=Engineering&country= | https://www.wellsfargojobs.com/en/jobs/?search=Product&pagesize=50#results | https://www.wellsfargojobs.com/en/jobs/?search=Technology&pagesize=50 | https://www.wellsfargojobs.com/en/jobs/?search=Data&pagesize=50 | https://www.wellsfargojobs.com/en/jobs/?search=AI&pagesize=50",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "William Blair & Company",
+    "category": "Banks",
+    "website": "https://www.williamblair.com",
+    "career_page": "https://www.williamblair.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "William Blair Ventures",
+    "category": "Banks",
+    "website": "",
+    "career_page": "",
+    "career_page_status": "no_website",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  }
+]

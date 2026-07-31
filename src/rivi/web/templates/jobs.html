@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Openings · Rivi{% endblock %}
+{% block content %}
+<header class="page-header">
+  <div>
+    <p class="breadcrumb">Enablement / Openings</p>
+    <h1>All openings</h1>
+    <p class="lede">In-scope roles currently marked open.</p>
+  </div>
+</header>
+<form class="filters" method="get">
+  <div class="field">
+    <label>Week</label>
+    <input type="text" name="week" value="{{ selected_week or '' }}" placeholder="2026-W31" />
+  </div>
+  <div class="field">
+    <label>Seniority</label>
+    <input type="text" name="seniority" value="{{ seniority or '' }}" placeholder="VP" />
+  </div>
+  <button class="btn btn-primary" type="submit">Filter</button>
+</form>
+<table class="data-table" style="margin-top:16px">
+  <thead>
+    <tr><th>Company</th><th>Title</th><th>Function</th><th>Seniority</th><th>Location</th><th>First seen</th></tr>
+  </thead>
+  <tbody>
+    {% for j in jobs %}
+    <tr>
+      <td>{{ j.company }}</td>
+      <td>{% if j.job_url %}<a href="{{ j.job_url }}" target="_blank" rel="noopener">{{ j.title }}</a>{% else %}{{ j.title }}{% endif %}</td>
+      <td>{{ j.function }}</td>
+      <td><span class="lozenge lozenge-default">{{ j.seniority_band }}</span></td>
+      <td>{{ j.location }}</td>
+      <td>{{ j.first_seen_week }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="6" class="muted">No openings match.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

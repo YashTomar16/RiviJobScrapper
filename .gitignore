@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Runtime
+logs/*.log
+logs/runs/*
+!logs/.gitkeep
+!logs/runs/.gitkeep
+data/rivi.db
+data/rivi.db-*
+data/reports/*
+!data/reports/.gitkeep
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}Rivi{% endblock %}</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">
+      <span class="brand-mark" aria-hidden="true"></span>
+      Rivi
+      <span class="brand-sub">by Riviera Partners</span>
+    </a>
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="/" class="{% if request.url.path == '/' %}active{% endif %}">Key Insights</a>
+      <a href="/weeks" class="{% if request.url.path.startswith('/weeks') %}active{% endif %}">Weeks</a>
+      <a href="/jobs" class="{% if request.url.path.startswith('/jobs') %}active{% endif %}">Openings</a>
+      <a href="/companies" class="{% if request.url.path.startswith('/companies') %}active{% endif %}">Companies</a>
+      <a href="/coverage" class="{% if request.url.path.startswith('/coverage') %}active{% endif %}">Coverage</a>
+    </nav>
+  </header>
+  <main class="page">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">
+    <span>Riviera Partners · tech executive search enablement</span>
+  </footer>
+</body>
+</html>

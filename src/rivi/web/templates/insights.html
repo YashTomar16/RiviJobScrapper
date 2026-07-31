@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+{% block title %}{% if selected_week %}{{ selected_week }} · {% endif %}Key Insights · Rivi{% endblock %}
+
+{% block content %}
+<header class="page-header">
+  <div>
+    <p class="breadcrumb">Enablement / Key Insights</p>
+    <h1 class="brand-hero"><span class="accent">Rivi</span> Key Insights</h1>
+    <p class="lede">Weekly hiring signal across tracked asset managers and banks — structured deltas with recruiter-ready brief.</p>
+  </div>
+  <div class="header-actions">
+    {% if selected_week %}
+    <a class="btn btn-default" href="/api/export/{{ selected_week }}">Export JSON</a>
+    <a class="btn btn-default" href="/api/export/{{ selected_week }}?format=csv">Export CSV</a>
+    {% endif %}
+    {% if weeks %}
+    <form class="field" method="get" action="/">
+      <label for="week">Week</label>
+      <select id="week" name="week" onchange="this.form.submit()">
+        {% for w in weeks %}
+        <option value="{{ w }}" {% if w == selected_week %}selected{% endif %}>{{ w }}</option>
+        {% endfor %}
+      </select>
+    </form>
+    {% endif %}
+  </div>
+</header>
+
+{% if weeks %}
+<nav class="week-rail" aria-label="Recent weeks">
+  {% for w in weeks[:12] %}
+  <a class="week-chip {% if w == selected_week %}active{% endif %}" href="/?week={{ w }}">{{ w }}</a>
+  {% endfor %}
+  <a class="week-chip" href="/weeks">All weeks →</a>
+</nav>
+{% endif %}
+
+{% if not insight %}
+<section class="empty-state">
+  <h2>No insights yet</h2>
+  <p class="muted">Run a weekly pipeline to populate this view.</p>
+  <pre>rivi run-weekly
+# or: rivi scrape --limit 5 && rivi generate-insights</pre>
+</section>
+{% else %}
+{% set s = insight.structured.summary if insight.structured and insight.structured.summary else {} %}
+{% set structured = insight.structured or {} %}
+{% set priorities = insight.llm_priorities or {} %}
+
+{% if insight.llm_status == 'failed' %}
+<div class="section-message error" role="status">
+  <div><strong>AI brief unavailable.</strong> Structured lists below are still live. Retry with <code>rivi generate-insights --week {{ insight.week_id }} --regenerate</code>.</div>
+</div>
+{% elif insight.llm_status == 'skipped' %}
+<div class="section-message" role="status">
+  <div>LLM skipped for this week (no successful scrapes or explicit skip).</div>
+</div>
+{% endif %}
+
+{% if s.run_status == 'partial' %}
+<div class="section-message warning" role="status">
+  <div><strong>Partial coverage.</strong> {{ s.companies_failed or 0 }} company scrape(s) failed.</div>
+</div>
+{% endif %}
+
+<section class="stats-strip" aria-label="Week summary">
+  <div class="stat-tile"><span class="stat-val">{{ s.new_count or 0 }}</span><span class="stat-label">New</span></div>
+  <div class="stat-tile"><span class="stat-val">{{ s.updated_count or 0 }}</span><span class="stat-label">Updated</span></div>
+  <div class="stat-tile"><span class="stat-val">{{ s.removed_count or 0 }}</span><span class="stat-label">Removed</span></div>
+  <div class="stat-tile"><span class="stat-val">{{ s.leadership_count or 0 }}</span><span class="stat-label">Leadership</span></div>
+  <div class="stat-tile"><span class="stat-val">{{ s.companies_ok or 0 }}/{{ s.companies_targeted or 0 }}</span><span class="stat-label">Companies OK</span></div>
+</section>
+
+<section class="panel">
+  <h2>Executive brief</h2>
+  {% if insight.llm_brief %}
+  <div class="brief-prose">{{ insight.llm_brief }}</div>
+  {% else %}
+  <p class="muted">No Groq brief for this week. Structured evidence follows.</p>
+  {% endif %}
+
+  {% if priorities.priority_companies %}
+  <h3>Priority companies</h3>
+  <ul class="priority-list">
+    {% for p in priorities.priority_companies %}
+    <li>
+      <strong>{{ p.company }}</strong>
+      <span> — {{ p.rationale }}</span>
+      {% if p.cited_titles %}<em>{{ p.cited_titles | join(', ') }}</em>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  {% if priorities.outreach_angles %}
+  <h3>Outreach angles</h3>
+  <ul class="angle-list">
+    {% for a in priorities.outreach_angles %}
+    <li><strong>{{ a.company }}</strong> — {{ a.angle }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  {% if priorities.risk_notes %}
+  <h3>Risk notes</h3>
+  <ul class="risk-list">
+    {% for n in priorities.risk_notes %}<li>{{ n }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+</section>
+
+<section class="panel">
+  <h2>New openings this week</h2>
+  {% set job_rows = structured.new_openings or [] %}
+  {% set open_rows = structured.open_roles or [] %}
+  {% if job_rows %}
+  <table class="data-table">
+    <thead>
+      <tr><th>Company</th><th>Title</th><th>Function</th><th>Seniority</th><th>Location</th><th>First seen</th></tr>
+    </thead>
+    <tbody>
+      {% for j in job_rows %}
+      <tr>
+        <td>{{ j.company }}</td>
+        <td>{% if j.job_url %}<a href="{{ j.job_url }}" target="_blank" rel="noopener">{{ j.title }}</a>{% else %}{{ j.title }}{% endif %}</td>
+        <td>{{ j.function }}</td>
+        <td><span class="lozenge lozenge-moved">{{ j.seniority_band }}</span></td>
+        <td>{{ j.location }}</td>
+        <td>{{ j.first_seen_week }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% elif open_rows %}
+  <div class="section-message warning" role="status">
+    <div>No net-new deltas this week — showing <strong>current open in-scope</strong> inventory from pilot scrapes.</div>
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr><th>Company</th><th>Title</th><th>Function</th><th>Seniority</th><th>Location</th><th>First seen</th></tr>
+    </thead>
+    <tbody>
+      {% for j in open_rows %}
+      <tr>
+        <td>{{ j.company }}</td>
+        <td>{% if j.job_url %}<a href="{{ j.job_url }}" target="_blank" rel="noopener">{{ j.title }}</a>{% else %}{{ j.title }}{% endif %}</td>
+        <td>{{ j.function }}</td>
+        <td><span class="lozenge lozenge-moved">{{ j.seniority_band }}</span></td>
+        <td>{{ j.location }}</td>
+        <td>{{ j.first_seen_week }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="muted">No new in-scope openings this week.</p>
+  {% endif %}
+</section>
+
+<section class="panel">
+  <h2>Leadership &amp; executive pulse</h2>
+  {% set lead_rows = structured.leadership_pulse or [] %}
+  {% if lead_rows %}
+  <table class="data-table">
+    <thead>
+      <tr><th>Company</th><th>Title</th><th>Seniority</th><th>Function</th><th>Change</th></tr>
+    </thead>
+    <tbody>
+      {% for j in lead_rows %}
+      <tr>
+        <td>{{ j.company }}</td>
+        <td>{% if j.job_url %}<a href="{{ j.job_url }}" target="_blank" rel="noopener">{{ j.title }}</a>{% else %}{{ j.title }}{% endif %}</td>
+        <td><span class="lozenge lozenge-inprogress">{{ j.seniority_band }}</span></td>
+        <td>{{ j.function }}</td>
+        <td>{{ j.change_type }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="muted">No Head+ leadership signal this week.</p>
+  {% endif %}
+</section>
+
+<section class="split">
+  <div class="panel">
+    <h2>Hottest companies</h2>
+    {% set hot = structured.hottest_companies or [] %}
+    {% if hot %}
+    <ol class="hot-list" style="list-style:none;padding:0;margin:0">
+      {% for h in hot %}
+      <li><span>{{ h.company }}</span><strong>{{ h.new_roles }}</strong></li>
+      {% endfor %}
+    </ol>
+    {% else %}
+    <p class="muted">No company rollup.</p>
+    {% endif %}
+  </div>
+  <div class="panel">
+    <h2>Function mix</h2>
+    <ul class="mix-list">
+      {% for k, v in (structured.function_mix or {}).items() %}
+      <li><span>{{ k }}</span><strong>{{ v }}</strong></li>
+      {% else %}
+      <li class="muted">Empty</li>
+      {% endfor %}
+    </ul>
+    <h2 style="margin-top:16px">Seniority mix</h2>
+    <ul class="mix-list">
+      {% for k, v in (structured.seniority_mix or {}).items() %}
+      <li><span>{{ k }}</span><strong>{{ v }}</strong></li>
+      {% else %}
+      <li class="muted">Empty</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Removals / cooling</h2>
+  {% set rem = structured.removals or [] %}
+  {% if rem %}
+  <table class="data-table">
+    <thead><tr><th>Company</th><th>Title</th><th>Seniority</th><th>Last seen</th></tr></thead>
+    <tbody>
+      {% for j in rem %}
+      <tr>
+        <td>{{ j.company }}</td>
+        <td>{{ j.title }}</td>
+        <td><span class="lozenge lozenge-removed">{{ j.seniority_band }}</span></td>
+        <td>{{ j.last_seen_week }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="muted">No in-scope removals this week.</p>
+  {% endif %}
+</section>
+
+<section class="panel">
+  <h2>Coverage gaps</h2>
+  {% set gaps = structured.coverage_gaps or {} %}
+  <p class="muted">Eligible: {{ gaps.eligible or 0 }} · Missing career pages: {{ gaps.missing_career_page_total or 0 }} · Skipped: {{ gaps.skipped or 0 }}</p>
+  {% if gaps.scrape_failures %}
+  <h3>Scrape failures this run</h3>
+  <table class="data-table">
+    <thead><tr><th>Company</th><th>Error</th><th>HTTP</th></tr></thead>
+    <tbody>
+      {% for f in gaps.scrape_failures %}
+      <tr><td>{{ f.company }}</td><td>{{ f.error }}</td><td>{{ f.http_status }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</section>
+
+<p class="meta-foot">Week {{ insight.week_id }} · LLM <span class="lozenge lozenge-default">{{ insight.llm_status }}</span>{% if insight.groq_model %} · {{ insight.groq_model }}{% endif %} · generated {{ insight.generated_at }}</p>
+{% endif %}
+{% endblock %}

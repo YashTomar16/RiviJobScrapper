@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Weeks · Rivi{% endblock %}
+{% block content %}
+<header class="page-header">
+  <div>
+    <p class="breadcrumb">Enablement / Weeks</p>
+    <h1>Historical weeks</h1>
+    <p class="lede">Browse prior Key Insights packs. Each week is a frozen snapshot — no live recompute.</p>
+  </div>
+</header>
+
+{% if weeks %}
+<nav class="week-rail" aria-label="All weeks">
+  {% for w in weeks %}
+  <a class="week-chip {% if w == selected_week %}active{% endif %}" href="/?week={{ w }}">{{ w }}</a>
+  {% endfor %}
+</nav>
+<table class="data-table">
+  <thead>
+    <tr><th>Week</th><th>LLM</th><th>Generated</th><th>Actions</th></tr>
+  </thead>
+  <tbody>
+    {% for row in week_rows %}
+    <tr>
+      <td><a href="/?week={{ row.week_id }}">{{ row.week_id }}</a></td>
+      <td><span class="lozenge lozenge-default">{{ row.llm_status or '—' }}</span></td>
+      <td>{{ row.generated_at }}</td>
+      <td>
+        <a class="btn btn-subtle" href="/?week={{ row.week_id }}">Open</a>
+        <a class="btn btn-subtle" href="/api/export/{{ row.week_id }}">JSON</a>
+        <a class="btn btn-subtle" href="/api/export/{{ row.week_id }}?format=csv">CSV</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<section class="empty-state">
+  <h2>No weeks yet</h2>
+  <p class="muted">Run <code>rivi run-weekly</code> to create the first pack.</p>
+</section>
+{% endif %}
+{% endblock %}
