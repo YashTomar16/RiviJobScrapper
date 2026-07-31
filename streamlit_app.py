@@ -139,9 +139,19 @@ def main() -> None:
     tab_insights, tab_jobs, tab_companies = st.tabs(["Key Insights", "Jobs", "Companies"])
 
     with tab_insights:
-        if insight and insight.get("llm_brief"):
+        if insight and insight.get("llm_status") == "failed":
+            st.error(
+                "Groq insights failed for this week (often token-limit). "
+                "Structured job data below is still valid — retry locally with "
+                "`rivi generate-insights --week … --regenerate`."
+            )
+        if insight and insight.get("llm_brief") and insight.get("llm_status") == "success":
             st.subheader(f"Week {insight.get('week_id', '')}")
             st.caption(f"LLM status: {insight.get('llm_status', '—')}")
+            st.write(insight["llm_brief"])
+        elif insight and insight.get("llm_brief"):
+            st.subheader(f"Week {insight.get('week_id', '')}")
+            st.caption(f"LLM status: {insight.get('llm_status', '—')} (stale brief may be shown)")
             st.write(insight["llm_brief"])
         elif insight:
             st.subheader(f"Week {insight.get('week_id', '')}")

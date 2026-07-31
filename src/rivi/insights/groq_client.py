@@ -47,11 +47,14 @@ def call_groq(
         raise GroqError("groq package not installed") from e
 
     client = Groq(api_key=settings.groq_api_key)
-    pack_json = json.dumps(pack, indent=2)
+    pack_json = json.dumps(pack, separators=(",", ":"))
     messages = [
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": user_prompt(pack_json)},
     ]
+
+    # Groq TPM counts prompt + max_tokens; keep completion budget modest on free tier
+    max_out = min(int(settings.groq_max_tokens or 4096), 2048)
 
     last_err: Exception | None = None
     raw_text = ""
@@ -61,7 +64,7 @@ def call_groq(
                 model=settings.groq_model,
                 messages=messages,
                 temperature=settings.groq_temperature,
-                max_tokens=settings.groq_max_tokens,
+                max_tokens=max_out,
                 response_format={"type": "json_object"},
             )
             raw_text = completion.choices[0].message.content or ""

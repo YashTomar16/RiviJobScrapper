@@ -179,12 +179,6 @@ def regenerate_llm_only(
     if run is None:
         raise LookupError(f"No scrape run for week {week_id}")
 
-    existing = session.scalar(
-        select(WeeklyInsight)
-        .where(WeeklyInsight.week_id == week_id)
-        .order_by(WeeklyInsight.id.desc())
-        .limit(1)
-    )
     # Always rebuild aggregates so thin-delta weeks still include open inventory
     aggregates = build_aggregates(session, scrape_run_id=run.id)
     pack = compact_context_pack(aggregates)
@@ -218,16 +212,16 @@ def regenerate_llm_only(
             "groq": grounded.model_dump(),
         }
     except GroqError as e:
+        # Do not keep a stale successful brief when regenerate fails — UI would
+        # show llm_status=failed alongside outdated narrative.
         insight = _upsert_insight(
             session,
             week_id=week_id,
             scrape_run_id=run.id,
             summary={"structured": aggregates, "context_pack": pack, "llm_error": str(e)},
             llm_status="failed",
-            brief=(existing.llm_brief if existing else ""),
-            priorities=json.loads(existing.llm_priorities_json)
-            if existing and existing.llm_priorities_json
-            else [],
+            brief="",
+            priorities=[],
             groq_model=settings.groq_model,
             prompt_version=PROMPT_VERSION,
         )

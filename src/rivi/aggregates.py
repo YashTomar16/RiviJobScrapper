@@ -241,33 +241,74 @@ def build_aggregates(
     }
 
 
+def _slim_job(row: dict[str, Any]) -> dict[str, Any]:
+    """Drop heavy fields from job rows before sending to Groq."""
+    return {
+        "company": row.get("company", ""),
+        "title": row.get("title", ""),
+        "function": row.get("function", ""),
+        "seniority_band": row.get("seniority_band", ""),
+        "job_url": row.get("job_url", ""),
+    }
+
+
 def compact_context_pack(
     aggregates: dict[str, Any],
     *,
-    max_new: int = 40,
-    max_leadership: int = 25,
-    max_removals: int = 15,
-    max_hottest: int = 10,
-    max_open: int = 40,
+    max_new: int = 18,
+    max_leadership: int = 12,
+    max_removals: int = 8,
+    max_hottest: int = 8,
+    max_open: int = 12,
 ) -> dict[str, Any]:
-    """Token-budget aware pack for Groq — leadership first, then new / open roles."""
-    new_openings = aggregates["new_openings"][:max_new]
-    open_roles = (aggregates.get("open_roles") or [])[:max_open]
+    """Token-budget aware pack for Groq — leadership first, then new / open roles.
+
+    Sized for Groq on_demand TPM (~12k including completion). Prefer leadership +
+    hottest companies; avoid duplicating full open inventory when new_openings exist.
+    """
+    new_raw = aggregates["new_openings"][:max_new]
+    open_raw = (aggregates.get("open_roles") or [])[:max_open]
     # If no weekly "new" signal, feed current open inventory so Groq still has substance
-    if not new_openings and open_roles:
-        new_openings = open_roles[:max_new]
+    if not new_raw and open_raw:
+        new_raw = open_raw[:max_new]
+        open_raw = []
+    elif new_raw:
+        # Avoid near-duplicate token cost when the week already has new openings
+        open_raw = []
+
+    new_openings = [_slim_job(r) for r in new_raw]
+    open_roles = [_slim_job(r) for r in open_raw]
+    leadership = [_slim_job(r) for r in aggregates["leadership_pulse"][:max_leadership]]
+    removals = [_slim_job(r) for r in aggregates["removals"][:max_removals]]
+
+    # Keep summary numeric only — drop bulky timestamps from the LLM pack
+    summary = {
+        k: v
+        for k, v in (aggregates.get("summary") or {}).items()
+        if k
+        not in {
+            "started_at",
+            "finished_at",
+        }
+    }
+
+    failures = aggregates["coverage_gaps"].get("scrape_failures") or []
+    slim_failures = [
+        {"company": f.get("company", ""), "reason": (f.get("reason") or "")[:80]}
+        for f in failures[:8]
+    ]
 
     return {
-        "summary": aggregates["summary"],
+        "summary": summary,
         "hottest_companies": aggregates["hottest_companies"][:max_hottest],
         "function_mix": aggregates["function_mix"],
         "seniority_mix": aggregates["seniority_mix"],
-        "leadership_pulse": aggregates["leadership_pulse"][:max_leadership],
+        "leadership_pulse": leadership,
         "new_openings": new_openings,
         "open_roles": open_roles,
-        "removals": aggregates["removals"][:max_removals],
+        "removals": removals,
         "coverage_gaps": {
-            "scrape_failures": aggregates["coverage_gaps"]["scrape_failures"][:20],
+            "scrape_failures": slim_failures,
             "missing_career_page_total": aggregates["coverage_gaps"][
                 "missing_career_page_total"
             ],
