@@ -426,7 +426,13 @@ def main() -> None:
         if not jobs:
             st.write("No in-scope jobs to show.")
         else:
-            fns = sorted({j["function"] for j in jobs if j["function"]})
+            from rivi.classifier import IN_SCOPE_FUNCTIONS
+
+            # Always offer the full in-scope set (incl. IT), plus any extra labels present.
+            fns = sorted(
+                set(IN_SCOPE_FUNCTIONS)
+                | {j["function"] for j in jobs if j["function"]}
+            )
             companies_opts = sorted({j["company"] for j in jobs if j["company"]})
             f1, f2, f3 = st.columns(3)
             pick_co = f1.multiselect("Company", companies_opts)

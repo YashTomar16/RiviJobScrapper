@@ -82,3 +82,22 @@ def test_quant_developer_in_scope():
     # developer keyword → Engineering
     assert c.in_scope
     assert c.function == "Engineering"
+
+
+def test_it_manager_in_scope():
+    c = classify_title("IT Manager")
+    assert c.in_scope
+    assert c.function == "IT"
+
+
+def test_cio_is_it():
+    c = classify_title("Chief Information Officer")
+    assert c.in_scope
+    assert c.function == "IT"
+    assert c.seniority_band == "C-level"
+
+
+def test_head_of_crm_technology_is_it():
+    c = classify_title("Vice President, Head of CRM Technology")
+    assert c.in_scope
+    assert c.function == "IT"

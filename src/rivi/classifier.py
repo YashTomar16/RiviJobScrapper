@@ -18,6 +18,7 @@ SENIORITY_ORDER = [
 
 IN_SCOPE_FUNCTIONS = (
     "Technology",
+    "IT",
     "Product",
     "Engineering",
     "Data",
@@ -64,7 +65,9 @@ FUNCTION_PATTERNS: list[tuple[str, str]] = [
     (r"\b(software engineer|swe\b|backend|front[- ]?end|full[- ]?stack|site reliability|sre\b|devops|platform engineer|infrastructure engineer|security engineer|cloud engineer|mobile engineer|ios|android|qa engineer|test engineer|quality engineer|systems engineer|desktop engineering|application support)\b", "Engineering"),
     (r"\b(engineering manager|director of engineering|vp engineering|head of engineering|cto|chief technology)\b", "Engineering"),
     (r"\b(product manager|product owner|product lead|head of product|director of product|vp product|chief product|cpo)\b", "Product"),
-    (r"\b(technologist|technology|\bit\b|information technology|it architect|it manager|it director|solutions architect|enterprise architect|technical architect|chief information|cio|crm technology)\b", "Technology"),
+    # IT before broader Technology so "IT Manager" / "CIO" land in IT.
+    (r"\b(\bit\b|information technology|it architect|it manager|it director|it operations|it support|it infrastructure|chief information|\bcio\b|crm technology)\b", "IT"),
+    (r"\b(technologist|technology|solutions architect|enterprise architect|technical architect)\b", "Technology"),
     (r"\b(engineer|developer|programmer|architect)\b", "Engineering"),
     (r"\b(research scientist|applied scientist)\b", "AI"),
 ]
