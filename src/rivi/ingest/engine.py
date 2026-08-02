@@ -227,4 +227,4 @@ def _greenhouse_token_from_html_error_or_url(career_url: str, html_result: Fetch
 
 
 def classify_jobs(jobs: list[RawJob]) -> list[tuple[RawJob, object]]:
-    return [(job, classify_title(job.title)) for job in jobs]
+    return [(job, classify_title(job.title, job.location)) for job in jobs]

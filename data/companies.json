@@ -203,10 +203,10 @@
     "company_name": "BNY Mellon Investment Management",
     "category": "Asset Managers",
     "website": "https://www.bnymellonim.com",
-    "career_page": "",
-    "career_page_status": "fail:404",
-    "career_page_source": "",
-    "skip": true,
+    "career_page": "https://eofe.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/BNY-Careers/jobs?mode=location",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
     "skip_reason": "no_career_page"
   },
   {
@@ -483,10 +483,10 @@
     "company_name": "Citadel Enterprise Americas",
     "category": "Asset Managers",
     "website": "https://www.citadel.com",
-    "career_page": "",
-    "career_page_status": "fail:403",
-    "career_page_source": "",
-    "skip": true,
+    "career_page": "https://www.citadel.com/careers/open-opportunities",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
     "skip_reason": "no_career_page"
   },
   {
@@ -513,10 +513,10 @@
     "company_name": "Cohen & Steers Select Preferred & Income Fund (NYS: PSF)",
     "category": "Asset Managers",
     "website": "",
-    "career_page": "",
-    "career_page_status": "no_website",
-    "career_page_source": "",
-    "skip": true,
+    "career_page": "https://boards.greenhouse.io/cohensteers",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
     "skip_reason": "Fund listing without website; use parent Cohen & Steers"
   },
   {
@@ -713,20 +713,20 @@
     "company_name": "Fidelity Investment Asset Management",
     "category": "Asset Managers",
     "website": "https://pyramis.fidelity.com/app/p/us/about-pyramis-global-advisors",
-    "career_page": "",
-    "career_page_status": "fail:ConnectError",
-    "career_page_source": "",
-    "skip": true,
+    "career_page": "https://fil.wd3.myworkdayjobs.com/en-US/001",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
     "skip_reason": "no_career_page"
   },
   {
     "company_name": "Fidelity Management & Research Company",
     "category": "Asset Managers",
     "website": "https://Subsidiary of Fidelity Group",
-    "career_page": "",
-    "career_page_status": "fail:ConnectError",
-    "career_page_source": "",
-    "skip": true,
+    "career_page": "https://fil.wd3.myworkdayjobs.com/en-US/001",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
     "skip_reason": "no_career_page"
   },
   {
@@ -933,10 +933,10 @@
     "company_name": "Hartford Investment Management Company",
     "category": "Asset Managers",
     "website": "https://www.himco.com",
-    "career_page": "",
-    "career_page_status": "fail:TimeoutError",
-    "career_page_source": "",
-    "skip": true,
+    "career_page": "https://www.jointhehartford.com/jobs/",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
     "skip_reason": "no_career_page"
   },
   {
@@ -1083,10 +1083,10 @@
     "company_name": "Lighthouse Investment Partners",
     "category": "Asset Managers",
     "website": "https://www.lighthousepartners.com",
-    "career_page": "",
-    "career_page_status": "fail:404",
-    "career_page_source": "",
-    "skip": true,
+    "career_page": "https://www.linkedin.com/company/lighthouse-investment-partners-llc/jobs/",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
     "skip_reason": "no_career_page"
   },
   {
@@ -1183,10 +1183,10 @@
     "company_name": "MetLife Investment Management",
     "category": "Asset Managers",
     "website": "https://www.investments.metlife.com",
-    "career_page": "",
-    "career_page_status": "fail:ConnectError",
-    "career_page_source": "",
-    "skip": true,
+    "career_page": "https://www.metlifecareers.com/en_US/ml/SearchJobs?3_87_3=7418",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
     "skip_reason": "no_career_page"
   },
   {
@@ -1233,10 +1233,10 @@
     "company_name": "Natixis Investment Managers",
     "category": "Asset Managers",
     "website": "https://www.im.natixis.com",
-    "career_page": "",
-    "career_page_status": "fail:404",
-    "career_page_source": "",
-    "skip": true,
+    "career_page": "https://www.im.natixis.com/en-gb/about/open-positions",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
     "skip_reason": "no_career_page"
   },
   {
@@ -1523,10 +1523,10 @@
     "company_name": "SLC Management",
     "category": "Asset Managers",
     "website": "https://www.slcmanagement.com",
-    "career_page": "",
-    "career_page_status": "fail:403",
-    "career_page_source": "",
-    "skip": true,
+    "career_page": "https://sunlife.wd3.myworkdayjobs.com/SLCManagement",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
     "skip_reason": "no_career_page"
   },
   {
@@ -1883,10 +1883,10 @@
     "company_name": "WisdomTree (NYS: WT)",
     "category": "Asset Managers",
     "website": "https://www.wisdomtree.com",
-    "career_page": "",
-    "career_page_status": "fail:403",
-    "career_page_source": "",
-    "skip": true,
+    "career_page": "https://www.wisdomtree.com/us/careers-at-wisdomtree",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
     "skip_reason": "no_career_page"
   },
   {

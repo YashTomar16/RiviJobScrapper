@@ -19,7 +19,7 @@ Artisan Partners Asset Management (NYS: APAM),Asset Managers,https://www.artisan
 Audax Group,Asset Managers,https://www.audaxgroup.com,https://www.audaxgroup.com/leadership,ok:200,auto,false,
 Avantis Investors,Asset Managers,https://avantisinvestors.com,https://americancentury.wd5.myworkdayjobs.com/AvantisCareers,ok:200,auto,false,
 Avondale Conquest,Asset Managers,https://www.conquestfund.com,,fail:ConnectError,,true,no_career_page
-BNY Mellon Investment Management,Asset Managers,https://www.bnymellonim.com,,fail:404,,true,no_career_page
+BNY Mellon Investment Management,Asset Managers,https://www.bnymellonim.com,https://eofe.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/BNY-Careers/jobs?mode=location,manual:ok,manual,false,no_career_page
 Balyasny Asset Management,Asset Managers,https://www.bamfunds.com,https://www.bamfunds.com/careers,ok:200,auto,false,
 Bank of New York Mellon,Asset Managers,https://www.bny.com,https://www.bny.com/corporate/global/en/about-us/careers/work-with-us.html,ok:200,auto,false,
 Barings,Asset Managers,https://www.barings.com,https://www.barings.com/guest/about/careers/student,ok:200,auto,false,
@@ -47,10 +47,10 @@ Carlyle Aviation Partners,Asset Managers,https://www.carlyle.aero,,fail:403,,tru
 Cerberus Capital Management,Asset Managers,https://www.cerberus.com,https://www.cerberus.com/,ok:200,auto,false,
 Chandler Asset Management,Asset Managers,https://www.chandlerasset.com,https://recruiting.paylocity.com/recruiting/jobs/All/30f164f5-e2e4-4b53-a1b7-cfb725d76986/Chandler-Asset-Management-Inc,ok:200,auto,false,
 Chevy Chase Trust,Asset Managers,https://www.chevychasetrust.com,https://chevychasetrust.com/careers/,ok:200,auto,false,
-Citadel Enterprise Americas,Asset Managers,https://www.citadel.com,,fail:403,,true,no_career_page
+Citadel Enterprise Americas,Asset Managers,https://www.citadel.com,https://www.citadel.com/careers/open-opportunities,manual:ok,manual,false,no_career_page
 ClearBridge Investments,Asset Managers,https://www.clearbridge.com,https://www.clearbridge.com/careers,ok:200,auto,false,
 Cohen & Steers,Asset Managers,https://www.cohenandsteers.com,https://boards.greenhouse.io/cohensteers,manual:ok,manual,false,
-Cohen & Steers Select Preferred & Income Fund (NYS: PSF),Asset Managers,,,no_website,,true,Fund listing without website; use parent Cohen & Steers
+Cohen & Steers Select Preferred & Income Fund (NYS: PSF),Asset Managers,,https://boards.greenhouse.io/cohensteers,manual:ok,manual,false,Fund listing without website; use parent Cohen & Steers
 Columbia Management,Asset Managers,https://www.columbiathreadneedle.com,https://www.columbiathreadneedleus.com/careers,manual:ok,manual,false,
 Conning,Asset Managers,https://www.conning.com,https://www.conning.com/about-us/careers,ok:200,auto,false,
 Counterpoint Global,Asset Managers,https://Subsidiary of Morgan Stanley,,fail:ConnectError,,true,no_career_page
@@ -70,8 +70,8 @@ Elliott Investment Management,Asset Managers,https://www.elliottmgmt.com,https:/
 Ergo Partners,Asset Managers,https://www.ergopartners.com,https://www.ergopartners.com/careers,ok:200,auto,false,
 Farallon Capital Management,Asset Managers,https://www.faralloncapital.com,https://www.faralloncapital.com/careers,ok:200,auto,false,
 Federated Hermes,Asset Managers,https://www.federatedhermes.com,https://careers.federatedhermes.com,ok:200,auto,false,
-Fidelity Investment Asset Management,Asset Managers,https://pyramis.fidelity.com/app/p/us/about-pyramis-global-advisors,,fail:ConnectError,,true,no_career_page
-Fidelity Management & Research Company,Asset Managers,https://Subsidiary of Fidelity Group,,fail:ConnectError,,true,no_career_page
+Fidelity Investment Asset Management,Asset Managers,https://pyramis.fidelity.com/app/p/us/about-pyramis-global-advisors,https://fil.wd3.myworkdayjobs.com/en-US/001,manual:ok,manual,false,no_career_page
+Fidelity Management & Research Company,Asset Managers,https://Subsidiary of Fidelity Group,https://fil.wd3.myworkdayjobs.com/en-US/001,manual:ok,manual,false,no_career_page
 Field Street Capital Management,Asset Managers,https://www.fscm.com,,fail:ConnectError,,true,no_career_page
 First Trust Portfolios,Asset Managers,https://www.ftportfolios.com,,fail:404,,true,no_career_page
 Fisher Investments (Asset Management),Asset Managers,https://www.fisherinvestments.com,,fail:403,,true,no_career_page
@@ -92,7 +92,7 @@ HL Investment Advisors,Asset Managers,,,no_website,,true,no_career_page
 Hamilton Lane,Asset Managers,https://www.hamiltonlane.com,https://www.hamiltonlane.com/en-us/careers,ok:200,auto,false,
 HarbourVest Partners,Asset Managers,https://www.harbourvest.com,https://www.harbourvest.com/us/en/about-harbourvest/careers,ok:200,auto,false,
 Hartford Funds,Asset Managers,https://www.hartfordfunds.com,https://www.hartfordfunds.com/ex-pages/vanity/careers.html,ok:200,auto,false,
-Hartford Investment Management Company,Asset Managers,https://www.himco.com,,fail:TimeoutError,,true,no_career_page
+Hartford Investment Management Company,Asset Managers,https://www.himco.com,https://www.jointhehartford.com/jobs/,manual:ok,manual,false,no_career_page
 Holocene Advisors,Asset Managers,https://www.holocene.com,https://www.holocene.com/careers,ok:200,auto,false,
 Hudson Advisors,Asset Managers,https://www.hudson-advisors.com,https://www.hudson-advisors.com/careers/,ok:200,auto,false,
 III Capital Management,Asset Managers,https://iiicm.com,,fail:TimeoutError,,true,no_career_page
@@ -107,7 +107,7 @@ LSV Asset Management,Asset Managers,https://www.lsvasset.com,,fail:404,,true,no_
 Lazard (NYS: LAZ),Asset Managers,https://www.lazard.com,https://www.lazard.com/careers,ok:200,auto,false,
 Legal & General Investment Management America,Asset Managers,https://www.am.landg.us.com,https://am.landg.us.com/careers,ok:200,auto,false,
 Level III Capital,Asset Managers,https://www.l3cap.com,https://www.l3cap.com/about/careers,ok:200,auto,false,
-Lighthouse Investment Partners,Asset Managers,https://www.lighthousepartners.com,,fail:404,,true,no_career_page
+Lighthouse Investment Partners,Asset Managers,https://www.lighthousepartners.com,https://www.linkedin.com/company/lighthouse-investment-partners-llc/jobs/,manual:ok,manual,false,no_career_page
 "Loomis, Sayles & Company",Asset Managers,https://www.loomissayles.com,https://www.loomissayles.com/careers/,ok:200,auto,false,
 Lord Abbett,Asset Managers,https://www.lordabbett.com,https://www.lordabbett.com/careers,ok:202,auto,false,
 Los Angeles Capital Management (LACM),Asset Managers,https://lacapm.com,https://lacapm.com/careers,ok:200,auto,false,
@@ -117,12 +117,12 @@ MacKay Shields,Asset Managers,https://www.mackayshields.com,https://www.mackaysh
 Man Numeric,Asset Managers,https://www.numeric.com,,fail:ConnectError,,true,no_career_page
 Manulife John Hancock Investments,Asset Managers,https://www.jhinvestments.com,,fail:403,,true,no_career_page
 Mariner Wealth Advisors,Asset Managers,https://www.marinerwealthadvisors.com,https://joinmariner.com/,ok:200,auto,false,
-MetLife Investment Management,Asset Managers,https://www.investments.metlife.com,,fail:ConnectError,,true,no_career_page
+MetLife Investment Management,Asset Managers,https://www.investments.metlife.com,https://www.metlifecareers.com/en_US/ml/SearchJobs?3_87_3=7418,manual:ok,manual,false,no_career_page
 Millennium Management,Asset Managers,https://www.mlp.com,https://www.mlp.com/careers/,ok:200,auto,false,
 Mirae Asset Global Investments (USA),Asset Managers,https://investments.miraeasset.us,,fail:404,,true,no_career_page
 Morgan Stanley Investment Management,Asset Managers,https://Subsidiary of Morgan Stanley,,fail:ConnectError,,true,no_career_page
 NISA Investment Advisors,Asset Managers,https://www.nisa.com,https://careers.nisa.com,ok:200,auto,false,
-Natixis Investment Managers,Asset Managers,https://www.im.natixis.com,,fail:404,,true,no_career_page
+Natixis Investment Managers,Asset Managers,https://www.im.natixis.com,https://www.im.natixis.com/en-gb/about/open-positions,manual:ok,manual,false,no_career_page
 Neuberger Berman,Asset Managers,https://www.nb.com,https://www.nb.com/who-we-are/careers,ok:200,auto,false,
 New England Asset Management,Asset Managers,https://neamgroup.com,,fail:ConnectError,,true,no_career_page
 New York Life Investment Management,Asset Managers,https://www.newyorklifeinvestments.com,https://careers.newyorklife.com/careers,ok:200,auto,false,
@@ -151,7 +151,7 @@ Renaissance Technologies,Asset Managers,https://www.renfund.com,,fail:404,,true,
 RhumbLine,Asset Managers,https://www.rhumbline.com,https://careers.rhumbline.com,ok:200,auto,false,
 Russell Investments Group,Asset Managers,https://www.russellinvestments.com,https://russellinvestments.com/content/ri/in/en-gb/about-us/careers.html,ok:200,auto,false,
 SEI Investments,Asset Managers,https://www.seic.com,https://www.seic.com/careers/home,ok:200,auto,false,
-SLC Management,Asset Managers,https://www.slcmanagement.com,,fail:403,,true,no_career_page
+SLC Management,Asset Managers,https://www.slcmanagement.com,https://sunlife.wd3.myworkdayjobs.com/SLCManagement,manual:ok,manual,false,no_career_page
 Sanders Capital,Asset Managers,https://www.sanderscapital.com,https://www.sanderscapital.com/careers,ok:202,auto,false,
 Santander US,Asset Managers,https://www.santanderus.com,https://www.santanderus.com/careers/,ok:200,auto,false,
 Schonfeld Strategic Advisors,Asset Managers,https://www.schonfeld.com,https://www.schonfeld.com/careers/,ok:200,auto,false,
@@ -187,7 +187,7 @@ Virtus Investment Partners (NYS: VRTS),Asset Managers,https://www.virtus.com,htt
 WCM Investment Management,Asset Managers,https://www.wcminvest.com,https://www.wcminvest.com/careers,ok:200,auto,false,
 Walleye Capital,Asset Managers,https://www.walleyecapital.com,https://www.walleyecapital.com/careers,ok:200,auto,false,
 Wellington Management,Asset Managers,https://www.wellington.com,https://www.wellington.com/en/about-us/careers,ok:200,auto,false,
-WisdomTree (NYS: WT),Asset Managers,https://www.wisdomtree.com,,fail:403,,true,no_career_page
+WisdomTree (NYS: WT),Asset Managers,https://www.wisdomtree.com,https://www.wisdomtree.com/us/careers-at-wisdomtree,manual:ok,manual,false,no_career_page
 iCapital Advisors - affiiated advisor of iCapital Network,Asset Managers,https://icapital.com,https://icapital.com/careers/,ok:200,auto,false,
 ABG Sundal Collier (OSL: ABG),Banks,https://www.abgsc.com,https://www.abgsc.com/working-at-abgsc/,ok:200,auto,false,
 BB&T Capital Markets,Banks,https://www.bbtcapitalmarkets.com,https://careers.truist.com/us/en,ok:200,auto,false,

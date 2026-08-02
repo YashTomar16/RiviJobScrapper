@@ -61,10 +61,10 @@ FUNCTION_PATTERNS: list[tuple[str, str]] = [
     (r"\b(machine learning|ml engineer|ml scientist|deep learning)\b", "Machine Learning"),
     (r"\b(\bai\b|artificial intelligence|genai|generative ai|llm)\b", "AI"),
     (r"\b(data scientist|data science|data engineer|data engineering|analytics engineer|business intelligence|bi engineer|data analyst)\b", "Data"),
-    (r"\b(software engineer|swe\b|backend|front[- ]?end|full[- ]?stack|site reliability|sre\b|devops|platform engineer|infrastructure engineer|security engineer|cloud engineer|mobile engineer|ios|android|qa engineer|test engineer|quality engineer)\b", "Engineering"),
+    (r"\b(software engineer|swe\b|backend|front[- ]?end|full[- ]?stack|site reliability|sre\b|devops|platform engineer|infrastructure engineer|security engineer|cloud engineer|mobile engineer|ios|android|qa engineer|test engineer|quality engineer|systems engineer|desktop engineering|application support)\b", "Engineering"),
     (r"\b(engineering manager|director of engineering|vp engineering|head of engineering|cto|chief technology)\b", "Engineering"),
     (r"\b(product manager|product owner|product lead|head of product|director of product|vp product|chief product|cpo)\b", "Product"),
-    (r"\b(technologist|technology|\bit\b|information technology|it architect|it manager|it director|solutions architect|enterprise architect|technical architect|chief information|cio)\b", "Technology"),
+    (r"\b(technologist|technology|\bit\b|information technology|it architect|it manager|it director|solutions architect|enterprise architect|technical architect|chief information|cio|crm technology)\b", "Technology"),
     (r"\b(engineer|developer|programmer|architect)\b", "Engineering"),
     (r"\b(research scientist|applied scientist)\b", "AI"),
 ]
@@ -84,7 +84,67 @@ SENIORITY_PATTERNS: list[tuple[str, str]] = [
 ]
 
 
-def classify_title(title: str) -> Classification:
+# Clear non-USA/EU geo signals — used when location text is present.
+_OUTSIDE_USA_EU_RE = re.compile(
+    r"\b("
+    r"india|mumbai|bangalore|bengaluru|hyderabad|chennai|pune|delhi|gurgaon|gurugram|"
+    r"singapore|hong\s*kong|japan|tokyo|osaka|korea|seoul|china|shanghai|beijing|"
+    r"taiwan|taipei|philippines|manila|indonesia|jakarta|malaysia|kuala\s*lumpur|"
+    r"thailand|bangkok|vietnam|australia|sydney|melbourne|new\s*zealand|"
+    r"brazil|sao\s*paulo|mexico|canada|toronto|vancouver|montreal|"
+    r"israel|tel\s*aviv|uae|dubai|saudi|africa|nigeria|south\s*africa|"
+    r"argentina|chile|colombia|peru"
+    r")\b",
+    re.I,
+)
+
+_USA_EU_RE = re.compile(
+    r"\b("
+    r"united\s*states|\busa\b|\bu\.s\.a\.?\b|\bu\.s\.?\b|"
+    r"new\s*york|nyc|boston|chicago|san\s*francisco|sf\b|seattle|austin|"
+    r"dallas|houston|los\s*angeles|\bla\b|miami|atlanta|denver|philadelphia|"
+    r"washington|dc\b|virginia|connecticut|hartford|new\s*jersey|massachusetts|"
+    r"california|texas|florida|illinois|colorado|north\s*carolina|charlotte|"
+    r"remote\s*[-–—]?\s*us|us\s*remote|united\s*kingdom|\buk\b|london|england|"
+    r"scotland|wales|ireland|dublin|europe|\beu\b|"
+    r"germany|berlin|frankfurt|munich|france|paris|netherlands|amsterdam|"
+    r"switzerland|zurich|geneva|spain|madrid|italy|milan|rome|"
+    r"sweden|stockholm|norway|oslo|denmark|copenhagen|finland|helsinki|"
+    r"belgium|brussels|austria|vienna|portugal|lisbon|poland|warsaw|"
+    r"luxembourg|czech|prague|hungary|budapest|romania|greece|athens"
+    r")\b",
+    re.I,
+)
+
+
+def location_in_usa_or_eu(location: str | None) -> bool:
+    """Return True if location is USA/EU, unknown/empty, or remote without APAC signal.
+
+    Explicit non-USA/EU locations (India, Singapore, etc.) return False.
+    Empty location is kept (boards often omit geo).
+    """
+    loc = (location or "").strip()
+    if not loc:
+        return True
+    low = loc.lower()
+    if re.search(r"\b(worldwide|global|multiple\s+locations|various)\b", low):
+        # Prefer keep when USA/EU also mentioned; else drop vague global-only
+        if _USA_EU_RE.search(low):
+            return True
+        if _OUTSIDE_USA_EU_RE.search(low):
+            return False
+        return True
+    has_us_eu = bool(_USA_EU_RE.search(low))
+    has_outside = bool(_OUTSIDE_USA_EU_RE.search(low))
+    if has_us_eu:
+        return True
+    if has_outside:
+        return False
+    # Unrecognized location text — keep (don't over-filter)
+    return True
+
+
+def classify_title(title: str, location: str | None = None) -> Classification:
     raw = title or ""
     t = _norm(raw)
     evidence: list[str] = []
@@ -131,6 +191,15 @@ def classify_title(title: str) -> Classification:
     # "Product Manager" matched Manager — correct
     # "Engineering Manager" matched Manager — correct
     # Avoid classifying "manager" in "account manager" — already excluded via Sales
+
+    if not location_in_usa_or_eu(location):
+        evidence.append("exclude:geo_outside_usa_eu")
+        return Classification(
+            function=function,
+            seniority_band=seniority,
+            in_scope=False,
+            match_evidence=";".join(evidence),
+        )
 
     return Classification(
         function=function,

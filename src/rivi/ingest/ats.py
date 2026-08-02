@@ -111,6 +111,19 @@ def fetch_ashby(org: str, timeout: float) -> FetchResult:
         return FetchResult(jobs, "ashby", str(resp.status_code))
 
 
+def _workday_site_from_path(path: str) -> str:
+    """Extract Workday site slug from path.
+
+    Handles both `/northerntrust` and localized `/en-US/001` boards.
+    """
+    parts = [p for p in path.strip("/").split("/") if p]
+    if not parts:
+        return ""
+    if len(parts) >= 2 and re.match(r"^[a-z]{2}(?:-[A-Z]{2})?$", parts[0]):
+        return parts[1]
+    return parts[0]
+
+
 def fetch_workday(career_url: str, timeout: float) -> FetchResult:
     """Fetch Workday CXS job listings from a myworkdayjobs.com career URL."""
     from rivi.ingest.rate_limit import get_pacer
@@ -122,14 +135,14 @@ def fetch_workday(career_url: str, timeout: float) -> FetchResult:
     if not m:
         return FetchResult([], "workday", "", "unrecognized_workday_host", False)
     tenant = m.group("tenant")
-    path = parsed.path.strip("/")
-    site = path.split("/")[0] if path else ""
+    site = _workday_site_from_path(parsed.path)
     if not site:
         return FetchResult([], "workday", "", "missing_workday_site", False)
 
-    board_url = f"https://{host}/{site}"
+    # Prefer the original path (keeps locale segment) for warmup/referer.
+    path_prefix = parsed.path.strip("/") or site
+    board_url = f"https://{host}/{path_prefix}"
     api = f"https://{host}/wday/cxs/{tenant}/{site}/jobs"
-    payload = {"limit": 50, "offset": 0}
     jobs: list[RawJob] = []
 
     get_pacer().wait(board_url)
@@ -140,6 +153,15 @@ def fetch_workday(career_url: str, timeout: float) -> FetchResult:
             headers={"User-Agent": USER_AGENT, "Accept": "text/html,application/xhtml+xml"},
         )
         if warm.status_code >= 400:
+            # Retry without locale prefix (e.g. /001 instead of /en-US/001)
+            alt = f"https://{host}/{site}"
+            if alt != board_url:
+                warm = client.get(
+                    alt,
+                    headers={"User-Agent": USER_AGENT, "Accept": "text/html,application/xhtml+xml"},
+                )
+                board_url = alt
+        if warm.status_code >= 400:
             return FetchResult([], "workday", str(warm.status_code), "board_warmup_failed", False)
 
         headers = {
@@ -149,11 +171,30 @@ def fetch_workday(career_url: str, timeout: float) -> FetchResult:
             "Referer": board_url,
         }
         # Note: do not send X-CALYPSO-CSRF-TOKEN — it causes HTTP 400 on some tenants.
+        # Some tenants (Fidelity) reject limit>20; keep page size conservative.
+        page_limit = 20
+        payload_templates = [
+            {"limit": page_limit, "offset": 0},
+            {"appliedFacets": {}, "limit": page_limit, "offset": 0, "searchText": ""},
+        ]
+        chosen: dict | None = None
+        probe_error = ""
+        http_status = ""
+        for template in payload_templates:
+            get_pacer().wait(api)
+            probe = client.post(api, json={**template, "offset": 0}, headers=headers)
+            if probe.status_code == 200:
+                chosen = template
+                break
+            probe_error = probe.text[:300]
+            http_status = str(probe.status_code)
+        if chosen is None:
+            return FetchResult([], "workday", http_status or "400", probe_error, False)
 
         offset = 0
         http_status = "200"
         while offset < 500:
-            payload["offset"] = offset
+            payload = {**chosen, "offset": offset}
             get_pacer().wait(api)
             resp = client.post(api, json=payload, headers=headers)
             http_status = str(resp.status_code)
@@ -177,9 +218,29 @@ def fetch_workday(career_url: str, timeout: float) -> FetchResult:
                 title = j.get("title") or ""
                 loc = j.get("locationsText") or ""
                 bullets = j.get("bulletFields") or []
-                ext = str(bullets[0]) if bullets else ""
                 path_url = j.get("externalPath") or ""
-                job_url = urljoin_workday(career_url, path_url)
+                # Prefer requisition id from path (..._J12345) or numeric bullet;
+                # ignore "Posting Date: ..." noise in bulletFields.
+                ext = ""
+                m_id = re.search(r"_(J?\d{4,})(?:-|$)", path_url or "")
+                if m_id:
+                    ext = m_id.group(1)
+                if not ext:
+                    for b in bullets:
+                        bs = str(b).strip()
+                        if re.match(r"^J?\d{4,}$", bs):
+                            ext = bs
+                            break
+                # Location often buried in path (/job/New-York/...) or first bullet
+                if not loc and path_url:
+                    mloc = re.match(r"^/job/([^/]+)/", path_url)
+                    if mloc:
+                        loc = mloc.group(1).replace("-", " ")
+                if not loc and bullets:
+                    cand = str(bullets[0])
+                    if not cand.lower().startswith("posting date"):
+                        loc = cand
+                job_url = urljoin_workday(f"https://{host}/{site}", path_url)
                 jobs.append(
                     RawJob(
                         title=title,
@@ -191,7 +252,7 @@ def fetch_workday(career_url: str, timeout: float) -> FetchResult:
                 )
             total = int(data.get("total") or 0)
             offset += len(postings)
-            if offset >= total or len(postings) < payload["limit"]:
+            if offset >= total or len(postings) < page_limit:
                 break
             # Polite pacing — Workday rate-limits aggressive pagination
             time.sleep(0.35)
@@ -212,12 +273,108 @@ def urljoin_workday(career_url: str, external_path: str) -> str:
     return f"{base}/{site}/{external_path}"
 
 
+def fetch_oracle_cloud_hcm(career_url: str, timeout: float) -> FetchResult:
+    """Fetch Oracle Cloud HCM Candidate Experience requisitions."""
+    from rivi.ingest.rate_limit import get_pacer
+
+    parsed = urlparse(career_url)
+    host = parsed.netloc
+    # .../sites/BNY-Careers/jobs or ?siteNumber=
+    site = ""
+    m = re.search(r"/sites/([^/?#]+)", parsed.path, re.I)
+    if m:
+        site = m.group(1)
+    if not site:
+        m2 = re.search(r"[?&]siteNumber=([^&]+)", career_url, re.I)
+        if m2:
+            site = m2.group(1)
+    # Many Oracle CE boards use CX_1 as the API site number even when the
+    # marketing path uses a brand slug (BNY-Careers). Prefer CX_1 (full board).
+    site_candidates: list[str] = ["CX_1"]
+    if site and site not in site_candidates:
+        site_candidates.append(site)
+
+    base = f"{parsed.scheme}://{host}"
+    jobs: list[RawJob] = []
+    http_status = "200"
+    used_site = site_candidates[0]
+
+    get_pacer().wait(career_url)
+    with _client(timeout) as client:
+        # Warm CE session
+        client.get(career_url, headers={"User-Agent": USER_AGENT, "Accept": "text/html"})
+
+        for candidate in site_candidates:
+            used_site = candidate
+            jobs = []
+            offset = 0
+            while offset < 2000:
+                api = (
+                    f"{base}/hcmRestApi/resources/latest/recruitingCEJobRequisitions"
+                    f"?onlyData=true&expand=requisitionList.secondaryLocations"
+                    f"&finder=findReqs;siteNumber={candidate},limit=50,offset={offset}"
+                )
+                get_pacer().wait(api)
+                resp = client.get(api)
+                http_status = str(resp.status_code)
+                if resp.status_code == 429:
+                    time.sleep(2.0)
+                    continue
+                if resp.status_code >= 400:
+                    break
+                try:
+                    data = resp.json()
+                except Exception as e:  # noqa: BLE001
+                    if offset == 0 and candidate == site_candidates[-1]:
+                        return FetchResult([], "oracle_hcm", http_status, f"json_error:{e}", False)
+                    break
+                items = data.get("items") or []
+                if not items:
+                    break
+                reqs = items[0].get("requisitionList") or []
+                if not reqs:
+                    break
+                for j in reqs:
+                    title = j.get("Title") or ""
+                    loc = j.get("PrimaryLocation") or ""
+                    rid = str(j.get("Id") or "")
+                    job_url = (
+                        f"{base}/hcmUI/CandidateExperience/en/sites/{site or candidate}"
+                        f"/job/{rid}"
+                        if rid
+                        else career_url
+                    )
+                    jobs.append(
+                        RawJob(
+                            title=title,
+                            location=loc,
+                            job_url=job_url,
+                            external_id=rid,
+                            raw=j,
+                        )
+                    )
+                total = int(items[0].get("TotalJobsCount") or 0)
+                offset += len(reqs)
+                if offset >= total or len(reqs) < 50:
+                    break
+                time.sleep(0.25)
+            if jobs:
+                break
+
+    if not jobs:
+        return FetchResult([], "oracle_hcm", http_status, "no_requisitions", False)
+    return FetchResult(jobs, "oracle_hcm", http_status)
+
+
 def detect_and_fetch_ats(career_url: str, timeout: float) -> FetchResult | None:
     low = career_url.lower()
     parsed = urlparse(career_url)
 
     if "myworkdayjobs.com" in low:
         return fetch_workday(career_url, timeout)
+
+    if "oraclecloud.com" in low and ("hcmUI/CandidateExperience" in career_url or "recruitingCE" in low):
+        return fetch_oracle_cloud_hcm(career_url, timeout)
 
     gh = re.search(r"boards\.greenhouse\.io/([^/?#]+)", low)
     if gh:
