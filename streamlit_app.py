@@ -1,33 +1,40 @@
-"""Rivi Streamlit entrypoint for local demos and Streamlit Community Cloud.
+"""Rivi Insights — Streamlit dashboard for weekly hiring intelligence.
 
 Main file path for deploy: streamlit_app.py
 Run locally:  streamlit run streamlit_app.py
-
-Parity target: FastAPI Key Insights dashboard (hottest companies, leadership,
-function/seniority mix, new openings, Groq brief + priorities).
 """
 
 from __future__ import annotations
 
+import html
 import sys
 from pathlib import Path
 
 import streamlit as st
 
-# Ensure src/ layout package is importable (Cloud + local without editable install)
 _ROOT = Path(__file__).resolve().parent
 _SRC = _ROOT / "src"
 if str(_SRC) not in sys.path:
     sys.path.insert(0, str(_SRC))
 
 st.set_page_config(
-    page_title="Rivi · Key Insights",
+    page_title="Rivi Insights",
     page_icon="🟠",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
-RIVIERA_FLAMINGO = "#F26622"
+NAVY = "#0B1220"
+NAVY_SOFT = "#151D2E"
+BLUE = "#2563EB"
+BLUE_SOFT = "#E8EEF9"
+FLAMINGO = "#F26622"
+GREEN = "#22C55E"
+RED = "#EF4444"
+TEXT = "#0F172A"
+MUTED = "#64748B"
+BG = "#F4F6FA"
+CARD = "#FFFFFF"
 
 _SECRET_ENV_KEYS = (
     "GROQ_API_KEY",
@@ -37,9 +44,317 @@ _SECRET_ENV_KEYS = (
     "DATABASE_URL",
 )
 
+PAGES = (
+    "Dashboard",
+    "Companies",
+    "Job Intelligence",
+    "AI Insights",
+    "Coverage",
+)
+
+
+def inject_styles() -> None:
+    st.markdown(
+        f"""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+html, body, [class*="css"]  {{
+  font-family: "Plus Jakarta Sans", sans-serif;
+}}
+
+.stApp {{
+  background: {BG};
+}}
+
+[data-testid="stSidebar"] {{
+  background: linear-gradient(180deg, {NAVY} 0%, #070B14 100%);
+  border-right: 1px solid rgba(255,255,255,0.06);
+}}
+[data-testid="stSidebar"] * {{
+  color: #E8EDF7 !important;
+}}
+[data-testid="stSidebar"] .stCaption, [data-testid="stSidebar"] small {{
+  color: #94A3B8 !important;
+}}
+[data-testid="stSidebar"] .stSelectbox label,
+[data-testid="stSidebar"] .stRadio label {{
+  color: #94A3B8 !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}}
+[data-testid="stSidebar"] [role="radiogroup"] label {{
+  background: transparent !important;
+  border-radius: 10px !important;
+  padding: 0.55rem 0.75rem !important;
+  margin-bottom: 0.2rem !important;
+}}
+[data-testid="stSidebar"] [role="radiogroup"] label:hover {{
+  background: rgba(255,255,255,0.06) !important;
+}}
+[data-testid="stSidebar"] [role="radiogroup"] label[data-checked="true"],
+[data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) {{
+  background: rgba(37,99,235,0.28) !important;
+  border: 1px solid rgba(37,99,235,0.45);
+}}
+[data-testid="stSidebar"] .stButton > button {{
+  background: {BLUE};
+  color: white !important;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+}}
+[data-testid="stSidebar"] .stButton > button:hover {{
+  background: #1D4ED8;
+  color: white !important;
+}}
+[data-testid="stSidebar"] div[data-baseweb="select"] > div {{
+  background: {NAVY_SOFT} !important;
+  border-color: rgba(255,255,255,0.1) !important;
+  color: #E8EDF7 !important;
+}}
+
+.block-container {{
+  padding-top: 1.25rem !important;
+  padding-bottom: 2rem !important;
+  max-width: 1400px;
+}}
+
+.rivi-brand {{
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0.25rem 0 1.25rem 0;
+}}
+.rivi-mark {{
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, {FLAMINGO}, #FF8A4C);
+  box-shadow: 0 6px 16px rgba(242,102,34,0.35);
+}}
+.rivi-brand-text {{
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+  color: #fff !important;
+  line-height: 1.15;
+}}
+.rivi-brand-sub {{
+  font-size: 0.7rem;
+  color: #94A3B8 !important;
+  font-weight: 500;
+}}
+
+.rivi-nav-label {{
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748B !important;
+  margin: 1rem 0 0.35rem 0;
+  font-weight: 600;
+}}
+
+.rivi-api-card {{
+  margin-top: 1rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 14px;
+  background: {NAVY_SOFT};
+  border: 1px solid rgba(255,255,255,0.08);
+}}
+.rivi-api-row {{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}}
+.rivi-dot {{
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  display: inline-block;
+}}
+.rivi-dot-ok {{
+  background: {GREEN};
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.25);
+}}
+.rivi-dot-bad {{
+  background: {RED};
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.25);
+}}
+
+.rivi-hero {{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+}}
+.rivi-hero h1 {{
+  margin: 0;
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: {TEXT};
+}}
+.rivi-hero p {{
+  margin: 0.35rem 0 0 0;
+  color: {MUTED};
+  font-size: 0.95rem;
+}}
+.rivi-chip {{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: {BLUE_SOFT};
+  color: {BLUE};
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(37,99,235,0.15);
+  white-space: nowrap;
+}}
+
+.rivi-kpi-grid {{
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0.25rem 0 1.25rem 0;
+}}
+@media (max-width: 1200px) {{
+  .rivi-kpi-grid {{ grid-template-columns: repeat(3, minmax(0, 1fr)); }}
+}}
+@media (max-width: 700px) {{
+  .rivi-kpi-grid {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
+}}
+.rivi-kpi {{
+  background: {CARD};
+  border: 1px solid rgba(15,23,42,0.06);
+  border-radius: 16px;
+  padding: 1rem 1.05rem;
+  box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+}}
+.rivi-kpi .label {{
+  color: {MUTED};
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}}
+.rivi-kpi .value {{
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: {TEXT};
+  letter-spacing: -0.03em;
+  margin: 0.25rem 0;
+  line-height: 1.1;
+}}
+.rivi-pill {{
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+}}
+.pill-green {{ background: #DCFCE7; color: #166534; }}
+.pill-blue {{ background: #DBEAFE; color: #1E40AF; }}
+.pill-amber {{ background: #FEF3C7; color: #92400E; }}
+.pill-red {{ background: #FEE2E2; color: #991B1B; }}
+
+.rivi-panel {{
+  background: {CARD};
+  border: 1px solid rgba(15,23,42,0.06);
+  border-radius: 18px;
+  padding: 1.1rem 1.2rem;
+  box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+  margin-bottom: 1rem;
+}}
+.rivi-panel h3 {{
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: {TEXT};
+}}
+.rivi-panel-dark {{
+  background: linear-gradient(160deg, #0F172A, #1E293B);
+  color: #F8FAFC;
+  border: none;
+}}
+.rivi-panel-dark h3, .rivi-panel-dark p, .rivi-panel-dark li {{
+  color: #F8FAFC !important;
+}}
+.rivi-badge {{
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}}
+.badge-green {{ background: #DCFCE7; color: #166534; }}
+.badge-red {{ background: #FEE2E2; color: #991B1B; }}
+.badge-blue {{ background: #DBEAFE; color: #1E40AF; }}
+
+.rivi-mover {{
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(15,23,42,0.06);
+}}
+.rivi-mover:last-child {{ border-bottom: none; }}
+.rivi-avatar {{
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 10px;
+  background: {BLUE_SOFT};
+  color: {BLUE};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  flex-shrink: 0;
+}}
+.rivi-mover-meta {{
+  flex: 1;
+  min-width: 0;
+}}
+.rivi-mover-meta strong {{
+  display: block;
+  font-size: 0.9rem;
+  color: {TEXT};
+}}
+.rivi-mover-meta span {{
+  font-size: 0.75rem;
+  color: {MUTED};
+}}
+
+.rivi-alert {{
+  border-radius: 14px;
+  padding: 0.85rem 0.95rem;
+  margin-bottom: 0.65rem;
+  background: #F8FAFC;
+  border: 1px solid rgba(15,23,42,0.06);
+}}
+.rivi-alert strong {{
+  display: block;
+  margin: 0.25rem 0;
+  color: {TEXT};
+}}
+.rivi-alert p {{
+  margin: 0;
+  color: {MUTED};
+  font-size: 0.85rem;
+}}
+</style>
+        """,
+        unsafe_allow_html=True,
+    )
+
 
 def _apply_streamlit_secrets() -> None:
-    """Map Streamlit secrets → env so pydantic Settings / Groq pick them up."""
     import os
 
     try:
@@ -68,7 +383,6 @@ def _apply_streamlit_secrets() -> None:
 
 
 def runtime_settings():
-    """Settings with Streamlit Cloud secrets applied (falls back to .env locally)."""
     _apply_streamlit_secrets()
     from rivi.config import get_settings
 
@@ -91,7 +405,6 @@ def _groq_key_configured(settings) -> bool:
 
 
 def regenerate_week_insights(week_id: str) -> dict:
-    """Call Groq for the selected week and persist into the app DB."""
     from rivi.db import session_scope
     from rivi.insights.generate import generate_insights, regenerate_llm_only
 
@@ -118,7 +431,6 @@ def regenerate_week_insights(week_id: str) -> dict:
 
 @st.cache_data(ttl=30)
 def load_companies_from_db() -> tuple[list[dict], dict]:
-    """Eligible companies for the active monitoring set (+ optional skipped)."""
     from sqlalchemy import select
 
     from rivi.db import session_scope
@@ -126,7 +438,6 @@ def load_companies_from_db() -> tuple[list[dict], dict]:
 
     settings = runtime_settings()
     if not _db_path(settings).exists():
-        # Fallback to CSV registry
         rows = load_companies_csv()
         eligible = [
             r
@@ -259,25 +570,47 @@ def load_coverage() -> dict | None:
         }
 
 
+def _companies_by_category(companies: list[dict]) -> dict[str, list[dict]]:
+    grouped: dict[str, list[dict]] = {}
+    for c in companies:
+        cat = (c.get("category") or "").strip() or "Uncategorized"
+        grouped.setdefault(cat, []).append(c)
+    return dict(sorted(grouped.items(), key=lambda kv: (-len(kv[1]), kv[0])))
+
+
+def _esc(value: object) -> str:
+    return html.escape(str(value or ""))
+
+
+def _kpi_card(label: str, value: object, pill: str, pill_class: str) -> str:
+    return (
+        f'<div class="rivi-kpi">'
+        f'<div class="label">{_esc(label)}</div>'
+        f'<div class="value">{_esc(value)}</div>'
+        f'<span class="rivi-pill {pill_class}">{_esc(pill)}</span>'
+        f"</div>"
+    )
+
+
 def _job_table(rows: list[dict], *, key: str) -> None:
     if not rows:
-        st.caption("None.")
+        st.caption("No roles to show.")
         return
-    show_category = any((j.get("category") or "").strip() for j in rows)
     display = []
     for j in rows:
-        row = {
-            "Company": j.get("company", ""),
-            "Title": j.get("title", ""),
-            "Function": j.get("function", ""),
-            "Seniority": j.get("seniority_band") or j.get("seniority", ""),
-            "Location": j.get("location", ""),
-            "Change": j.get("change_type", ""),
-            "URL": j.get("job_url") or j.get("url") or "",
-        }
-        if show_category:
-            row = {"Category": j.get("category", ""), **row}
-        display.append(row)
+        display.append(
+            {
+                "Company": j.get("company", ""),
+                "Role": j.get("title", ""),
+                "Function": j.get("function", ""),
+                "Seniority": j.get("seniority_band") or j.get("seniority", ""),
+                "Location": j.get("location", ""),
+                "Category": j.get("category", ""),
+                "Week": j.get("week", ""),
+                "Change": j.get("change_type", ""),
+                "URL": j.get("job_url") or j.get("url") or "",
+            }
+        )
     st.dataframe(
         display,
         use_container_width=True,
@@ -289,165 +622,417 @@ def _job_table(rows: list[dict], *, key: str) -> None:
     )
 
 
-def _mix_chart(mix: dict, title: str) -> None:
-    if not mix:
-        st.caption("No data.")
-        return
-    st.caption(title)
-    # Native chart — no pandas dependency required
-    st.bar_chart(mix)
+def _page_hero(title: str, subtitle: str, chip: str | None = None) -> None:
+    chip_html = f'<div class="rivi-chip">{_esc(chip)}</div>' if chip else ""
+    st.markdown(
+        f"""
+<div class="rivi-hero">
+  <div>
+    <h1>{_esc(title)}</h1>
+    <p>{_esc(subtitle)}</p>
+  </div>
+  {chip_html}
+</div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 
-def render_key_insights(insight: dict) -> None:
-    structured = insight.get("structured") or {}
+def render_dashboard(
+    *,
+    insight: dict | None,
+    jobs: list[dict],
+    registry: dict,
+    by_category: dict[str, list[dict]],
+    week: str | None,
+) -> None:
+    structured = (insight or {}).get("structured") or {}
     summary = structured.get("summary") or {}
+    hot = structured.get("hottest_companies") or []
+    lead = structured.get("leadership_pulse") or []
+    new_rows = structured.get("new_openings") or []
+    open_rows = structured.get("open_roles") or []
+    table_rows = new_rows or open_rows or jobs[:40]
+
+    leadership_jobs = [
+        j
+        for j in jobs
+        if (j.get("seniority") or "").lower()
+        in {"head+", "director+", "vp+", "c-level", "head", "director", "vp", "c-level"}
+        or "+" in (j.get("seniority") or "")
+    ]
+    product_ai = [
+        j
+        for j in jobs
+        if (j.get("function") or "").lower()
+        in {"product", "ai / ml", "ai/ml", "engineering", "data"}
+    ]
+
+    _page_hero(
+        "Executive Search Dashboard",
+        "Monitoring hiring intelligence across tracked investment firms and banks.",
+        chip=f"Week {week}" if week else "No week selected",
+    )
+
+    kpis = [
+        _kpi_card("New roles", summary.get("new_count") or len(new_rows) or 0, "This week", "pill-green"),
+        _kpi_card("Companies tracked", registry.get("eligible") or 0, "Eligible", "pill-blue"),
+        _kpi_card("Executive roles", summary.get("leadership_count") or len(lead) or len(leadership_jobs), "Head+", "pill-green"),
+        _kpi_card("In-scope openings", len(jobs), "Live", "pill-blue"),
+        _kpi_card(
+            "Companies OK",
+            f"{summary.get('companies_ok') or 0}/{summary.get('companies_targeted') or 0}",
+            "Latest run",
+            "pill-amber",
+        ),
+        _kpi_card("Removed", summary.get("removed_count") or 0, "Cooling", "pill-red"),
+    ]
+    st.markdown(f'<div class="rivi-kpi-grid">{"".join(kpis)}</div>', unsafe_allow_html=True)
+
+    left, right = st.columns([1.15, 1])
+    with left:
+        st.markdown('<div class="rivi-panel"><h3>Top movers this week</h3>', unsafe_allow_html=True)
+        if hot:
+            st.markdown(
+                '<span class="rivi-badge badge-green">High activity</span>',
+                unsafe_allow_html=True,
+            )
+            movers_html = []
+            for h in hot[:5]:
+                name = h.get("company") or "Unknown"
+                initial = name[:1].upper()
+                roles = h.get("new_roles", 0)
+                movers_html.append(
+                    f'<div class="rivi-mover">'
+                    f'<div class="rivi-avatar">{_esc(initial)}</div>'
+                    f'<div class="rivi-mover-meta"><strong>{_esc(name)}</strong>'
+                    f"<span>+{roles} new in-scope roles</span></div>"
+                    f"</div>"
+                )
+            st.markdown("".join(movers_html) + "</div>", unsafe_allow_html=True)
+        else:
+            st.caption("No hottest-company rollup for this week yet.")
+            st.markdown("</div>", unsafe_allow_html=True)
+
+        st.markdown('<div class="rivi-panel"><h3>Function mix</h3>', unsafe_allow_html=True)
+        mix = structured.get("function_mix") or {}
+        if mix:
+            st.bar_chart(mix, height=220)
+        else:
+            # Fallback from open jobs
+            counts: dict[str, int] = {}
+            for j in jobs:
+                fn = j.get("function") or "Other"
+                counts[fn] = counts.get(fn, 0) + 1
+            if counts:
+                st.bar_chart(counts, height=220)
+            else:
+                st.caption("No function mix yet.")
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    with right:
+        st.markdown('<div class="rivi-panel"><h3>Category coverage</h3>', unsafe_allow_html=True)
+        if by_category:
+            cat_chart = {k: len(v) for k, v in by_category.items()}
+            st.bar_chart(cat_chart, height=180)
+            for cat, rows in by_category.items():
+                st.caption(f"{cat}: {len(rows)} eligible")
+        else:
+            st.caption("No categories loaded.")
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        brief = (insight or {}).get("llm_brief") or ""
+        st.markdown(
+            '<div class="rivi-panel rivi-panel-dark"><h3>Rivi AI Spotlight</h3>',
+            unsafe_allow_html=True,
+        )
+        if brief:
+            st.write(brief[:420] + ("…" if len(brief) > 420 else ""))
+        else:
+            st.write(
+                "No AI brief yet. Open AI Insights and regenerate with Groq to populate this spotlight."
+            )
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    st.markdown('<div class="rivi-panel"><h3>Role intelligence feed</h3>', unsafe_allow_html=True)
+    st.caption(
+        f"Displaying {min(len(table_rows), 40)} of {len(table_rows)} roles"
+        + (" · week deltas" if new_rows else " · open inventory")
+    )
+    _job_table(table_rows[:40], key="dashboard_jobs")
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    # Suppress unused warning for product_ai if empty - use as optional caption
+    if product_ai:
+        st.caption(f"{len(product_ai)} engineering / product / AI openings currently open.")
+
+
+def render_companies(by_category: dict[str, list[dict]], coverage: dict | None) -> None:
+    _page_hero(
+        "Companies",
+        "Eligible firms grouped by registry category — add new firm types without UI rework.",
+    )
+    if not by_category:
+        st.info("No eligible companies found.")
+        return
+
+    metric_cols = st.columns(min(len(by_category), 4))
+    for i, (cat, rows) in enumerate(by_category.items()):
+        with metric_cols[i % len(metric_cols)]:
+            st.markdown(
+                _kpi_card(cat, len(rows), "Eligible", "pill-blue"),
+                unsafe_allow_html=True,
+            )
+
+    cat_names = list(by_category.keys())
+    selected = st.selectbox("Browse category", cat_names, index=0)
+    rows = by_category.get(selected) or []
+    display = [
+        {
+            "Company": r.get("company_name", ""),
+            "Website": r.get("website", ""),
+            "Career page": r.get("career_page", ""),
+            "Status": r.get("career_page_status", ""),
+        }
+        for r in rows
+    ]
+    st.markdown('<div class="rivi-panel">', unsafe_allow_html=True)
+    st.caption(f"{len(display)} eligible · {selected}")
+    st.dataframe(
+        display,
+        use_container_width=True,
+        hide_index=True,
+        column_config={
+            "Website": st.column_config.LinkColumn("Website", display_text="Site"),
+            "Career page": st.column_config.LinkColumn("Career page", display_text="Careers"),
+        },
+    )
+    st.markdown("</div>", unsafe_allow_html=True)
+    if coverage:
+        st.caption(
+            f"Registry total {coverage.get('total', 0)} · "
+            f"skipped {coverage.get('skipped', 0)}"
+        )
+
+
+def render_jobs(jobs: list[dict]) -> None:
+    _page_hero(
+        "Job Intelligence",
+        "Filter in-scope open roles across tracked asset managers and banks.",
+    )
+    if not jobs:
+        st.info("No in-scope jobs to show.")
+        return
+
+    from rivi.classifier import IN_SCOPE_FUNCTIONS
+
+    fns = sorted(set(IN_SCOPE_FUNCTIONS) | {j["function"] for j in jobs if j["function"]})
+    category_opts = sorted({j["category"] for j in jobs if j.get("category")})
+    companies_opts = sorted({j["company"] for j in jobs if j["company"]})
+    seniority_opts = sorted({j["seniority"] for j in jobs if j.get("seniority")})
+
+    st.markdown('<div class="rivi-panel">', unsafe_allow_html=True)
+    f1, f2, f3, f4, f5 = st.columns([1.1, 1.2, 1, 1, 1.2])
+    pick_cat = f1.multiselect("Function family / Category", category_opts)
+    pick_co = f2.multiselect("Company", companies_opts)
+    pick_fn = f3.multiselect("Function", fns)
+    pick_sen = f4.multiselect("Seniority", seniority_opts)
+    q = f5.text_input("Search title", "")
+
+    view = jobs
+    if pick_cat:
+        view = [j for j in view if j.get("category") in pick_cat]
+    if pick_co:
+        view = [j for j in view if j["company"] in pick_co]
+    if pick_fn:
+        view = [j for j in view if j["function"] in pick_fn]
+    if pick_sen:
+        view = [j for j in view if j.get("seniority") in pick_sen]
+    if q.strip():
+        ql = q.strip().lower()
+        view = [j for j in view if ql in (j["title"] or "").lower()]
+
+    st.caption(f"Displaying {len(view)} of {len(jobs)} in-scope open roles")
+    _job_table(view, key="all_jobs")
+    st.markdown("</div>", unsafe_allow_html=True)
+
+
+def render_ai_insights(insight: dict | None, week: str | None) -> None:
+    _page_hero(
+        "AI Insights & Market Intelligence",
+        "Algorithmic signals identifying hiring shifts across the monitored set.",
+        chip=f"Week {week}" if week else None,
+    )
+    if not insight:
+        st.info(
+            "No insights yet. Use **Refresh Signals** in the sidebar "
+            "(requires Groq API key), or run `rivi generate-insights` locally."
+        )
+        return
+
+    structured = insight.get("structured") or {}
     priorities = insight.get("llm_priorities") or {}
     if isinstance(priorities, list):
         priorities = {"priority_companies": priorities}
 
-    week = insight.get("week_id") or summary.get("week_id") or ""
-    st.markdown(f"### Week {week}")
-    st.caption(
-        f"LLM · **{insight.get('llm_status', '—')}**"
-        + (f" · {insight.get('groq_model')}" if insight.get("groq_model") else "")
-        + (f" · generated {insight.get('generated_at', '')[:19]}" if insight.get("generated_at") else "")
-    )
+    status = insight.get("llm_status", "—")
+    generated = (insight.get("generated_at") or "")[:19]
+    model = insight.get("groq_model") or ""
 
-    if insight.get("llm_status") == "failed":
-        st.error(
-            "AI brief unavailable for this week. Structured lists below are still live. "
-            "Retry: `rivi generate-insights --week … --regenerate`"
-        )
+    top, side = st.columns([1.4, 1])
+    with top:
+        st.markdown('<div class="rivi-panel"><h3>Executive brief</h3>', unsafe_allow_html=True)
+        st.caption(f"LLM · {status}" + (f" · {model}" if model else "") + (f" · {generated}" if generated else ""))
+        if insight.get("llm_status") == "failed":
+            st.error("AI brief unavailable for this week. Structured lists below are still live.")
+        brief = insight.get("llm_brief") or ""
+        if brief:
+            st.write(brief)
+        else:
+            st.info("No Groq brief for this week yet.")
+        st.markdown("</div>", unsafe_allow_html=True)
 
-    # Stats strip (parity with FastAPI)
-    m1, m2, m3, m4, m5 = st.columns(5)
-    m1.metric("New", summary.get("new_count") or 0)
-    m2.metric("Updated", summary.get("updated_count") or 0)
-    m3.metric("Removed", summary.get("removed_count") or 0)
-    m4.metric("Leadership", summary.get("leadership_count") or 0)
-    m5.metric(
-        "Companies OK",
-        f"{summary.get('companies_ok') or 0}/{summary.get('companies_targeted') or 0}",
-    )
+        pcs = priorities.get("priority_companies") or []
+        st.markdown('<div class="rivi-panel"><h3>Priority companies</h3>', unsafe_allow_html=True)
+        if pcs:
+            for p in pcs:
+                titles = ", ".join(p.get("cited_titles") or [])
+                st.markdown(
+                    f"**{p.get('company', '')}** — {p.get('rationale', '')}"
+                    + (f"  \n*{titles}*" if titles else "")
+                )
+        else:
+            st.caption("No priority companies in this pack.")
+        st.markdown("</div>", unsafe_allow_html=True)
 
-    st.divider()
+    with side:
+        hot = structured.get("hottest_companies") or []
+        st.markdown('<div class="rivi-panel"><h3>Top movers</h3>', unsafe_allow_html=True)
+        st.markdown('<span class="rivi-badge badge-green">High volatility</span>', unsafe_allow_html=True)
+        if hot:
+            movers = []
+            for h in hot[:5]:
+                name = h.get("company") or "?"
+                movers.append(
+                    f'<div class="rivi-mover"><div class="rivi-avatar">{_esc(name[:1].upper())}</div>'
+                    f'<div class="rivi-mover-meta"><strong>{_esc(name)}</strong>'
+                    f"<span>+{h.get('new_roles', 0)} new roles</span></div></div>"
+                )
+            st.markdown("".join(movers), unsafe_allow_html=True)
+        else:
+            st.caption("No movers yet.")
+        st.markdown("</div>", unsafe_allow_html=True)
 
-    # Executive brief + Groq enablement
-    st.subheader("Executive brief")
-    if insight.get("llm_brief") and insight.get("llm_status") == "success":
-        st.write(insight["llm_brief"])
-    elif insight.get("llm_brief"):
-        st.write(insight["llm_brief"])
-        st.caption("Note: brief may be stale relative to llm_status.")
-    else:
-        st.info("No Groq brief for this week. Structured evidence follows.")
-
-    pcs = priorities.get("priority_companies") or []
-    if pcs:
-        st.markdown("#### Priority companies")
-        for p in pcs:
-            titles = ", ".join(p.get("cited_titles") or [])
-            st.markdown(
-                f"**{p.get('company', '')}** — {p.get('rationale', '')}"
-                + (f"  \n*{titles}*" if titles else "")
-            )
-
-    callouts = priorities.get("role_callouts") or []
-    if callouts:
-        st.markdown("#### Role callouts")
-        for c in callouts:
-            link = c.get("job_url") or ""
-            title = c.get("title") or ""
-            line = f"**{c.get('company', '')}** · {title}"
-            if link:
-                line = f"**{c.get('company', '')}** · [{title}]({link})"
-            st.markdown(line)
-            if c.get("why_it_matters"):
-                st.caption(c["why_it_matters"])
+        callouts = priorities.get("role_callouts") or []
+        risks = priorities.get("risk_notes") or []
+        st.markdown('<div class="rivi-panel"><h3>Signal alerts</h3>', unsafe_allow_html=True)
+        if callouts:
+            for c in callouts[:4]:
+                title = c.get("title") or ""
+                company = c.get("company") or ""
+                why = c.get("why_it_matters") or ""
+                link = c.get("job_url") or ""
+                headline = f"[{title}]({link})" if link else title
+                st.markdown(
+                    f'<div class="rivi-alert"><span class="rivi-badge badge-blue">Role callout</span>'
+                    f"<strong>{_esc(company)}</strong></div>",
+                    unsafe_allow_html=True,
+                )
+                st.markdown(headline)
+                if why:
+                    st.caption(why)
+        if risks:
+            for n in risks[:3]:
+                st.markdown(
+                    f'<div class="rivi-alert"><span class="rivi-badge badge-red">Risk note</span>'
+                    f"<p>{_esc(n)}</p></div>",
+                    unsafe_allow_html=True,
+                )
+        if not callouts and not risks:
+            st.caption("No alerts in this pack.")
+        st.markdown("</div>", unsafe_allow_html=True)
 
     angles = priorities.get("outreach_angles") or []
     if angles:
-        st.markdown("#### Outreach angles")
+        st.markdown('<div class="rivi-panel"><h3>Outreach angles</h3>', unsafe_allow_html=True)
         for a in angles:
             st.markdown(f"**{a.get('company', '')}** — {a.get('angle', '')}")
+        st.markdown("</div>", unsafe_allow_html=True)
 
-    risks = priorities.get("risk_notes") or []
-    if risks:
-        st.markdown("#### Risk notes")
-        for n in risks:
-            st.markdown(f"- {n}")
-
-    st.divider()
-
-    # Hottest + mixes
-    left, mid, right = st.columns(3)
-    with left:
-        st.subheader("Hottest companies")
-        hot = structured.get("hottest_companies") or []
-        if hot:
-            hot_rows = [
-                {"Company": h.get("company", ""), "New roles": h.get("new_roles", 0)}
-                for h in hot
-            ]
-            st.dataframe(hot_rows, use_container_width=True, hide_index=True)
+    c1, c2 = st.columns(2)
+    with c1:
+        st.markdown('<div class="rivi-panel"><h3>Function mix</h3>', unsafe_allow_html=True)
+        mix = structured.get("function_mix") or {}
+        if mix:
+            st.bar_chart(mix, height=240)
         else:
-            st.caption("No company rollup.")
-    with mid:
-        st.subheader("Function mix")
-        _mix_chart(structured.get("function_mix") or {}, "New in-scope by function")
-    with right:
-        st.subheader("Seniority mix")
-        _mix_chart(structured.get("seniority_mix") or {}, "New in-scope by seniority")
+            st.caption("No function mix.")
+        st.markdown("</div>", unsafe_allow_html=True)
+    with c2:
+        st.markdown('<div class="rivi-panel"><h3>Seniority mix</h3>', unsafe_allow_html=True)
+        mix = structured.get("seniority_mix") or {}
+        if mix:
+            st.bar_chart(mix, height=240)
+        else:
+            st.caption("No seniority mix.")
+        st.markdown("</div>", unsafe_allow_html=True)
 
-    st.divider()
-
-    # New openings / open inventory
-    new_rows = structured.get("new_openings") or []
-    open_rows = structured.get("open_roles") or []
-    st.subheader("New openings this week")
-    if new_rows:
-        st.caption(f"{len(new_rows)} in-scope new roles in this week's pack")
-        _job_table(new_rows, key="new_openings")
-    elif open_rows:
-        st.warning(
-            "No net-new deltas this week — showing current open in-scope inventory."
-        )
-        _job_table(open_rows, key="open_roles")
-    else:
-        st.caption("No new in-scope openings this week.")
-
-    st.subheader("Leadership & executive pulse")
     lead = structured.get("leadership_pulse") or []
+    st.markdown('<div class="rivi-panel"><h3>Leadership pulse</h3>', unsafe_allow_html=True)
     if lead:
-        st.caption(f"{len(lead)} Head+ / Director+ / VP+ / C-level signals")
         _job_table(lead, key="leadership")
     else:
         st.caption("No Head+ leadership signal this week.")
-
-    removals = structured.get("removals") or []
-    if removals:
-        st.subheader("Removals / cooling")
-        _job_table(removals, key="removals")
+    st.markdown("</div>", unsafe_allow_html=True)
 
 
-def _companies_by_category(companies: list[dict]) -> dict[str, list[dict]]:
-    """Group eligible companies by registry category (extensible for future firm types)."""
-    grouped: dict[str, list[dict]] = {}
-    for c in companies:
-        cat = (c.get("category") or "").strip() or "Uncategorized"
-        grouped.setdefault(cat, []).append(c)
-    return dict(sorted(grouped.items(), key=lambda kv: (-len(kv[1]), kv[0])))
+def render_coverage(coverage: dict | None) -> None:
+    _page_hero(
+        "Coverage",
+        "Active monitoring uses eligible companies only. Skipped rows lack a career page or were excluded.",
+    )
+    if not coverage:
+        st.info("Coverage unavailable without database.")
+        return
+
+    kpis = [
+        _kpi_card("Eligible", coverage["eligible"], "Active", "pill-green"),
+        _kpi_card("Skipped", coverage["skipped"], "Excluded", "pill-amber"),
+        _kpi_card("Registry total", coverage["total"], "All rows", "pill-blue"),
+        _kpi_card(
+            "Missing careers",
+            coverage.get("missing_career_page") or 0,
+            "Gap",
+            "pill-red",
+        ),
+    ]
+    st.markdown(
+        f'<div class="rivi-kpi-grid" style="grid-template-columns:repeat(4,minmax(0,1fr))">{"".join(kpis)}</div>',
+        unsafe_allow_html=True,
+    )
+
+    by_cat = coverage.get("by_category") or {}
+    st.markdown('<div class="rivi-panel"><h3>By category</h3>', unsafe_allow_html=True)
+    if by_cat:
+        rows = [
+            {
+                "Category": name,
+                "Eligible": stats.get("eligible", 0),
+                "Total in registry": stats.get("total", 0),
+                "Skipped / missing": stats.get("total", 0) - stats.get("eligible", 0),
+            }
+            for name, stats in by_cat.items()
+        ]
+        st.dataframe(rows, use_container_width=True, hide_index=True)
+    else:
+        st.caption("No category breakdown.")
+    st.markdown("</div>", unsafe_allow_html=True)
 
 
 def main() -> None:
+    inject_styles()
     _apply_streamlit_secrets()
     settings = runtime_settings()
-
-    st.markdown(
-        f"<h1 style='color:{RIVIERA_FLAMINGO};margin-bottom:0'>Rivi <span style='font-weight:500'>Key Insights</span></h1>"
-        "<p style='opacity:0.8;margin-top:0.25rem'>Weekly hiring signal by firm category</p>",
-        unsafe_allow_html=True,
-    )
 
     companies, registry = load_companies_from_db()
     jobs, meta = load_jobs_from_db()
@@ -456,67 +1041,74 @@ def main() -> None:
     by_category = _companies_by_category(companies)
 
     with st.sidebar:
-        st.markdown("### Week")
+        st.markdown(
+            """
+<div class="rivi-brand">
+  <div class="rivi-mark"></div>
+  <div>
+    <div class="rivi-brand-text">Rivi Insights</div>
+    <div class="rivi-brand-sub">Hiring intelligence</div>
+  </div>
+</div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        st.markdown('<div class="rivi-nav-label">Main</div>', unsafe_allow_html=True)
+        page = st.radio(
+            "Navigation",
+            PAGES,
+            index=0,
+            label_visibility="collapsed",
+        )
+
+        st.markdown('<div class="rivi-nav-label">Week</div>', unsafe_allow_html=True)
         if weeks:
-            week = st.selectbox("Select week", weeks, index=0)
+            week = st.selectbox("ISO week", weeks, index=0, label_visibility="collapsed")
         else:
             week = None
             st.caption("No insight weeks yet.")
-        st.divider()
-        st.markdown("### API status")
-        if _groq_key_configured(settings):
-            st.markdown(
-                '<span style="display:inline-flex;align-items:center;gap:0.45rem">'
-                '<span style="width:0.55rem;height:0.55rem;border-radius:50%;'
-                'background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,0.25)"></span>'
-                "<strong>OK</strong>"
-                '<span style="opacity:0.7">· Groq connected</span>'
-                "</span>",
-                unsafe_allow_html=True,
-            )
-        else:
-            st.markdown(
-                '<span style="display:inline-flex;align-items:center;gap:0.45rem">'
-                '<span style="width:0.55rem;height:0.55rem;border-radius:50%;'
-                'background:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,0.25)"></span>'
-                "<strong>Missing</strong>"
-                '<span style="opacity:0.7">· add GROQ_API_KEY in Secrets</span>'
-                "</span>",
-                unsafe_allow_html=True,
-            )
+
         if week and st.button(
-            "Regenerate insights",
+            "Refresh Signals",
             type="primary",
             disabled=not _groq_key_configured(settings),
-            help="Re-call Groq for this week using the latest scrape run in the DB (no re-scrape).",
+            use_container_width=True,
+            help="Re-call Groq for this week using the latest scrape run in the DB.",
         ):
             with st.spinner(f"Calling Groq for {week}…"):
                 result = regenerate_week_insights(week)
-            status = result.get("llm_status")
-            if status == "success":
-                st.success(f"Fresh brief generated for {week}.")
+            if result.get("llm_status") == "success":
+                st.success(f"Fresh brief for {week}.")
                 st.cache_data.clear()
                 st.rerun()
             else:
-                st.error(result.get("error") or f"Groq status: {status}")
-        st.caption(
-            "Uses secrets on Streamlit Cloud. SQLite writes on Community Cloud "
-            "may reset after redeploy — prefer pushing an updated DB for permanence."
-        )
-        st.divider()
-        st.markdown("### Active set")
-        st.metric("Eligible companies", registry.get("eligible") or len(companies))
-        st.metric("In-scope open roles", len(jobs))
-        if by_category:
-            st.caption("By category")
-            for cat, rows in by_category.items():
-                st.caption(f"{cat}: {len(rows)}")
-        skipped = registry.get("skipped") or 0
-        if skipped:
-            st.caption(f"{skipped} registry rows skipped (no career page / excluded)")
-        if st.button("Refresh data"):
+                st.error(result.get("error") or f"Groq status: {result.get('llm_status')}")
+
+        if st.button("Reload data", use_container_width=True):
             st.cache_data.clear()
             st.rerun()
+
+        st.markdown('<div class="rivi-nav-label">Active set</div>', unsafe_allow_html=True)
+        st.caption(f"Eligible · {registry.get('eligible') or len(companies)}")
+        st.caption(f"Open roles · {len(jobs)}")
+        for cat, rows in by_category.items():
+            st.caption(f"{cat} · {len(rows)}")
+
+        ok = _groq_key_configured(settings)
+        st.markdown(
+            f"""
+<div class="rivi-api-card">
+  <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:#94A3B8;margin-bottom:0.35rem;font-weight:600">API status</div>
+  <div class="rivi-api-row">
+    <span class="rivi-dot {'rivi-dot-ok' if ok else 'rivi-dot-bad'}"></span>
+    <strong>{'OK' if ok else 'Missing'}</strong>
+    <span style="opacity:0.75">{'· Groq connected' if ok else '· add GROQ_API_KEY'}</span>
+  </div>
+</div>
+            """,
+            unsafe_allow_html=True,
+        )
 
     if not meta.get("db_exists"):
         st.warning(
@@ -526,119 +1118,22 @@ def main() -> None:
 
     insight = load_insight(week) if week else load_insight(None)
 
-    tab_insights, tab_jobs, tab_categories, tab_coverage = st.tabs(
-        ["Key Insights", "Jobs", "Categories", "Coverage"]
-    )
-
-    with tab_insights:
-        if insight:
-            render_key_insights(insight)
-        else:
-            st.info(
-                "No insights yet. Use **Regenerate insights** in the sidebar "
-                "(requires GROQ_API_KEY), or run locally:\n\n"
-                "`rivi scrape --all-eligible`\n\n"
-                "`rivi generate-insights`"
-            )
-
-    with tab_jobs:
-        if not jobs:
-            st.write("No in-scope jobs to show.")
-        else:
-            from rivi.classifier import IN_SCOPE_FUNCTIONS
-
-            fns = sorted(
-                set(IN_SCOPE_FUNCTIONS)
-                | {j["function"] for j in jobs if j["function"]}
-            )
-            category_opts = sorted({j["category"] for j in jobs if j.get("category")})
-            companies_opts = sorted({j["company"] for j in jobs if j["company"]})
-            f1, f2, f3, f4 = st.columns(4)
-            pick_cat = f1.multiselect("Category", category_opts)
-            pick_co = f2.multiselect("Company", companies_opts)
-            pick_fn = f3.multiselect("Function", fns)
-            q = f4.text_input("Search title", "")
-            view = jobs
-            if pick_cat:
-                view = [j for j in view if j.get("category") in pick_cat]
-            if pick_co:
-                view = [j for j in view if j["company"] in pick_co]
-            if pick_fn:
-                view = [j for j in view if j["function"] in pick_fn]
-            if q.strip():
-                ql = q.strip().lower()
-                view = [j for j in view if ql in (j["title"] or "").lower()]
-            st.caption(f"Showing {len(view)} of {len(jobs)} in-scope open roles")
-            _job_table(view, key="all_jobs")
-
-    with tab_categories:
-        st.caption(
-            "Companies are grouped by registry category so new firm types "
-            "(e.g. insurers, fintech) can be added without changing the UI."
+    if page == "Dashboard":
+        render_dashboard(
+            insight=insight,
+            jobs=jobs,
+            registry=registry,
+            by_category=by_category,
+            week=week,
         )
-        if not by_category:
-            st.write("No eligible companies found.")
-        else:
-            metric_cols = st.columns(min(len(by_category), 4))
-            for i, (cat, rows) in enumerate(by_category.items()):
-                metric_cols[i % len(metric_cols)].metric(cat, len(rows))
-
-            cat_names = list(by_category.keys())
-            selected = st.selectbox("Browse category", cat_names, index=0)
-            rows = by_category.get(selected) or []
-            display = [
-                {
-                    "Company": r.get("company_name", ""),
-                    "Website": r.get("website", ""),
-                    "Career page": r.get("career_page", ""),
-                    "Status": r.get("career_page_status", ""),
-                }
-                for r in rows
-            ]
-            st.caption(f"{len(display)} eligible · {selected}")
-            st.dataframe(
-                display,
-                use_container_width=True,
-                hide_index=True,
-                column_config={
-                    "Website": st.column_config.LinkColumn("Website", display_text="Site"),
-                    "Career page": st.column_config.LinkColumn(
-                        "Career page", display_text="Careers"
-                    ),
-                },
-            )
-
-    with tab_coverage:
-        if not coverage:
-            st.write("Coverage unavailable without database.")
-        else:
-            c1, c2, c3 = st.columns(3)
-            c1.metric("Eligible (active)", coverage["eligible"])
-            c2.metric("Skipped", coverage["skipped"])
-            c3.metric("Registry total", coverage["total"])
-            st.caption(
-                "Active monitoring uses eligible companies only. "
-                "Skipped rows are missing a career page or were excluded."
-            )
-            by_cat = coverage.get("by_category") or {}
-            if by_cat:
-                rows = [
-                    {
-                        "Category": name,
-                        "Eligible": stats.get("eligible", 0),
-                        "Total in registry": stats.get("total", 0),
-                        "Skipped / missing": stats.get("total", 0)
-                        - stats.get("eligible", 0),
-                    }
-                    for name, stats in by_cat.items()
-                ]
-                st.dataframe(rows, use_container_width=True, hide_index=True)
-
-    st.divider()
-    st.caption(
-        "Regenerate insights from the sidebar when GROQ_API_KEY is set · "
-        "Scrapes stay CLI/scheduler-driven"
-    )
+    elif page == "Companies":
+        render_companies(by_category, coverage)
+    elif page == "Job Intelligence":
+        render_jobs(jobs)
+    elif page == "AI Insights":
+        render_ai_insights(insight, week)
+    else:
+        render_coverage(coverage)
 
 
 main()
