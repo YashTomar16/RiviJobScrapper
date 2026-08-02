@@ -45,10 +45,9 @@ _SECRET_ENV_KEYS = (
 )
 
 PAGES = (
-    "Dashboard",
+    "AI Insights Dashboard",
     "Companies",
     "Job Intelligence",
-    "AI Insights",
     "Coverage",
 )
 
@@ -707,7 +706,7 @@ def _page_hero(title: str, subtitle: str, chip: str | None = None) -> None:
     )
 
 
-def render_dashboard(
+def render_ai_insights_dashboard(
     *,
     insight: dict | None,
     jobs: list[dict],
@@ -717,6 +716,10 @@ def render_dashboard(
 ) -> None:
     structured = (insight or {}).get("structured") or {}
     summary = structured.get("summary") or {}
+    priorities = (insight or {}).get("llm_priorities") or {}
+    if isinstance(priorities, list):
+        priorities = {"priority_companies": priorities}
+
     hot = structured.get("hottest_companies") or []
     lead = structured.get("leadership_pulse") or []
     new_rows = structured.get("new_openings") or []
@@ -730,9 +733,13 @@ def render_dashboard(
         or (j.get("seniority") or "").lower() in {"head", "director", "vp", "c-level"}
     ]
 
+    status = (insight or {}).get("llm_status", "—")
+    generated = ((insight or {}).get("generated_at") or "")[:19]
+    model = (insight or {}).get("groq_model") or ""
+
     _page_hero(
-        "Executive Search Dashboard",
-        "Monitoring hiring intelligence across tracked investment firms and banks.",
+        "AI Insights Dashboard",
+        "Hiring signals and market intelligence across tracked investment firms and banks.",
         chip=f"Week {week}" if week else "No week selected",
     )
 
@@ -757,20 +764,27 @@ def render_dashboard(
     st.markdown(f'<div class="rivi-kpi-grid">{"".join(kpis)}</div>', unsafe_allow_html=True)
 
     brief = ((insight or {}).get("llm_brief") or "").strip()
+    meta_bits = [f"LLM · {status}"]
+    if model:
+        meta_bits.append(model)
+    if generated:
+        meta_bits.append(generated)
     if brief:
-        preview = brief if len(brief) <= 320 else brief[:320].rsplit(" ", 1)[0] + "…"
-        spot_body = _esc(preview)
+        spot_body = _esc(brief)
     else:
         spot_body = "No AI brief yet — use Refresh Signals in the sidebar to generate one."
     st.markdown(
         f"""
 <div class="rivi-spotlight">
   <div class="spot-label">Rivi AI Spotlight</div>
+  <p style="opacity:0.7;font-size:0.78rem;margin:0 0 0.45rem 0">{_esc(" · ".join(meta_bits))}</p>
   <p>{spot_body}</p>
 </div>
         """,
         unsafe_allow_html=True,
     )
+    if (insight or {}).get("llm_status") == "failed":
+        st.error("AI brief unavailable for this week. Structured lists below are still live.")
 
     left, right = st.columns([1.15, 1])
     with left:
@@ -802,6 +816,19 @@ def render_dashboard(
             unsafe_allow_html=True,
         )
 
+        pcs = priorities.get("priority_companies") or []
+        st.markdown('<div class="rivi-panel"><h3>Priority companies</h3>', unsafe_allow_html=True)
+        if pcs:
+            for p in pcs:
+                titles = ", ".join(p.get("cited_titles") or [])
+                st.markdown(
+                    f"**{p.get('company', '')}** — {p.get('rationale', '')}"
+                    + (f"  \n*{titles}*" if titles else "")
+                )
+        else:
+            st.caption("No priority companies in this pack.")
+        st.markdown("</div>", unsafe_allow_html=True)
+
         st.markdown('<div class="rivi-panel"><h3>Function mix</h3>', unsafe_allow_html=True)
         mix = structured.get("function_mix") or {}
         if mix:
@@ -818,14 +845,65 @@ def render_dashboard(
         st.markdown("</div>", unsafe_allow_html=True)
 
     with right:
+        callouts = priorities.get("role_callouts") or []
+        risks = priorities.get("risk_notes") or []
+        st.markdown('<div class="rivi-panel"><h3>Signal alerts</h3>', unsafe_allow_html=True)
+        if callouts:
+            for c in callouts[:4]:
+                title = c.get("title") or ""
+                company = c.get("company") or ""
+                why = c.get("why_it_matters") or ""
+                link = c.get("job_url") or ""
+                headline = f"[{title}]({link})" if link else title
+                st.markdown(
+                    f'<div class="rivi-alert"><span class="rivi-badge badge-blue">Role callout</span>'
+                    f"<strong>{_esc(company)}</strong></div>",
+                    unsafe_allow_html=True,
+                )
+                st.markdown(headline)
+                if why:
+                    st.caption(why)
+        if risks:
+            for n in risks[:3]:
+                st.markdown(
+                    f'<div class="rivi-alert"><span class="rivi-badge badge-red">Risk note</span>'
+                    f"<p>{_esc(n)}</p></div>",
+                    unsafe_allow_html=True,
+                )
+        if not callouts and not risks:
+            st.caption("No alerts in this pack.")
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        st.markdown('<div class="rivi-panel"><h3>Seniority mix</h3>', unsafe_allow_html=True)
+        sen_mix = structured.get("seniority_mix") or {}
+        if sen_mix:
+            st.bar_chart(sen_mix, height=180)
+        else:
+            st.caption("No seniority mix yet.")
+        st.markdown("</div>", unsafe_allow_html=True)
+
         st.markdown('<div class="rivi-panel"><h3>Category coverage</h3>', unsafe_allow_html=True)
         if by_category:
             cat_chart = {k: len(v) for k, v in by_category.items()}
-            st.bar_chart(cat_chart, height=220)
+            st.bar_chart(cat_chart, height=160)
             st.caption(" · ".join(f"{cat}: {len(rows)}" for cat, rows in by_category.items()))
         else:
             st.caption("No categories loaded.")
         st.markdown("</div>", unsafe_allow_html=True)
+
+    angles = priorities.get("outreach_angles") or []
+    if angles:
+        st.markdown('<div class="rivi-panel"><h3>Outreach angles</h3>', unsafe_allow_html=True)
+        for a in angles:
+            st.markdown(f"**{a.get('company', '')}** — {a.get('angle', '')}")
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    st.markdown('<div class="rivi-panel"><h3>Leadership pulse</h3>', unsafe_allow_html=True)
+    if lead:
+        _job_table(lead, key="leadership")
+    else:
+        st.caption("No Head+ leadership signal this week.")
+    st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown('<div class="rivi-panel"><h3>Role intelligence feed</h3>', unsafe_allow_html=True)
     st.caption(
@@ -923,135 +1001,6 @@ def render_jobs(jobs: list[dict]) -> None:
 
     st.caption(f"Displaying {len(view)} of {len(jobs)} in-scope open roles")
     _job_table(view, key="all_jobs")
-    st.markdown("</div>", unsafe_allow_html=True)
-
-
-def render_ai_insights(insight: dict | None, week: str | None) -> None:
-    _page_hero(
-        "AI Insights & Market Intelligence",
-        "Algorithmic signals identifying hiring shifts across the monitored set.",
-        chip=f"Week {week}" if week else None,
-    )
-    if not insight:
-        st.info(
-            "No insights yet. Use **Refresh Signals** in the sidebar "
-            "(requires Groq API key), or run `rivi generate-insights` locally."
-        )
-        return
-
-    structured = insight.get("structured") or {}
-    priorities = insight.get("llm_priorities") or {}
-    if isinstance(priorities, list):
-        priorities = {"priority_companies": priorities}
-
-    status = insight.get("llm_status", "—")
-    generated = (insight.get("generated_at") or "")[:19]
-    model = insight.get("groq_model") or ""
-
-    top, side = st.columns([1.4, 1])
-    with top:
-        st.markdown('<div class="rivi-panel"><h3>Executive brief</h3>', unsafe_allow_html=True)
-        st.caption(f"LLM · {status}" + (f" · {model}" if model else "") + (f" · {generated}" if generated else ""))
-        if insight.get("llm_status") == "failed":
-            st.error("AI brief unavailable for this week. Structured lists below are still live.")
-        brief = insight.get("llm_brief") or ""
-        if brief:
-            st.write(brief)
-        else:
-            st.info("No Groq brief for this week yet.")
-        st.markdown("</div>", unsafe_allow_html=True)
-
-        pcs = priorities.get("priority_companies") or []
-        st.markdown('<div class="rivi-panel"><h3>Priority companies</h3>', unsafe_allow_html=True)
-        if pcs:
-            for p in pcs:
-                titles = ", ".join(p.get("cited_titles") or [])
-                st.markdown(
-                    f"**{p.get('company', '')}** — {p.get('rationale', '')}"
-                    + (f"  \n*{titles}*" if titles else "")
-                )
-        else:
-            st.caption("No priority companies in this pack.")
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    with side:
-        hot = structured.get("hottest_companies") or []
-        st.markdown('<div class="rivi-panel"><h3>Top movers</h3>', unsafe_allow_html=True)
-        st.markdown('<span class="rivi-badge badge-green">High volatility</span>', unsafe_allow_html=True)
-        if hot:
-            movers = []
-            for h in hot[:5]:
-                name = h.get("company") or "?"
-                movers.append(
-                    f'<div class="rivi-mover"><div class="rivi-avatar">{_esc(name[:1].upper())}</div>'
-                    f'<div class="rivi-mover-meta"><strong>{_esc(name)}</strong>'
-                    f"<span>+{h.get('new_roles', 0)} new roles</span></div></div>"
-                )
-            st.markdown("".join(movers), unsafe_allow_html=True)
-        else:
-            st.caption("No movers yet.")
-        st.markdown("</div>", unsafe_allow_html=True)
-
-        callouts = priorities.get("role_callouts") or []
-        risks = priorities.get("risk_notes") or []
-        st.markdown('<div class="rivi-panel"><h3>Signal alerts</h3>', unsafe_allow_html=True)
-        if callouts:
-            for c in callouts[:4]:
-                title = c.get("title") or ""
-                company = c.get("company") or ""
-                why = c.get("why_it_matters") or ""
-                link = c.get("job_url") or ""
-                headline = f"[{title}]({link})" if link else title
-                st.markdown(
-                    f'<div class="rivi-alert"><span class="rivi-badge badge-blue">Role callout</span>'
-                    f"<strong>{_esc(company)}</strong></div>",
-                    unsafe_allow_html=True,
-                )
-                st.markdown(headline)
-                if why:
-                    st.caption(why)
-        if risks:
-            for n in risks[:3]:
-                st.markdown(
-                    f'<div class="rivi-alert"><span class="rivi-badge badge-red">Risk note</span>'
-                    f"<p>{_esc(n)}</p></div>",
-                    unsafe_allow_html=True,
-                )
-        if not callouts and not risks:
-            st.caption("No alerts in this pack.")
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    angles = priorities.get("outreach_angles") or []
-    if angles:
-        st.markdown('<div class="rivi-panel"><h3>Outreach angles</h3>', unsafe_allow_html=True)
-        for a in angles:
-            st.markdown(f"**{a.get('company', '')}** — {a.get('angle', '')}")
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    c1, c2 = st.columns(2)
-    with c1:
-        st.markdown('<div class="rivi-panel"><h3>Function mix</h3>', unsafe_allow_html=True)
-        mix = structured.get("function_mix") or {}
-        if mix:
-            st.bar_chart(mix, height=240)
-        else:
-            st.caption("No function mix.")
-        st.markdown("</div>", unsafe_allow_html=True)
-    with c2:
-        st.markdown('<div class="rivi-panel"><h3>Seniority mix</h3>', unsafe_allow_html=True)
-        mix = structured.get("seniority_mix") or {}
-        if mix:
-            st.bar_chart(mix, height=240)
-        else:
-            st.caption("No seniority mix.")
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    lead = structured.get("leadership_pulse") or []
-    st.markdown('<div class="rivi-panel"><h3>Leadership pulse</h3>', unsafe_allow_html=True)
-    if lead:
-        _job_table(lead, key="leadership")
-    else:
-        st.caption("No Head+ leadership signal this week.")
     st.markdown("</div>", unsafe_allow_html=True)
 
 
@@ -1187,8 +1136,8 @@ def main() -> None:
 
     insight = load_insight(week) if week else load_insight(None)
 
-    if page == "Dashboard":
-        render_dashboard(
+    if page == "AI Insights Dashboard":
+        render_ai_insights_dashboard(
             insight=insight,
             jobs=jobs,
             registry=registry,
@@ -1199,8 +1148,6 @@ def main() -> None:
         render_companies(by_category, coverage)
     elif page == "Job Intelligence":
         render_jobs(jobs)
-    elif page == "AI Insights":
-        render_ai_insights(insight, week)
     else:
         render_coverage(coverage)
 
