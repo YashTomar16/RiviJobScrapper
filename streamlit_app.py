@@ -415,6 +415,82 @@ ul[role="listbox"] li[aria-selected="true"] {{
   color: {MUTED};
   font-size: 0.85rem;
 }}
+.rivi-section-label {{
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  color: {MUTED};
+  margin: 0.85rem 0 0.5rem 0;
+}}
+.rivi-section-label:first-of-type {{
+  margin-top: 0.35rem;
+}}
+.rivi-callout-list {{
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0 0 0.35rem 0;
+}}
+.rivi-callout-item {{
+  padding: 0.7rem 0.8rem;
+  border-radius: 12px;
+  background: {BLUE_SOFT};
+  border: 1px solid rgba(37,99,235,0.12);
+}}
+.rivi-callout-item .co-company {{
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #1E40AF;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 0.2rem 0;
+}}
+.rivi-callout-item .co-title {{
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: {TEXT};
+  line-height: 1.35;
+}}
+.rivi-callout-item .co-title a {{
+  color: {TEXT};
+  text-decoration: none;
+}}
+.rivi-callout-item .co-title a:hover {{
+  color: {BLUE};
+}}
+.rivi-callout-item .co-why {{
+  margin: 0.35rem 0 0 0;
+  font-size: 0.8rem;
+  color: {MUTED};
+  line-height: 1.4;
+}}
+.rivi-risk-box {{
+  margin-top: 0.25rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  background: #FEF2F2;
+  border: 1px solid rgba(239,68,68,0.18);
+}}
+.rivi-risk-box ul {{
+  margin: 0.35rem 0 0 0;
+  padding-left: 1.1rem;
+  color: #7F1D1D;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}}
+.rivi-risk-box li {{
+  margin-bottom: 0.4rem;
+}}
+.rivi-risk-box li:last-child {{
+  margin-bottom: 0;
+}}
+.rivi-empty-note {{
+  color: {MUTED};
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+}}
 </style>
         """,
         unsafe_allow_html=True,
@@ -881,32 +957,57 @@ def render_ai_insights_dashboard(
     with right:
         callouts = priorities.get("role_callouts") or []
         risks = priorities.get("risk_notes") or []
-        st.markdown('<div class="rivi-panel"><h3>Signal alerts</h3>', unsafe_allow_html=True)
-        if callouts:
-            for c in callouts[:4]:
-                title = c.get("title") or ""
-                company = c.get("company") or ""
-                why = c.get("why_it_matters") or ""
-                link = c.get("job_url") or ""
-                headline = f"[{title}]({link})" if link else title
-                st.markdown(
-                    f'<div class="rivi-alert"><span class="rivi-badge badge-blue">Role callout</span>'
-                    f"<strong>{_esc(company)}</strong></div>",
-                    unsafe_allow_html=True,
-                )
-                st.markdown(headline)
-                if why:
-                    st.caption(why)
-        if risks:
-            for n in risks[:3]:
-                st.markdown(
-                    f'<div class="rivi-alert"><span class="rivi-badge badge-red">Risk note</span>'
-                    f"<p>{_esc(n)}</p></div>",
-                    unsafe_allow_html=True,
-                )
-        if not callouts and not risks:
-            st.caption("No alerts in this pack.")
-        st.markdown("</div>", unsafe_allow_html=True)
+        if isinstance(risks, str):
+            risks = [risks]
+
+        callout_html = []
+        for c in callouts[:5]:
+            title = (c.get("title") or "").strip()
+            company = (c.get("company") or "").strip() or "Unknown"
+            why = (c.get("why_it_matters") or "").strip()
+            link = (c.get("job_url") or "").strip()
+            if not title and not why:
+                continue
+            if link and title:
+                title_html = f'<a href="{_esc(link)}" target="_blank" rel="noopener">{_esc(title)}</a>'
+            else:
+                title_html = _esc(title) if title else "Role highlight"
+            why_html = f'<p class="co-why">{_esc(why)}</p>' if why else ""
+            callout_html.append(
+                f'<div class="rivi-callout-item">'
+                f'<div class="co-company">{_esc(company)}</div>'
+                f'<p class="co-title">{title_html}</p>'
+                f"{why_html}"
+                f"</div>"
+            )
+
+        risk_items = "".join(f"<li>{_esc(n)}</li>" for n in risks[:4] if str(n).strip())
+        body_parts: list[str] = []
+        if callout_html:
+            body_parts.append(
+                '<div class="rivi-section-label">Role callouts</div>'
+                f'<div class="rivi-callout-list">{"".join(callout_html)}</div>'
+            )
+        if risk_items:
+            body_parts.append(
+                '<div class="rivi-section-label">Risk notes</div>'
+                f'<div class="rivi-risk-box"><ul>{risk_items}</ul></div>'
+            )
+        if not body_parts:
+            body_parts.append('<p class="rivi-empty-note">No alerts in this pack.</p>')
+
+        st.markdown(
+            f"""
+<div class="rivi-panel">
+  <div class="rivi-panel-head">
+    <h3>Signal alerts</h3>
+    <span class="rivi-badge badge-blue">{len(callout_html)} roles · {len(risks)} risks</span>
+  </div>
+  {"".join(body_parts)}
+</div>
+            """,
+            unsafe_allow_html=True,
+        )
 
         st.markdown('<div class="rivi-panel"><h3>Seniority mix</h3>', unsafe_allow_html=True)
         sen_mix = structured.get("seniority_mix") or {}
