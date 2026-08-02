@@ -97,6 +97,33 @@ def test_cio_is_it():
     assert c.seniority_band == "C-level"
 
 
+def test_cio_office_is_not_c_level():
+    c = classify_title("Quantitative Analyst - CIO Office")
+    assert c.in_scope
+    assert c.function == "Data"
+    assert c.seniority_band == "IC"
+
+
+def test_quant_developer_cio_office_is_not_c_level():
+    c = classify_title("Quantitative Developer - CIO Office")
+    assert c.in_scope
+    assert c.function == "Engineering"
+    assert c.seniority_band == "IC"
+
+
+def test_cto_standalone():
+    c = classify_title("CTO")
+    assert c.in_scope
+    assert c.seniority_band == "C-level"
+
+
+def test_office_of_the_cto_analyst_not_c_level():
+    c = classify_title("Data Analyst, Office of the CTO")
+    assert c.in_scope
+    assert c.function == "Data"
+    assert c.seniority_band == "IC"
+
+
 def test_head_of_crm_technology_is_it():
     c = classify_title("Vice President, Head of CRM Technology")
     assert c.in_scope

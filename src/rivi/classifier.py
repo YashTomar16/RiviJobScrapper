@@ -43,6 +43,23 @@ def _norm(title: str) -> str:
     return t
 
 
+def _strip_executive_org_units(t: str) -> str:
+    """Remove 'CIO Office' / 'Office of the CTO' style org units.
+
+    These mention an executive's office without meaning the person is C-level.
+    Example: 'Quantitative Analyst - CIO Office' must not classify as C-level.
+    """
+    t = re.sub(
+        r"\boffice\s+of\s+the\s+"
+        r"(?:chief\s+(?:technology|product|data|information|ai)\s+officer|cio|cto|cpo|cdo)\b",
+        " ",
+        t,
+        flags=re.I,
+    )
+    t = re.sub(r"\b(?:cio|cto|cpo|cdo)\s+office\b", " ", t, flags=re.I)
+    return re.sub(r"\s+", " ", t).strip()
+
+
 # Hard exclusions — checked before inclusions
 EXCLUDE_PATTERNS: list[tuple[str, str]] = [
     (r"\b(sales|account executive|business development|bdm|sdr|ae)\b", "Sales"),
@@ -61,8 +78,8 @@ EXCLUDE_PATTERNS: list[tuple[str, str]] = [
 FUNCTION_PATTERNS: list[tuple[str, str]] = [
     (r"\b(machine learning|ml engineer|ml scientist|deep learning)\b", "Machine Learning"),
     (r"\b(\bai\b|artificial intelligence|genai|generative ai|llm)\b", "AI"),
-    (r"\b(data scientist|data science|data engineer|data engineering|analytics engineer|business intelligence|bi engineer|data analyst)\b", "Data"),
-    (r"\b(software engineer|swe\b|backend|front[- ]?end|full[- ]?stack|site reliability|sre\b|devops|platform engineer|infrastructure engineer|security engineer|cloud engineer|mobile engineer|ios|android|qa engineer|test engineer|quality engineer|systems engineer|desktop engineering|application support)\b", "Engineering"),
+    (r"\b(data scientist|data science|data engineer|data engineering|analytics engineer|business intelligence|bi engineer|data analyst|quantitative analyst|quant analyst)\b", "Data"),
+    (r"\b(software engineer|swe\b|backend|front[- ]?end|full[- ]?stack|site reliability|sre\b|devops|platform engineer|infrastructure engineer|security engineer|cloud engineer|mobile engineer|ios|android|qa engineer|test engineer|quality engineer|systems engineer|desktop engineering|application support|quantitative developer|quant developer)\b", "Engineering"),
     (r"\b(engineering manager|director of engineering|vp engineering|head of engineering|cto|chief technology)\b", "Engineering"),
     (r"\b(product manager|product owner|product lead|head of product|director of product|vp product|chief product|cpo)\b", "Product"),
     # IT before broader Technology so "IT Manager" / "CIO" land in IT.
@@ -76,7 +93,9 @@ FUNCTION_PATTERNS: list[tuple[str, str]] = [
 SALES_ENGINEER_RE = re.compile(r"\b(sales engineer|pre[- ]?sales|solutions consultant|customer engineer)\b", re.I)
 
 SENIORITY_PATTERNS: list[tuple[str, str]] = [
-    (r"\b(chief technology officer|\bcto\b|chief product officer|\bcpo\b|chief ai officer|chief data officer|\bcdo\b|chief information officer|\bcio\b)\b", "C-level"),
+    (r"\b(chief technology officer|chief product officer|chief ai officer|chief data officer|chief information officer)\b", "C-level"),
+    # Standalone CxO titles only — not "CIO Office" / "Office of the CIO" (stripped above).
+    (r"(?:^|[,/\s])(cto|cpo|cdo|cio)(?:$|[,/\s])", "C-level"),
     (r"\b(senior vice president|\bsvp\b)\b", "SVP"),
     (r"\b(vice president|\bvp\b|svp)\b", "VP"),
     (r"\b(senior director|sr\.?\s*director)\b", "Senior Director"),
@@ -149,7 +168,7 @@ def location_in_usa_or_eu(location: str | None) -> bool:
 
 def classify_title(title: str, location: str | None = None) -> Classification:
     raw = title or ""
-    t = _norm(raw)
+    t = _strip_executive_org_units(_norm(raw))
     evidence: list[str] = []
 
     if not t:
