@@ -29,6 +29,51 @@ st.set_page_config(
 
 RIVIERA_FLAMINGO = "#F26622"
 
+_SECRET_ENV_KEYS = (
+    "GROQ_API_KEY",
+    "GROQ_MODEL",
+    "GROQ_TEMPERATURE",
+    "GROQ_MAX_TOKENS",
+    "DATABASE_URL",
+)
+
+
+def _apply_streamlit_secrets() -> None:
+    """Map Streamlit secrets → env so pydantic Settings / Groq pick them up."""
+    import os
+
+    try:
+        secrets = st.secrets
+    except Exception:
+        return
+
+    changed = False
+    for key in _SECRET_ENV_KEYS:
+        try:
+            val = secrets[key]
+        except Exception:
+            continue
+        if val is None:
+            continue
+        text = str(val).strip()
+        if not text:
+            continue
+        if os.environ.get(key) != text:
+            os.environ[key] = text
+            changed = True
+    if changed:
+        from rivi.config import get_settings
+
+        get_settings.cache_clear()
+
+
+def runtime_settings():
+    """Settings with Streamlit Cloud secrets applied (falls back to .env locally)."""
+    _apply_streamlit_secrets()
+    from rivi.config import get_settings
+
+    return get_settings()
+
 
 def _db_path(settings) -> Path:
     url = settings.database_url or ""
@@ -41,16 +86,45 @@ def _db_path(settings) -> Path:
     return _ROOT / "data" / "rivi.db"
 
 
+def _groq_key_configured(settings) -> bool:
+    return bool((settings.groq_api_key or "").strip())
+
+
+def regenerate_week_insights(week_id: str) -> dict:
+    """Call Groq for the selected week and persist into the app DB."""
+    from rivi.db import session_scope
+    from rivi.insights.generate import generate_insights, regenerate_llm_only
+
+    settings = runtime_settings()
+    if not _groq_key_configured(settings):
+        return {
+            "llm_status": "failed",
+            "error": "GROQ_API_KEY is not set. Add it under Streamlit Secrets (or .env locally).",
+        }
+    if not _db_path(settings).exists():
+        return {
+            "llm_status": "failed",
+            "error": "No database found — cannot regenerate insights.",
+        }
+
+    with session_scope(settings) as session:
+        try:
+            return regenerate_llm_only(session, week_id, settings)
+        except LookupError:
+            return generate_insights(
+                session, week_id=week_id, settings=settings, call_llm=True
+            )
+
+
 @st.cache_data(ttl=30)
 def load_companies_from_db() -> tuple[list[dict], dict]:
     """Eligible companies for the active monitoring set (+ optional skipped)."""
     from sqlalchemy import select
 
-    from rivi.config import get_settings
     from rivi.db import session_scope
     from rivi.models import Company
 
-    settings = get_settings()
+    settings = runtime_settings()
     if not _db_path(settings).exists():
         # Fallback to CSV registry
         rows = load_companies_csv()
@@ -101,11 +175,10 @@ def load_companies_csv() -> list[dict]:
 
 @st.cache_data(ttl=30)
 def load_week_ids() -> list[str]:
-    from rivi.config import get_settings
     from rivi.db import session_scope
     from rivi.insights.generate import list_week_ids
 
-    settings = get_settings()
+    settings = runtime_settings()
     if not _db_path(settings).exists():
         return []
     with session_scope(settings) as session:
@@ -114,11 +187,10 @@ def load_week_ids() -> list[str]:
 
 @st.cache_data(ttl=30)
 def load_insight(week_id: str | None) -> dict | None:
-    from rivi.config import get_settings
     from rivi.db import session_scope
     from rivi.insights.generate import get_insight_payload
 
-    settings = get_settings()
+    settings = runtime_settings()
     if not _db_path(settings).exists():
         return None
     with session_scope(settings) as session:
@@ -129,11 +201,10 @@ def load_insight(week_id: str | None) -> dict | None:
 def load_jobs_from_db() -> tuple[list[dict], dict]:
     from sqlalchemy import select
 
-    from rivi.config import get_settings
     from rivi.db import session_scope
     from rivi.models import Company, JobPosting
 
-    settings = get_settings()
+    settings = runtime_settings()
     db = _db_path(settings)
     meta = {"db_exists": db.exists(), "db_path": str(db)}
     if not db.exists():
@@ -171,11 +242,10 @@ def load_jobs_from_db() -> tuple[list[dict], dict]:
 
 @st.cache_data(ttl=30)
 def load_coverage() -> dict | None:
-    from rivi.config import get_settings
     from rivi.coverage import build_coverage_report
     from rivi.db import session_scope
 
-    settings = get_settings()
+    settings = runtime_settings()
     if not _db_path(settings).exists():
         return None
     with session_scope(settings) as session:
@@ -370,6 +440,9 @@ def _companies_by_category(companies: list[dict]) -> dict[str, list[dict]]:
 
 
 def main() -> None:
+    _apply_streamlit_secrets()
+    settings = runtime_settings()
+
     st.markdown(
         f"<h1 style='color:{RIVIERA_FLAMINGO};margin-bottom:0'>Rivi <span style='font-weight:500'>Key Insights</span></h1>"
         "<p style='opacity:0.8;margin-top:0.25rem'>Weekly hiring signal by firm category</p>",
@@ -389,6 +462,31 @@ def main() -> None:
         else:
             week = None
             st.caption("No insight weeks yet.")
+        st.divider()
+        st.markdown("### Groq insights")
+        if _groq_key_configured(settings):
+            st.caption("GROQ_API_KEY · configured")
+        else:
+            st.caption("GROQ_API_KEY · missing (Streamlit Secrets / .env)")
+        if week and st.button(
+            "Regenerate insights",
+            type="primary",
+            disabled=not _groq_key_configured(settings),
+            help="Re-call Groq for this week using the latest scrape run in the DB (no re-scrape).",
+        ):
+            with st.spinner(f"Calling Groq for {week}…"):
+                result = regenerate_week_insights(week)
+            status = result.get("llm_status")
+            if status == "success":
+                st.success(f"Fresh brief generated for {week}.")
+                st.cache_data.clear()
+                st.rerun()
+            else:
+                st.error(result.get("error") or f"Groq status: {status}")
+        st.caption(
+            "Uses secrets on Streamlit Cloud. SQLite writes on Community Cloud "
+            "may reset after redeploy — prefer pushing an updated DB for permanence."
+        )
         st.divider()
         st.markdown("### Active set")
         st.metric("Eligible companies", registry.get("eligible") or len(companies))
@@ -421,11 +519,11 @@ def main() -> None:
             render_key_insights(insight)
         else:
             st.info(
-                "No insights yet. Run locally:\n\n"
+                "No insights yet. Use **Regenerate insights** in the sidebar "
+                "(requires GROQ_API_KEY), or run locally:\n\n"
                 "`rivi scrape --all-eligible`\n\n"
                 "`rivi generate-insights`"
             )
-            st.caption("Or open the FastAPI UI at http://127.0.0.1:8000/ for the same dashboard.")
 
     with tab_jobs:
         if not jobs:
@@ -522,8 +620,8 @@ def main() -> None:
 
     st.divider()
     st.caption(
-        "Full local UI (same data): http://127.0.0.1:8000/ · "
-        "Scrape/Groq remain CLI-driven · Docs/streamlit-plan.md"
+        "Regenerate insights from the sidebar when GROQ_API_KEY is set · "
+        "Scrapes stay CLI/scheduler-driven"
     )
 
 
