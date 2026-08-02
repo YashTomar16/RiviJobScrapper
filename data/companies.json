@@ -2678,5 +2678,1005 @@
     "career_page_source": "",
     "skip": true,
     "skip_reason": "no_career_page"
+  },
+  {
+    "company_name": "6sense",
+    "category": "Startups",
+    "website": "https://6sense.com",
+    "career_page": "https://job-boards.greenhouse.io/embed/job_board?for=6sense",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Agility Robotics",
+    "category": "Startups",
+    "website": "https://agilityrobotics.com",
+    "career_page": "https://www.agilityrobotics.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Alloy",
+    "category": "Startups",
+    "website": "https://alloy.com",
+    "career_page": "https://job-boards.greenhouse.io/alloy",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Ambience Healthcare",
+    "category": "Startups",
+    "website": "https://www.ambiencehealthcare.com",
+    "career_page": "https://www.ambiencehealthcare.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Anthropic",
+    "category": "Startups",
+    "website": "https://www.anthropic.com",
+    "career_page": "https://job-boards.greenhouse.io/anthropic",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Anysphere",
+    "category": "Startups",
+    "website": "https://anysphere.inc",
+    "career_page": "https://cursor.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Apollo.io",
+    "category": "Startups",
+    "website": "https://www.apollo.io",
+    "career_page": "https://job-boards.greenhouse.io/apolloio",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "AppZen",
+    "category": "Startups",
+    "website": "https://www.appzen.com",
+    "career_page": "https://www.appzen.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Apptronik",
+    "category": "Startups",
+    "website": "https://apptronik.com",
+    "career_page": "https://job-boards.greenhouse.io/apptronik",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Assort Health",
+    "category": "Startups",
+    "website": "https://www.assorthealth.com",
+    "career_page": "https://jobs.ashbyhq.com/assorthealth",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Beta Technologies",
+    "category": "Startups",
+    "website": "https://www.beta.team",
+    "career_page": "https://beta.team/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "BitGo",
+    "category": "Startups",
+    "website": "https://www.bitgo.com",
+    "career_page": "https://www.bitgo.com/company/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "BlockDAG",
+    "category": "Startups",
+    "website": "https://blockdag.network",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": true,
+    "skip_reason": "no_career_page"
+  },
+  {
+    "company_name": "Bluesky",
+    "category": "Startups",
+    "website": "https://bsky.app",
+    "career_page": "https://bsky.social/about/join",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Brightspeed",
+    "category": "Startups",
+    "website": "https://www.brightspeed.com",
+    "career_page": "https://careers.brightspeed.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Chainguard",
+    "category": "Startups",
+    "website": "https://www.chainguard.dev",
+    "career_page": "https://job-boards.greenhouse.io/chainguard",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Character.AI",
+    "category": "Startups",
+    "website": "https://character.ai",
+    "career_page": "https://jobs.ashbyhq.com/character",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Clay",
+    "category": "Startups",
+    "website": "https://www.clay.com",
+    "career_page": "https://www.clay.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "CodeRabbit",
+    "category": "Startups",
+    "website": "https://coderabbit.ai",
+    "career_page": "https://www.coderabbit.ai/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Cognition",
+    "category": "Startups",
+    "website": "https://cognition.ai",
+    "career_page": "https://cognition.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Colossal Biosciences",
+    "category": "Startups",
+    "website": "https://colossal.com",
+    "career_page": "https://job-boards.greenhouse.io/colossalbiosciences",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Commonwealth Fusion Systems",
+    "category": "Startups",
+    "website": "https://cfs.energy",
+    "career_page": "https://cfs.energy/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Creatio",
+    "category": "Startups",
+    "website": "https://www.creatio.com",
+    "career_page": "https://www.creatio.com/company/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Cyera",
+    "category": "Startups",
+    "website": "https://cyera.io",
+    "career_page": "https://www.cyera.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Databricks",
+    "category": "Startups",
+    "website": "https://www.databricks.com",
+    "career_page": "https://job-boards.greenhouse.io/databricks",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Descope",
+    "category": "Startups",
+    "website": "https://www.descope.com",
+    "career_page": "https://job-boards.greenhouse.io/descope",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Distyl AI",
+    "category": "Startups",
+    "website": "https://distyl.ai",
+    "career_page": "https://www.distyl.ai/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Eight Sleep",
+    "category": "Startups",
+    "website": "https://www.eightsleep.com",
+    "career_page": "https://www.eightsleep.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "ElevenLabs",
+    "category": "Startups",
+    "website": "https://elevenlabs.io",
+    "career_page": "https://jobs.ashbyhq.com/elevenlabs",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "EliseAI",
+    "category": "Startups",
+    "website": "https://www.eliseai.com",
+    "career_page": "https://eliseai.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Exa",
+    "category": "Startups",
+    "website": "https://exa.ai",
+    "career_page": "https://jobs.ashbyhq.com/exa",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Factory",
+    "category": "Startups",
+    "website": "https://factory.ai",
+    "career_page": "https://jobs.ashbyhq.com/factory",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "FalconX",
+    "category": "Startups",
+    "website": "https://www.falconx.io",
+    "career_page": "https://job-boards.greenhouse.io/falconx",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "FanDuel",
+    "category": "Startups",
+    "website": "https://www.fanduel.com",
+    "career_page": "https://www.fanduel.careers/open-positions/",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Figure",
+    "category": "Startups",
+    "website": "https://www.figure.ai",
+    "career_page": "https://job-boards.greenhouse.io/figure",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Flock Safety",
+    "category": "Startups",
+    "website": "https://www.flocksafety.com",
+    "career_page": "https://www.flocksafety.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "FriendliAI",
+    "category": "Startups",
+    "website": "https://friendli.ai",
+    "career_page": "https://friendli.ai/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Glean",
+    "category": "Startups",
+    "website": "https://www.glean.com",
+    "career_page": "https://job-boards.greenhouse.io/gleanwork",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Harness",
+    "category": "Startups",
+    "website": "https://www.harness.io",
+    "career_page": "https://www.harness.io/company/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Harvey",
+    "category": "Startups",
+    "website": "https://www.harvey.ai",
+    "career_page": "https://jobs.ashbyhq.com/harvey",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Honor",
+    "category": "Startups",
+    "website": "https://www.honorcare.com",
+    "career_page": "https://www.honorcare.com/honor-careers/",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Hulu",
+    "category": "Startups",
+    "website": "https://www.hulu.com",
+    "career_page": "https://jobs.disneycareers.com/search-jobs/Hulu",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Indigo",
+    "category": "Startups",
+    "website": "https://www.indigoag.com",
+    "career_page": "https://job-boards.greenhouse.io/indigo",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Inspiren",
+    "category": "Startups",
+    "website": "https://inspiren.com",
+    "career_page": "https://www.inspiren.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Juniper Square",
+    "category": "Startups",
+    "website": "https://www.junipersquare.com",
+    "career_page": "https://jobs.ashbyhq.com/junipersquare",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Kredete",
+    "category": "Startups",
+    "website": "https://www.kredete.com",
+    "career_page": "https://kredete.io/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Labs",
+    "category": "Startups",
+    "website": "https://labs.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": true,
+    "skip_reason": "no_career_page"
+  },
+  {
+    "company_name": "Lambda",
+    "category": "Startups",
+    "website": "https://lambda.ai",
+    "career_page": "https://lambda.ai/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Lendistry",
+    "category": "Startups",
+    "website": "https://lendistry.com",
+    "career_page": "https://lendistry.wd108.myworkdayjobs.com/Careers_Join_Us",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Lila Sciences",
+    "category": "Startups",
+    "website": "https://lila.ai",
+    "career_page": "https://job-boards.greenhouse.io/lilasciences",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Liquid AI",
+    "category": "Startups",
+    "website": "https://liquid.ai",
+    "career_page": "https://jobs.ashbyhq.com/liquid-ai",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "MarqVision",
+    "category": "Startups",
+    "website": "https://www.marqvision.com",
+    "career_page": "https://job-boards.greenhouse.io/marqvision",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "May Mobility",
+    "category": "Startups",
+    "website": "https://maymobility.com",
+    "career_page": "https://maymobility.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Mercor",
+    "category": "Startups",
+    "website": "https://mercor.com",
+    "career_page": "https://www.mercor.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Midi Health",
+    "category": "Startups",
+    "website": "https://www.joinmidi.com",
+    "career_page": "https://www.joinmidi.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Momentum",
+    "category": "Startups",
+    "website": "https://www.momentum.io",
+    "career_page": "https://www.momentum.io/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "MoonPay",
+    "category": "Startups",
+    "website": "https://www.moonpay.com",
+    "career_page": "https://www.moonpay.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Navan",
+    "category": "Startups",
+    "website": "https://navan.com",
+    "career_page": "https://job-boards.greenhouse.io/tripactions",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Neon",
+    "category": "Startups",
+    "website": "https://neon.tech",
+    "career_page": "https://jobs.ashbyhq.com/neon",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Neuralink",
+    "category": "Startups",
+    "website": "https://neuralink.com",
+    "career_page": "https://job-boards.greenhouse.io/neuralink",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Nozomi Networks",
+    "category": "Startups",
+    "website": "https://www.nozominetworks.com",
+    "career_page": "https://www.nozominetworks.com/company/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Octane",
+    "category": "Startups",
+    "website": "https://octane.co",
+    "career_page": "https://job-boards.greenhouse.io/octanelending",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Odyssey Therapeutics",
+    "category": "Startups",
+    "website": "https://odysseytx.com",
+    "career_page": "https://odysseytx.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "OpenAI",
+    "category": "Startups",
+    "website": "https://openai.com",
+    "career_page": "https://jobs.ashbyhq.com/openai",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "OpenEvidence",
+    "category": "Startups",
+    "website": "https://www.openevidence.com",
+    "career_page": "https://jobs.ashbyhq.com/openevidence",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Paradox",
+    "category": "Startups",
+    "website": "https://www.paradox.ai",
+    "career_page": "https://careers.paradox.ai/",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Periodic Labs",
+    "category": "Startups",
+    "website": "https://periodiclabs.ai",
+    "career_page": "https://jobs.ashbyhq.com/periodic-labs?departmentId=6cd1bfc2-3e28-45b7-849f-619cdd1f0847",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Perplexity",
+    "category": "Startups",
+    "website": "https://www.perplexity.ai",
+    "career_page": "https://jobs.ashbyhq.com/Perplexity",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Phia",
+    "category": "Startups",
+    "website": "https://www.phia.com",
+    "career_page": "https://jobs.ashbyhq.com/phia",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Polymarket",
+    "category": "Startups",
+    "website": "https://polymarket.com",
+    "career_page": "https://jobs.ashbyhq.com/polymarket",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Poppi",
+    "category": "Startups",
+    "website": "https://drinkpoppi.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": true,
+    "skip_reason": "no_career_page"
+  },
+  {
+    "company_name": "Quantinuum",
+    "category": "Startups",
+    "website": "https://www.quantinuum.com",
+    "career_page": "https://www.quantinuum.com/company/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Rain",
+    "category": "Startups",
+    "website": "https://www.rain.xyz",
+    "career_page": "https://jobs.ashbyhq.com/rain",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Replit",
+    "category": "Startups",
+    "website": "https://replit.com",
+    "career_page": "https://replit.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Runway",
+    "category": "Startups",
+    "website": "https://runwayml.com",
+    "career_page": "https://runway.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "SEON",
+    "category": "Startups",
+    "website": "https://seon.io",
+    "career_page": "https://jobs.ashbyhq.com/seon",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "SecurityScorecard",
+    "category": "Startups",
+    "website": "https://securityscorecard.com",
+    "career_page": "https://job-boards.greenhouse.io/securityscorecard",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Semperis",
+    "category": "Startups",
+    "website": "https://www.semperis.com",
+    "career_page": "https://jobs.ashbyhq.com/semperis",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Sierra",
+    "category": "Startups",
+    "website": "https://sierra.ai",
+    "career_page": "https://jobs.ashbyhq.com/sierra",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Skims",
+    "category": "Startups",
+    "website": "https://skims.com",
+    "career_page": "https://skims.pinpointhq.com/",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Spring Health",
+    "category": "Startups",
+    "website": "https://www.springhealth.com",
+    "career_page": "https://careers.springhealth.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Statsig",
+    "category": "Startups",
+    "website": "https://www.statsig.com",
+    "career_page": "https://www.statsig.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Strava",
+    "category": "Startups",
+    "website": "https://www.strava.com",
+    "career_page": "https://jobs.ashbyhq.com/strava",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Stripe",
+    "category": "Startups",
+    "website": "https://stripe.com",
+    "career_page": "https://job-boards.greenhouse.io/stripe",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Suno",
+    "category": "Startups",
+    "website": "https://suno.com",
+    "career_page": "https://jobs.ashbyhq.com/suno",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "TRM Labs",
+    "category": "Startups",
+    "website": "https://www.trmlabs.com",
+    "career_page": "https://www.trmlabs.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Temporal Technologies",
+    "category": "Startups",
+    "website": "https://temporal.io",
+    "career_page": "https://temporal.io/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Thinking Machines Lab",
+    "category": "Startups",
+    "website": "https://thinkingmachines.ai",
+    "career_page": "https://job-boards.greenhouse.io/thinkingmachines",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "VAST Data",
+    "category": "Startups",
+    "website": "https://www.vastdata.com",
+    "career_page": "https://www.vastdata.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Valence",
+    "category": "Startups",
+    "website": "https://www.valence.co",
+    "career_page": "https://www.valence.co/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Vectara",
+    "category": "Startups",
+    "website": "https://vectara.com",
+    "career_page": "https://www.vectara.com/company/careers-and-culture",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Windsurf",
+    "category": "Startups",
+    "website": "https://windsurf.com",
+    "career_page": "https://jobs.ashbyhq.com/cognition",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "WorkFusion",
+    "category": "Startups",
+    "website": "https://www.workfusion.com",
+    "career_page": "https://www.workfusion.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Workato",
+    "category": "Startups",
+    "website": "https://www.workato.com",
+    "career_page": "https://job-boards.greenhouse.io/workato",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Writer",
+    "category": "Startups",
+    "website": "https://writer.com",
+    "career_page": "https://jobs.ashbyhq.com/writer",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "X-energy",
+    "category": "Startups",
+    "website": "https://x-energy.com",
+    "career_page": "https://x-energy.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "You.com",
+    "category": "Startups",
+    "website": "https://you.com",
+    "career_page": "https://job-boards.greenhouse.io/youcom",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Zania",
+    "category": "Startups",
+    "website": "https://www.zania.ai",
+    "career_page": "https://zania.ai/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Zerohash",
+    "category": "Startups",
+    "website": "https://zerohash.com",
+    "career_page": "https://zero-hash.breezy.hr/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "xAI",
+    "category": "Startups",
+    "website": "https://x.ai",
+    "career_page": "https://job-boards.greenhouse.io/xai",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
   }
 ]

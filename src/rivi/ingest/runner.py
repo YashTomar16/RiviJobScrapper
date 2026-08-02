@@ -19,10 +19,16 @@ from rivi.week import current_week_id
 logger = logging.getLogger("rivi.scrape")
 
 
-def _eligible_query(session: Session, company_name: str | None = None):
+def _eligible_query(
+    session: Session,
+    company_name: str | None = None,
+    category: str | None = None,
+):
     q = select(Company).where(Company.skip.is_(False)).where(Company.career_page != "")
     if company_name:
         q = q.where(Company.name == company_name)
+    if category:
+        q = q.where(Company.category == category)
     return q.order_by(Company.category, Company.name)
 
 
@@ -124,6 +130,7 @@ def run_scrape(
     company_name: str | None = None,
     all_eligible: bool = False,
     limit: int | None = None,
+    category: str | None = None,
     use_playwright: bool = False,
     settings: Settings | None = None,
     trigger: str = "manual",
@@ -132,8 +139,8 @@ def run_scrape(
     allow_overlap: bool = False,
 ) -> dict:
     settings = settings or get_settings()
-    if not company_name and not all_eligible and not limit:
-        raise ValueError("Specify --company, --all-eligible, or --limit")
+    if not company_name and not all_eligible and not limit and not category:
+        raise ValueError("Specify --company, --all-eligible, --category, or --limit")
 
     if not allow_overlap:
         active = has_active_scrape_run(session)
@@ -144,7 +151,9 @@ def run_scrape(
             )
 
     week_id = week_id or current_week_id(settings.weekly_timezone)
-    companies = list(session.scalars(_eligible_query(session, company_name)))
+    companies = list(
+        session.scalars(_eligible_query(session, company_name, category=category))
+    )
     if company_name and not companies:
         any_row = session.scalar(select(Company).where(Company.name == company_name))
         if any_row is None:
@@ -153,6 +162,8 @@ def run_scrape(
             f"Company not eligible for scrape (skip={any_row.skip}, "
             f"career_page={bool(any_row.career_page)}, status={any_row.career_page_status})"
         )
+    if category and not companies and not company_name:
+        raise LookupError(f"No eligible companies found for category: {category}")
 
     companies = [c for c in companies if c.is_eligible]
     if limit is not None:

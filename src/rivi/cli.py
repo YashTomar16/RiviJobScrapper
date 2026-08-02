@@ -292,6 +292,11 @@ def coverage_report_cmd(
 def scrape_cmd(
     company: Optional[str] = typer.Option(None, "--company", help="Single company name"),
     all_eligible: bool = typer.Option(False, "--all-eligible", help="Scrape all eligible companies"),
+    category: Optional[str] = typer.Option(
+        None,
+        "--category",
+        help="Scrape eligible companies in a category (e.g. Startups)",
+    ),
     limit: Optional[int] = typer.Option(
         None,
         "--limit",
@@ -314,8 +319,8 @@ def scrape_cmd(
     settings = get_settings()
     logger = setup_logging(settings)
 
-    if not company and not all_eligible and limit is None:
-        console.print("[red]Specify --company, --all-eligible, or --limit[/red]")
+    if not company and not all_eligible and limit is None and not category:
+        console.print("[red]Specify --company, --all-eligible, --category, or --limit[/red]")
         raise typer.Exit(code=2)
 
     with session_scope(settings) as session:
@@ -324,6 +329,7 @@ def scrape_cmd(
                 session,
                 company_name=company,
                 all_eligible=all_eligible,
+                category=category,
                 limit=limit,
                 use_playwright=use_playwright,
                 settings=settings,
