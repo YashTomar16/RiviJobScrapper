@@ -8,6 +8,8 @@ from __future__ import annotations
 
 import html
 import sys
+from collections.abc import Iterator
+from contextlib import contextmanager
 from pathlib import Path
 
 import streamlit as st
@@ -332,6 +334,54 @@ ul[role="listbox"] li[aria-selected="true"] {{
 }}
 .rivi-panel-head h3 {{
   margin: 0;
+}}
+/* Native Streamlit bordered containers → match rivi-panel cards */
+div[data-testid="stVerticalBlockBorderWrapper"] {{
+  background: {CARD} !important;
+  border: 1px solid rgba(15,23,42,0.06) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+  margin-bottom: 1rem;
+  padding: 0.35rem 0.55rem 0.55rem 0.55rem;
+}}
+div[data-testid="stVerticalBlockBorderWrapper"] [data-testid="stVerticalBlock"] {{
+  gap: 0.45rem;
+}}
+.rivi-section-title {{
+  margin: 0.15rem 0 0.35rem 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: {TEXT};
+}}
+.rivi-priority-list {{
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}}
+.rivi-priority-item {{
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  background: #F8FAFC;
+  border: 1px solid rgba(15,23,42,0.06);
+}}
+.rivi-priority-item .pr-name {{
+  margin: 0 0 0.25rem 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: {TEXT};
+}}
+.rivi-priority-item .pr-rationale {{
+  margin: 0;
+  font-size: 0.85rem;
+  color: {MUTED};
+  line-height: 1.45;
+}}
+.rivi-priority-item .pr-titles {{
+  margin: 0.4rem 0 0 0;
+  font-size: 0.78rem;
+  color: #475569;
+  font-style: italic;
+  line-height: 1.35;
 }}
 .rivi-mover {{
   display: flex;
@@ -800,6 +850,43 @@ def _job_table(rows: list[dict], *, key: str) -> None:
     )
 
 
+def _panel_html(title: str, body_html: str, *, badge: str | None = None, badge_class: str = "badge-blue") -> None:
+    """Render a complete card in one markdown block (avoids Streamlit HTML splits)."""
+    badge_html = (
+        f'<span class="rivi-badge {badge_class}">{_esc(badge)}</span>' if badge else ""
+    )
+    st.markdown(
+        f"""
+<div class="rivi-panel">
+  <div class="rivi-panel-head">
+    <h3>{_esc(title)}</h3>
+    {badge_html}
+  </div>
+  {body_html}
+</div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+@contextmanager
+def _section(title: str, *, badge: str | None = None, badge_class: str = "badge-blue") -> Iterator[None]:
+    """Card wrapper for mixed Streamlit widgets (charts, dataframes, inputs)."""
+    with st.container(border=True):
+        if badge:
+            st.markdown(
+                f'<div class="rivi-panel-head"><h3 class="rivi-section-title">{_esc(title)}</h3>'
+                f'<span class="rivi-badge {badge_class}">{_esc(badge)}</span></div>',
+                unsafe_allow_html=True,
+            )
+        else:
+            st.markdown(
+                f'<h3 class="rivi-section-title">{_esc(title)}</h3>',
+                unsafe_allow_html=True,
+            )
+        yield
+
+
 def _page_hero(title: str, subtitle: str, chip: str | None = None) -> None:
     chip_html = f'<div class="rivi-chip">{_esc(chip)}</div>' if chip else ""
     st.markdown(
@@ -849,7 +936,7 @@ def render_ai_insights_dashboard(
 
     _page_hero(
         "AI Insights Dashboard",
-        "Hiring signals and market intelligence across tracked investment firms and banks.",
+        "Hiring signals and market intelligence across tracked asset managers, banks, and startups.",
         chip=f"Week {week}" if week else "No week selected",
     )
 
@@ -911,48 +998,51 @@ def render_ai_insights_dashboard(
         movers_body = (
             "".join(movers_items)
             if movers_items
-            else '<p style="color:#64748B;margin:0.4rem 0 0;font-size:0.9rem">No movers this week.</p>'
+            else '<p class="rivi-empty-note">No movers this week.</p>'
         )
-        st.markdown(
-            f"""
-<div class="rivi-panel">
-  <div class="rivi-panel-head">
-    <h3>Top movers</h3>
-    <span class="rivi-badge badge-green">High activity</span>
-  </div>
-  {movers_body}
-</div>
-            """,
-            unsafe_allow_html=True,
-        )
+        _panel_html("Top movers", movers_body, badge="High activity", badge_class="badge-green")
 
         pcs = priorities.get("priority_companies") or []
-        st.markdown('<div class="rivi-panel"><h3>Priority companies</h3>', unsafe_allow_html=True)
         if pcs:
+            priority_items = []
             for p in pcs:
-                titles = ", ".join(p.get("cited_titles") or [])
-                st.markdown(
-                    f"**{p.get('company', '')}** — {p.get('rationale', '')}"
-                    + (f"  \n*{titles}*" if titles else "")
+                company = (p.get("company") or "").strip() or "Unknown"
+                rationale = (p.get("rationale") or "").strip()
+                titles = ", ".join(t for t in (p.get("cited_titles") or []) if t)
+                titles_html = (
+                    f'<p class="pr-titles">{_esc(titles)}</p>' if titles else ""
                 )
+                priority_items.append(
+                    f'<div class="rivi-priority-item">'
+                    f'<p class="pr-name">{_esc(company)}</p>'
+                    f'<p class="pr-rationale">{_esc(rationale)}</p>'
+                    f"{titles_html}"
+                    f"</div>"
+                )
+            _panel_html(
+                "Priority companies",
+                f'<div class="rivi-priority-list">{"".join(priority_items)}</div>',
+                badge=f"{len(pcs)} firms",
+                badge_class="badge-blue",
+            )
         else:
-            st.caption("No priority companies in this pack.")
-        st.markdown("</div>", unsafe_allow_html=True)
+            _panel_html(
+                "Priority companies",
+                '<p class="rivi-empty-note">No priority companies in this pack.</p>',
+            )
 
-        st.markdown('<div class="rivi-panel"><h3>Function mix</h3>', unsafe_allow_html=True)
         mix = structured.get("function_mix") or {}
-        if mix:
-            st.bar_chart(mix, height=220)
-        else:
+        if not mix:
             counts: dict[str, int] = {}
             for j in jobs:
                 fn = j.get("function") or "Other"
                 counts[fn] = counts.get(fn, 0) + 1
-            if counts:
-                st.bar_chart(counts, height=220)
+            mix = counts
+        with _section("Function mix"):
+            if mix:
+                st.bar_chart(mix, height=220)
             else:
                 st.caption("No function mix yet.")
-        st.markdown("</div>", unsafe_allow_html=True)
 
     with right:
         callouts = priorities.get("role_callouts") or []
@@ -996,57 +1086,61 @@ def render_ai_insights_dashboard(
         if not body_parts:
             body_parts.append('<p class="rivi-empty-note">No alerts in this pack.</p>')
 
-        st.markdown(
-            f"""
-<div class="rivi-panel">
-  <div class="rivi-panel-head">
-    <h3>Signal alerts</h3>
-    <span class="rivi-badge badge-blue">{len(callout_html)} roles · {len(risks)} risks</span>
-  </div>
-  {"".join(body_parts)}
-</div>
-            """,
-            unsafe_allow_html=True,
+        _panel_html(
+            "Signal alerts",
+            "".join(body_parts),
+            badge=f"{len(callout_html)} roles · {len(risks)} risks",
+            badge_class="badge-blue",
         )
 
-        st.markdown('<div class="rivi-panel"><h3>Seniority mix</h3>', unsafe_allow_html=True)
         sen_mix = structured.get("seniority_mix") or {}
-        if sen_mix:
-            st.bar_chart(sen_mix, height=180)
-        else:
-            st.caption("No seniority mix yet.")
-        st.markdown("</div>", unsafe_allow_html=True)
+        with _section("Seniority mix"):
+            if sen_mix:
+                st.bar_chart(sen_mix, height=180)
+            else:
+                st.caption("No seniority mix yet.")
 
-        st.markdown('<div class="rivi-panel"><h3>Category coverage</h3>', unsafe_allow_html=True)
-        if by_category:
-            cat_chart = {k: len(v) for k, v in by_category.items()}
-            st.bar_chart(cat_chart, height=160)
-            st.caption(" · ".join(f"{cat}: {len(rows)}" for cat, rows in by_category.items()))
-        else:
-            st.caption("No categories loaded.")
-        st.markdown("</div>", unsafe_allow_html=True)
+        with _section("Category coverage"):
+            if by_category:
+                cat_chart = {k: len(v) for k, v in by_category.items()}
+                st.bar_chart(cat_chart, height=160)
+                st.caption(" · ".join(f"{cat}: {len(rows)}" for cat, rows in by_category.items()))
+            else:
+                st.caption("No categories loaded.")
 
     angles = priorities.get("outreach_angles") or []
     if angles:
-        st.markdown('<div class="rivi-panel"><h3>Outreach angles</h3>', unsafe_allow_html=True)
+        angle_items = []
         for a in angles:
-            st.markdown(f"**{a.get('company', '')}** — {a.get('angle', '')}")
-        st.markdown("</div>", unsafe_allow_html=True)
+            company = (a.get("company") or "").strip() or "Unknown"
+            angle = (a.get("angle") or "").strip()
+            angle_items.append(
+                f'<div class="rivi-priority-item">'
+                f'<p class="pr-name">{_esc(company)}</p>'
+                f'<p class="pr-rationale">{_esc(angle)}</p>'
+                f"</div>"
+            )
+        _panel_html(
+            "Outreach angles",
+            f'<div class="rivi-priority-list">{"".join(angle_items)}</div>',
+            badge=f"{len(angles)}",
+            badge_class="badge-green",
+        )
 
-    st.markdown('<div class="rivi-panel"><h3>Leadership pulse</h3>', unsafe_allow_html=True)
-    if lead:
-        _job_table(lead, key="leadership")
-    else:
-        st.caption("No Head+ leadership signal this week.")
-    st.markdown("</div>", unsafe_allow_html=True)
+    with _section(
+        "Leadership pulse",
+        badge=f"{len(lead)} roles" if lead else None,
+        badge_class="badge-green",
+    ):
+        if lead:
+            _job_table(lead, key="leadership")
+        else:
+            st.caption("No Head+ leadership signal this week.")
 
-    st.markdown('<div class="rivi-panel"><h3>Role intelligence feed</h3>', unsafe_allow_html=True)
-    st.caption(
-        f"{min(len(table_rows), 40)} roles"
-        + (" · week deltas" if new_rows else " · open inventory")
-    )
-    _job_table(table_rows[:40], key="dashboard_jobs")
-    st.markdown("</div>", unsafe_allow_html=True)
+    feed_badge = f"{min(len(table_rows), 40)} roles"
+    with _section("Role intelligence feed", badge=feed_badge, badge_class="badge-blue"):
+        st.caption("Week deltas" if new_rows else "Open inventory")
+        _job_table(table_rows[:40], key="dashboard_jobs")
 
 
 def render_company_registry(
@@ -1116,51 +1210,50 @@ def render_company_registry(
     )
     status_opts = ["Eligible", "Gaps", "Skipped", "All"]
 
-    st.markdown('<div class="rivi-panel">', unsafe_allow_html=True)
-    f1, f2, f3 = st.columns([1.2, 1, 1.4])
-    pick_cat = f1.selectbox("Category", cat_opts, index=0)
-    pick_status = f2.selectbox("Monitoring status", status_opts, index=0)
-    q = f3.text_input("Search company", "")
+    with _section("Registry browse"):
+        f1, f2, f3 = st.columns([1.2, 1, 1.4])
+        pick_cat = f1.selectbox("Category", cat_opts, index=0)
+        pick_status = f2.selectbox("Monitoring status", status_opts, index=0)
+        q = f3.text_input("Search company", "")
 
-    view = companies
-    if pick_cat != "All":
-        view = [
-            c
-            for c in view
-            if ((c.get("category") or "").strip() or "Uncategorized") == pick_cat
+        view = companies
+        if pick_cat != "All":
+            view = [
+                c
+                for c in view
+                if ((c.get("category") or "").strip() or "Uncategorized") == pick_cat
+            ]
+        if pick_status == "Eligible":
+            view = [c for c in view if c.get("eligible")]
+        elif pick_status == "Gaps":
+            view = [c for c in view if not (c.get("career_page") or "").strip()]
+        elif pick_status == "Skipped":
+            view = [c for c in view if c.get("skip")]
+        if q.strip():
+            ql = q.strip().lower()
+            view = [c for c in view if ql in (c.get("company_name") or "").lower()]
+
+        display = [
+            {
+                "Company": r.get("company_name", ""),
+                "Category": r.get("category", ""),
+                "Monitoring": r.get("monitoring", ""),
+                "Website": r.get("website", ""),
+                "Career page": r.get("career_page", ""),
+                "Notes": (r.get("skip_reason") or r.get("career_page_status") or ""),
+            }
+            for r in view
         ]
-    if pick_status == "Eligible":
-        view = [c for c in view if c.get("eligible")]
-    elif pick_status == "Gaps":
-        view = [c for c in view if not (c.get("career_page") or "").strip()]
-    elif pick_status == "Skipped":
-        view = [c for c in view if c.get("skip")]
-    if q.strip():
-        ql = q.strip().lower()
-        view = [c for c in view if ql in (c.get("company_name") or "").lower()]
-
-    display = [
-        {
-            "Company": r.get("company_name", ""),
-            "Category": r.get("category", ""),
-            "Monitoring": r.get("monitoring", ""),
-            "Website": r.get("website", ""),
-            "Career page": r.get("career_page", ""),
-            "Notes": (r.get("skip_reason") or r.get("career_page_status") or ""),
-        }
-        for r in view
-    ]
-    st.caption(f"{len(display)} of {len(companies)} firms · {pick_status.lower()}")
-    st.dataframe(
-        display,
-        use_container_width=True,
-        hide_index=True,
-        column_config={
-            "Website": st.column_config.LinkColumn("Website", display_text="Site"),
-            "Career page": st.column_config.LinkColumn("Career page", display_text="Careers"),
-        },
-    )
-    st.markdown("</div>", unsafe_allow_html=True)
+        st.caption(f"{len(display)} of {len(companies)} firms · {pick_status.lower()}")
+        st.dataframe(
+            display,
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "Website": st.column_config.LinkColumn("Website", display_text="Site"),
+                "Career page": st.column_config.LinkColumn("Career page", display_text="Careers"),
+            },
+        )
 
 
 def render_jobs(jobs: list[dict]) -> None:
@@ -1179,30 +1272,29 @@ def render_jobs(jobs: list[dict]) -> None:
     companies_opts = sorted({j["company"] for j in jobs if j["company"]})
     seniority_opts = sorted({j["seniority"] for j in jobs if j.get("seniority")})
 
-    st.markdown('<div class="rivi-panel">', unsafe_allow_html=True)
-    f1, f2, f3, f4, f5 = st.columns([1.1, 1.2, 1, 1, 1.2])
-    pick_cat = f1.multiselect("Function family / Category", category_opts)
-    pick_co = f2.multiselect("Company", companies_opts)
-    pick_fn = f3.multiselect("Function", fns)
-    pick_sen = f4.multiselect("Seniority", seniority_opts)
-    q = f5.text_input("Search title", "")
+    with _section("Browse openings"):
+        f1, f2, f3, f4, f5 = st.columns([1.1, 1.2, 1, 1, 1.2])
+        pick_cat = f1.multiselect("Function family / Category", category_opts)
+        pick_co = f2.multiselect("Company", companies_opts)
+        pick_fn = f3.multiselect("Function", fns)
+        pick_sen = f4.multiselect("Seniority", seniority_opts)
+        q = f5.text_input("Search title", "")
 
-    view = jobs
-    if pick_cat:
-        view = [j for j in view if j.get("category") in pick_cat]
-    if pick_co:
-        view = [j for j in view if j["company"] in pick_co]
-    if pick_fn:
-        view = [j for j in view if j["function"] in pick_fn]
-    if pick_sen:
-        view = [j for j in view if j.get("seniority") in pick_sen]
-    if q.strip():
-        ql = q.strip().lower()
-        view = [j for j in view if ql in (j["title"] or "").lower()]
+        view = jobs
+        if pick_cat:
+            view = [j for j in view if j.get("category") in pick_cat]
+        if pick_co:
+            view = [j for j in view if j["company"] in pick_co]
+        if pick_fn:
+            view = [j for j in view if j["function"] in pick_fn]
+        if pick_sen:
+            view = [j for j in view if j.get("seniority") in pick_sen]
+        if q.strip():
+            ql = q.strip().lower()
+            view = [j for j in view if ql in (j["title"] or "").lower()]
 
-    st.caption(f"Displaying {len(view)} of {len(jobs)} in-scope open roles")
-    _job_table(view, key="all_jobs")
-    st.markdown("</div>", unsafe_allow_html=True)
+        st.caption(f"Displaying {len(view)} of {len(jobs)} in-scope open roles")
+        _job_table(view, key="all_jobs")
 
 
 def main() -> None:
