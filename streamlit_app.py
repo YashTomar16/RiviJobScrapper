@@ -463,11 +463,27 @@ def main() -> None:
             week = None
             st.caption("No insight weeks yet.")
         st.divider()
-        st.markdown("### Groq insights")
+        st.markdown("### API status")
         if _groq_key_configured(settings):
-            st.caption("GROQ_API_KEY · configured")
+            st.markdown(
+                '<span style="display:inline-flex;align-items:center;gap:0.45rem">'
+                '<span style="width:0.55rem;height:0.55rem;border-radius:50%;'
+                'background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,0.25)"></span>'
+                "<strong>OK</strong>"
+                '<span style="opacity:0.7">· Groq connected</span>'
+                "</span>",
+                unsafe_allow_html=True,
+            )
         else:
-            st.caption("GROQ_API_KEY · missing (Streamlit Secrets / .env)")
+            st.markdown(
+                '<span style="display:inline-flex;align-items:center;gap:0.45rem">'
+                '<span style="width:0.55rem;height:0.55rem;border-radius:50%;'
+                'background:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,0.25)"></span>'
+                "<strong>Missing</strong>"
+                '<span style="opacity:0.7">· add GROQ_API_KEY in Secrets</span>'
+                "</span>",
+                unsafe_allow_html=True,
+            )
         if week and st.button(
             "Regenerate insights",
             type="primary",
