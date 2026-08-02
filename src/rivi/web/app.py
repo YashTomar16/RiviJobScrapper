@@ -323,25 +323,69 @@ def create_app(*, enable_scheduler: bool = False) -> FastAPI:
             )
 
     @app.get("/companies", response_class=HTMLResponse)
-    def companies_page(request: Request, _user=Depends(require_basic_auth)):
+    def companies_page(
+        request: Request,
+        status: Optional[str] = None,
+        category: Optional[str] = None,
+        _user=Depends(require_basic_auth),
+    ):
         factory = get_session_factory(settings)
         with factory() as session:
+            report = build_coverage_report(session)
             rows = list(
                 session.scalars(select(Company).order_by(Company.category, Company.name))
             )
-            by_category: dict[str, list] = {}
-            for c in rows:
-                if not c.is_eligible:
-                    continue
-                cat = (c.category or "").strip() or "Uncategorized"
-                by_category.setdefault(cat, []).append(c)
-            by_category = dict(
-                sorted(by_category.items(), key=lambda kv: (-len(kv[1]), kv[0]))
+            categories = sorted(
+                {
+                    (c.category or "").strip() or "Uncategorized"
+                    for c in rows
+                }
             )
+            status_filter = (status or "eligible").strip().lower()
+            if status_filter not in {"all", "eligible", "gaps", "skipped"}:
+                status_filter = "eligible"
+
+            def monitoring_for(c: Company) -> str:
+                if c.skip:
+                    return "Skipped"
+                if c.is_eligible:
+                    return "Eligible"
+                return "Gap"
+
+            filtered = []
+            for c in rows:
+                cat = (c.category or "").strip() or "Uncategorized"
+                if category and cat != category:
+                    continue
+                mon = monitoring_for(c)
+                if status_filter == "eligible" and mon != "Eligible":
+                    continue
+                if status_filter == "gaps" and bool(c.career_page):
+                    continue
+                if status_filter == "skipped" and mon != "Skipped":
+                    continue
+                filtered.append(
+                    {
+                        "id": c.id,
+                        "name": c.name,
+                        "category": cat,
+                        "website": c.website,
+                        "career_page": c.career_page,
+                        "monitoring": mon,
+                        "notes": c.skip_reason or c.career_page_status or "",
+                    }
+                )
+
             return templates.TemplateResponse(
                 request,
                 "companies.html",
-                {"companies": rows, "by_category": by_category},
+                {
+                    "companies": filtered,
+                    "report": report,
+                    "categories": categories,
+                    "selected_category": category or "",
+                    "status_filter": status_filter,
+                },
             )
 
     @app.get("/companies/{company_id}", response_class=HTMLResponse)
@@ -399,16 +443,9 @@ def create_app(*, enable_scheduler: bool = False) -> FastAPI:
                 {"company": company, "jobs": jobs, "deep_dive": result},
             )
 
-    @app.get("/coverage", response_class=HTMLResponse)
-    def coverage_page(request: Request, _user=Depends(require_basic_auth)):
-        factory = get_session_factory(settings)
-        with factory() as session:
-            report = build_coverage_report(session)
-            return templates.TemplateResponse(
-                request,
-                "coverage.html",
-                {"report": report},
-            )
+    @app.get("/coverage", response_class=RedirectResponse)
+    def coverage_page(_user=Depends(require_basic_auth)):
+        return RedirectResponse("/companies?status=all", status_code=302)
 
     @app.get("/insights", response_class=RedirectResponse)
     def insights_redirect():

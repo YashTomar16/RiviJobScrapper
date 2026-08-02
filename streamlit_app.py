@@ -48,7 +48,6 @@ PAGES = (
     "AI Insights Dashboard",
     "Companies",
     "Job Intelligence",
-    "Coverage",
 )
 
 
@@ -497,6 +496,16 @@ def regenerate_week_insights(week_id: str) -> dict:
             )
 
 
+def _monitoring_label(*, career_page: str, skip: bool, eligible: bool) -> str:
+    if skip:
+        return "Skipped"
+    if eligible:
+        return "Eligible"
+    if not (career_page or "").strip():
+        return "Gap"
+    return "Gap"
+
+
 @st.cache_data(ttl=30)
 def load_companies_from_db() -> tuple[list[dict], dict]:
     from sqlalchemy import select
@@ -507,22 +516,38 @@ def load_companies_from_db() -> tuple[list[dict], dict]:
     settings = runtime_settings()
     if not _db_path(settings).exists():
         rows = load_companies_csv()
-        eligible = [
-            r
-            for r in rows
-            if (r.get("career_page") or "").strip()
-            and str(r.get("skip", "false")).lower() not in {"true", "1", "yes"}
-        ]
-        return eligible, {
-            "total": len(rows),
-            "eligible": len(eligible),
-            "skipped": len(rows) - len(eligible),
+        payload: list[dict] = []
+        for r in rows:
+            career = (r.get("career_page") or "").strip()
+            skip = str(r.get("skip", "false")).lower() in {"true", "1", "yes"}
+            eligible = bool(career) and not skip
+            payload.append(
+                {
+                    "company_name": r.get("company_name") or "",
+                    "category": r.get("category") or "",
+                    "website": r.get("website") or "",
+                    "career_page": career,
+                    "career_page_status": r.get("career_page_status") or "",
+                    "skip": skip,
+                    "skip_reason": r.get("skip_reason") or "",
+                    "eligible": eligible,
+                    "monitoring": _monitoring_label(
+                        career_page=career, skip=skip, eligible=eligible
+                    ),
+                }
+            )
+        return payload, {
+            "total": len(payload),
+            "eligible": sum(1 for r in payload if r["eligible"]),
+            "skipped": sum(1 for r in payload if r["skip"]),
+            "missing_career_page": sum(1 for r in payload if not r["career_page"]),
             "source": "csv",
         }
 
     with session_scope(settings) as session:
-        all_rows = list(session.scalars(select(Company).order_by(Company.name)))
-        eligible_rows = [c for c in all_rows if c.is_eligible]
+        all_rows = list(
+            session.scalars(select(Company).order_by(Company.category, Company.name))
+        )
         payload = [
             {
                 "company_name": c.name,
@@ -531,13 +556,21 @@ def load_companies_from_db() -> tuple[list[dict], dict]:
                 "career_page": c.career_page,
                 "career_page_status": c.career_page_status,
                 "skip": c.skip,
+                "skip_reason": c.skip_reason or "",
+                "eligible": c.is_eligible,
+                "monitoring": _monitoring_label(
+                    career_page=c.career_page,
+                    skip=c.skip,
+                    eligible=c.is_eligible,
+                ),
             }
-            for c in eligible_rows
+            for c in all_rows
         ]
         return payload, {
             "total": len(all_rows),
-            "eligible": len(eligible_rows),
-            "skipped": sum(1 for c in all_rows if c.skip),
+            "eligible": sum(1 for r in payload if r["eligible"]),
+            "skipped": sum(1 for r in payload if r["skip"]),
+            "missing_career_page": sum(1 for r in payload if not r["career_page"]),
             "source": "db",
         }
 
@@ -635,6 +668,7 @@ def load_coverage() -> dict | None:
             "missing_career_page": report.missing_career_page,
             "skipped": report.skipped,
             "by_category": report.by_category,
+            "unresolved": report.unresolved,
         }
 
 
@@ -914,37 +948,108 @@ def render_ai_insights_dashboard(
     st.markdown("</div>", unsafe_allow_html=True)
 
 
-def render_companies(by_category: dict[str, list[dict]], coverage: dict | None) -> None:
+def render_company_registry(
+    companies: list[dict],
+    coverage: dict | None,
+) -> None:
     _page_hero(
         "Companies",
-        "Eligible firms grouped by registry category — add new firm types without UI rework.",
+        "Registry health and career-page coverage across tracked firms.",
     )
-    if not by_category:
-        st.info("No eligible companies found.")
+
+    totals = coverage or {
+        "eligible": sum(1 for c in companies if c.get("eligible")),
+        "skipped": sum(1 for c in companies if c.get("skip")),
+        "total": len(companies),
+        "missing_career_page": sum(1 for c in companies if not (c.get("career_page") or "").strip()),
+        "by_category": {},
+    }
+
+    kpis = [
+        _kpi_card("Eligible", totals.get("eligible") or 0, "Active", "pill-green"),
+        _kpi_card(
+            "Missing careers",
+            totals.get("missing_career_page") or 0,
+            "Gap",
+            "pill-red",
+        ),
+        _kpi_card("Skipped", totals.get("skipped") or 0, "Excluded", "pill-amber"),
+        _kpi_card("Registry total", totals.get("total") or len(companies), "All rows", "pill-blue"),
+    ]
+    st.markdown(
+        f'<div class="rivi-kpi-grid" style="grid-template-columns:repeat(4,minmax(0,1fr))">{"".join(kpis)}</div>',
+        unsafe_allow_html=True,
+    )
+
+    by_cat_stats = totals.get("by_category") or {}
+    if by_cat_stats:
+        cats = list(by_cat_stats.items())
+        cols = st.columns(min(len(cats), 4))
+        for i, (cat, stats) in enumerate(cats):
+            with cols[i % len(cols)]:
+                eligible_n = stats.get("eligible", 0)
+                total_n = stats.get("total", 0)
+                st.markdown(
+                    _kpi_card(cat, f"{eligible_n}/{total_n}", "Eligible / total", "pill-blue"),
+                    unsafe_allow_html=True,
+                )
+    else:
+        # CSV fallback: derive category counts from company list
+        grouped = _companies_by_category(companies)
+        if grouped:
+            cols = st.columns(min(len(grouped), 4))
+            for i, (cat, rows) in enumerate(grouped.items()):
+                with cols[i % len(cols)]:
+                    elig = sum(1 for r in rows if r.get("eligible"))
+                    st.markdown(
+                        _kpi_card(cat, f"{elig}/{len(rows)}", "Eligible / total", "pill-blue"),
+                        unsafe_allow_html=True,
+                    )
+
+    if not companies:
+        st.info("No companies in the registry.")
         return
 
-    metric_cols = st.columns(min(len(by_category), 4))
-    for i, (cat, rows) in enumerate(by_category.items()):
-        with metric_cols[i % len(metric_cols)]:
-            st.markdown(
-                _kpi_card(cat, len(rows), "Eligible", "pill-blue"),
-                unsafe_allow_html=True,
-            )
+    cat_opts = ["All"] + sorted(
+        { (c.get("category") or "").strip() or "Uncategorized" for c in companies }
+    )
+    status_opts = ["Eligible", "Gaps", "Skipped", "All"]
 
-    cat_names = list(by_category.keys())
-    selected = st.selectbox("Browse category", cat_names, index=0)
-    rows = by_category.get(selected) or []
+    st.markdown('<div class="rivi-panel">', unsafe_allow_html=True)
+    f1, f2, f3 = st.columns([1.2, 1, 1.4])
+    pick_cat = f1.selectbox("Category", cat_opts, index=0)
+    pick_status = f2.selectbox("Monitoring status", status_opts, index=0)
+    q = f3.text_input("Search company", "")
+
+    view = companies
+    if pick_cat != "All":
+        view = [
+            c
+            for c in view
+            if ((c.get("category") or "").strip() or "Uncategorized") == pick_cat
+        ]
+    if pick_status == "Eligible":
+        view = [c for c in view if c.get("eligible")]
+    elif pick_status == "Gaps":
+        view = [c for c in view if not (c.get("career_page") or "").strip()]
+    elif pick_status == "Skipped":
+        view = [c for c in view if c.get("skip")]
+    if q.strip():
+        ql = q.strip().lower()
+        view = [c for c in view if ql in (c.get("company_name") or "").lower()]
+
     display = [
         {
             "Company": r.get("company_name", ""),
+            "Category": r.get("category", ""),
+            "Monitoring": r.get("monitoring", ""),
             "Website": r.get("website", ""),
             "Career page": r.get("career_page", ""),
-            "Status": r.get("career_page_status", ""),
+            "Notes": (r.get("skip_reason") or r.get("career_page_status") or ""),
         }
-        for r in rows
+        for r in view
     ]
-    st.markdown('<div class="rivi-panel">', unsafe_allow_html=True)
-    st.caption(f"{len(display)} eligible · {selected}")
+    st.caption(f"{len(display)} of {len(companies)} firms · {pick_status.lower()}")
     st.dataframe(
         display,
         use_container_width=True,
@@ -955,17 +1060,12 @@ def render_companies(by_category: dict[str, list[dict]], coverage: dict | None) 
         },
     )
     st.markdown("</div>", unsafe_allow_html=True)
-    if coverage:
-        st.caption(
-            f"Registry total {coverage.get('total', 0)} · "
-            f"skipped {coverage.get('skipped', 0)}"
-        )
 
 
 def render_jobs(jobs: list[dict]) -> None:
     _page_hero(
         "Job Intelligence",
-        "Filter in-scope open roles across tracked asset managers and banks.",
+        "Filter in-scope open roles across tracked firms — asset managers, banks, and startups.",
     )
     if not jobs:
         st.info("No in-scope jobs to show.")
@@ -1004,49 +1104,6 @@ def render_jobs(jobs: list[dict]) -> None:
     st.markdown("</div>", unsafe_allow_html=True)
 
 
-def render_coverage(coverage: dict | None) -> None:
-    _page_hero(
-        "Coverage",
-        "Active monitoring uses eligible companies only. Skipped rows lack a career page or were excluded.",
-    )
-    if not coverage:
-        st.info("Coverage unavailable without database.")
-        return
-
-    kpis = [
-        _kpi_card("Eligible", coverage["eligible"], "Active", "pill-green"),
-        _kpi_card("Skipped", coverage["skipped"], "Excluded", "pill-amber"),
-        _kpi_card("Registry total", coverage["total"], "All rows", "pill-blue"),
-        _kpi_card(
-            "Missing careers",
-            coverage.get("missing_career_page") or 0,
-            "Gap",
-            "pill-red",
-        ),
-    ]
-    st.markdown(
-        f'<div class="rivi-kpi-grid" style="grid-template-columns:repeat(4,minmax(0,1fr))">{"".join(kpis)}</div>',
-        unsafe_allow_html=True,
-    )
-
-    by_cat = coverage.get("by_category") or {}
-    st.markdown('<div class="rivi-panel"><h3>By category</h3>', unsafe_allow_html=True)
-    if by_cat:
-        rows = [
-            {
-                "Category": name,
-                "Eligible": stats.get("eligible", 0),
-                "Total in registry": stats.get("total", 0),
-                "Skipped / missing": stats.get("total", 0) - stats.get("eligible", 0),
-            }
-            for name, stats in by_cat.items()
-        ]
-        st.dataframe(rows, use_container_width=True, hide_index=True)
-    else:
-        st.caption("No category breakdown.")
-    st.markdown("</div>", unsafe_allow_html=True)
-
-
 def main() -> None:
     inject_styles()
     _apply_streamlit_secrets()
@@ -1056,7 +1113,8 @@ def main() -> None:
     jobs, meta = load_jobs_from_db()
     weeks = load_week_ids()
     coverage = load_coverage()
-    by_category = _companies_by_category(companies)
+    eligible_companies = [c for c in companies if c.get("eligible")]
+    by_category = _companies_by_category(eligible_companies)
 
     with st.sidebar:
         st.markdown(
@@ -1145,11 +1203,9 @@ def main() -> None:
             week=week,
         )
     elif page == "Companies":
-        render_companies(by_category, coverage)
-    elif page == "Job Intelligence":
-        render_jobs(jobs)
+        render_company_registry(companies, coverage)
     else:
-        render_coverage(coverage)
+        render_jobs(jobs)
 
 
 main()

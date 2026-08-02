@@ -1,45 +1,89 @@
 {% extends "base.html" %}
-{% block title %}Categories · Rivi{% endblock %}
+{% block title %}Companies · Rivi{% endblock %}
 {% block content %}
 <header class="page-header">
   <div>
-    <p class="breadcrumb">Enablement / Categories</p>
-    <h1>Categories</h1>
-    <p class="lede">Eligible firms grouped by registry category — add new firm types without changing the layout.</p>
+    <p class="breadcrumb">Enablement / Companies</p>
+    <h1>Companies</h1>
+    <p class="lede">Registry health and career-page coverage across tracked firms.</p>
   </div>
 </header>
 
-{% if not by_category %}
-<p class="lede">No eligible companies found.</p>
-{% else %}
-<section class="stats-strip" aria-label="Category totals">
-  {% for cat, rows in by_category.items() %}
+<section class="stats-strip" aria-label="Registry health">
+  <div class="stat-tile"><span class="stat-val">{{ report.eligible }}</span><span class="stat-label">Eligible</span></div>
+  <div class="stat-tile"><span class="stat-val">{{ report.missing_career_page }}</span><span class="stat-label">Missing careers</span></div>
+  <div class="stat-tile"><span class="stat-val">{{ report.skipped }}</span><span class="stat-label">Skipped</span></div>
+  <div class="stat-tile"><span class="stat-val">{{ report.total }}</span><span class="stat-label">Registry total</span></div>
+</section>
+
+{% if report.by_category %}
+<section class="stats-strip" aria-label="By category" style="margin-top:0.75rem">
+  {% for cat, stats in report.by_category.items() %}
   <div class="stat-tile">
-    <span class="stat-val">{{ rows|length }}</span>
+    <span class="stat-val">{{ stats.eligible }}/{{ stats.total }}</span>
     <span class="stat-label">{{ cat }}</span>
   </div>
   {% endfor %}
 </section>
+{% endif %}
 
-{% for cat, rows in by_category.items() %}
 <section class="panel" style="margin-top:1.5rem">
-  <h2>{{ cat }} <span style="font-weight:400;opacity:0.7">({{ rows|length }})</span></h2>
+  <h2>Registry
+    <span style="font-weight:400;opacity:0.7">({{ companies|length }})</span>
+  </h2>
+  <p class="muted" style="margin-top:0;margin-bottom:1rem">
+    Filter in the browser with find (⌘/Ctrl+F), or use
+    <a href="/companies?status=eligible">Eligible</a> ·
+    <a href="/companies?status=gaps">Gaps</a> ·
+    <a href="/companies?status=skipped">Skipped</a> ·
+    <a href="/companies">All</a>
+    {% if selected_category %} · category <strong>{{ selected_category }}</strong>{% endif %}
+    {% if status_filter and status_filter != 'all' %} · showing <strong>{{ status_filter }}</strong>{% endif %}
+  </p>
+  {% if categories %}
+  <p class="muted" style="margin-top:0">
+    Categories:
+    <a href="/companies?status={{ status_filter or 'all' }}">All</a>
+    {% for cat in categories %}
+    · <a href="/companies?status={{ status_filter or 'all' }}&amp;category={{ cat|urlencode }}">{{ cat }}</a>
+    {% endfor %}
+  </p>
+  {% endif %}
+  {% if not companies %}
+  <p class="lede">No companies match this filter.</p>
+  {% else %}
   <table class="data-table">
     <thead>
-      <tr><th>Name</th><th>Career page</th><th>Status</th><th>Eligible</th></tr>
+      <tr>
+        <th>Company</th>
+        <th>Category</th>
+        <th>Monitoring</th>
+        <th>Website</th>
+        <th>Career page</th>
+        <th>Notes</th>
+      </tr>
     </thead>
     <tbody>
-      {% for c in rows %}
+      {% for c in companies %}
       <tr>
-        <td>{{ c.name }}</td>
-        <td class="truncate">{% if c.career_page %}<a href="{{ c.career_page }}" target="_blank" rel="noopener">{{ c.career_page }}</a>{% else %}—{% endif %}</td>
-        <td>{{ c.career_page_status }}</td>
-        <td>{% if c.is_eligible %}<span class="lozenge lozenge-success">yes</span>{% elif c.skip %}<span class="lozenge lozenge-removed">skip</span>{% else %}<span class="lozenge lozenge-default">no</span>{% endif %}</td>
+        <td><a href="/companies/{{ c.id }}">{{ c.name }}</a></td>
+        <td>{{ c.category or '—' }}</td>
+        <td>
+          {% if c.monitoring == 'Eligible' %}
+          <span class="lozenge lozenge-success">Eligible</span>
+          {% elif c.monitoring == 'Skipped' %}
+          <span class="lozenge lozenge-removed">Skipped</span>
+          {% else %}
+          <span class="lozenge lozenge-default">Gap</span>
+          {% endif %}
+        </td>
+        <td class="truncate">{% if c.website %}<a href="{{ c.website }}" target="_blank" rel="noopener">Site</a>{% else %}—{% endif %}</td>
+        <td class="truncate">{% if c.career_page %}<a href="{{ c.career_page }}" target="_blank" rel="noopener">Careers</a>{% else %}—{% endif %}</td>
+        <td class="truncate">{{ c.notes or '—' }}</td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
+  {% endif %}
 </section>
-{% endfor %}
-{% endif %}
 {% endblock %}
