@@ -1,27 +1,45 @@
 {% extends "base.html" %}
-{% block title %}Companies · Rivi{% endblock %}
+{% block title %}Categories · Rivi{% endblock %}
 {% block content %}
 <header class="page-header">
   <div>
-    <p class="breadcrumb">Enablement / Companies</p>
-    <h1>Companies</h1>
-    <p class="lede">Registry with career-page coverage status.</p>
+    <p class="breadcrumb">Enablement / Categories</p>
+    <h1>Categories</h1>
+    <p class="lede">Eligible firms grouped by registry category — add new firm types without changing the layout.</p>
   </div>
 </header>
-<table class="data-table">
-  <thead>
-    <tr><th>Name</th><th>Category</th><th>Career page</th><th>Status</th><th>Eligible</th></tr>
-  </thead>
-  <tbody>
-    {% for c in companies %}
-    <tr>
-      <td><a href="/companies/{{ c.id }}">{{ c.name }}</a></td>
-      <td>{{ c.category }}</td>
-      <td class="truncate">{% if c.career_page %}<a href="{{ c.career_page }}" target="_blank" rel="noopener">{{ c.career_page }}</a>{% else %}—{% endif %}</td>
-      <td>{{ c.career_page_status }}</td>
-      <td>{% if c.is_eligible %}<span class="lozenge lozenge-success">yes</span>{% elif c.skip %}<span class="lozenge lozenge-removed">skip</span>{% else %}<span class="lozenge lozenge-default">no</span>{% endif %}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+
+{% if not by_category %}
+<p class="lede">No eligible companies found.</p>
+{% else %}
+<section class="stats-strip" aria-label="Category totals">
+  {% for cat, rows in by_category.items() %}
+  <div class="stat-tile">
+    <span class="stat-val">{{ rows|length }}</span>
+    <span class="stat-label">{{ cat }}</span>
+  </div>
+  {% endfor %}
+</section>
+
+{% for cat, rows in by_category.items() %}
+<section class="panel" style="margin-top:1.5rem">
+  <h2>{{ cat }} <span style="font-weight:400;opacity:0.7">({{ rows|length }})</span></h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>Name</th><th>Career page</th><th>Status</th><th>Eligible</th></tr>
+    </thead>
+    <tbody>
+      {% for c in rows %}
+      <tr>
+        <td>{{ c.name }}</td>
+        <td class="truncate">{% if c.career_page %}<a href="{{ c.career_page }}" target="_blank" rel="noopener">{{ c.career_page }}</a>{% else %}—{% endif %}</td>
+        <td>{{ c.career_page_status }}</td>
+        <td>{% if c.is_eligible %}<span class="lozenge lozenge-success">yes</span>{% elif c.skip %}<span class="lozenge lozenge-removed">skip</span>{% else %}<span class="lozenge lozenge-default">no</span>{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endfor %}
+{% endif %}
 {% endblock %}

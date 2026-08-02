@@ -329,10 +329,19 @@ def create_app(*, enable_scheduler: bool = False) -> FastAPI:
             rows = list(
                 session.scalars(select(Company).order_by(Company.category, Company.name))
             )
+            by_category: dict[str, list] = {}
+            for c in rows:
+                if not c.is_eligible:
+                    continue
+                cat = (c.category or "").strip() or "Uncategorized"
+                by_category.setdefault(cat, []).append(c)
+            by_category = dict(
+                sorted(by_category.items(), key=lambda kv: (-len(kv[1]), kv[0]))
+            )
             return templates.TemplateResponse(
                 request,
                 "companies.html",
-                {"companies": rows},
+                {"companies": rows, "by_category": by_category},
             )
 
     @app.get("/companies/{company_id}", response_class=HTMLResponse)

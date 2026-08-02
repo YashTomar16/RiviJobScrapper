@@ -141,7 +141,10 @@ def load_jobs_from_db() -> tuple[list[dict], dict]:
 
     rows: list[dict] = []
     with session_scope(settings) as session:
-        companies = {c.id: c.name for c in session.scalars(select(Company))}
+        companies = {
+            c.id: {"name": c.name, "category": c.category or ""}
+            for c in session.scalars(select(Company))
+        }
         jobs = session.scalars(
             select(JobPosting)
             .where(JobPosting.in_scope.is_(True))
@@ -149,9 +152,11 @@ def load_jobs_from_db() -> tuple[list[dict], dict]:
             .order_by(JobPosting.updated_at.desc())
         ).all()
         for j in jobs:
+            co = companies.get(j.company_id) or {}
             rows.append(
                 {
-                    "company": companies.get(j.company_id, ""),
+                    "company": co.get("name", ""),
+                    "category": co.get("category", ""),
                     "title": j.title,
                     "function": j.function,
                     "seniority": j.seniority_band,
@@ -188,19 +193,21 @@ def _job_table(rows: list[dict], *, key: str) -> None:
     if not rows:
         st.caption("None.")
         return
+    show_category = any((j.get("category") or "").strip() for j in rows)
     display = []
     for j in rows:
-        display.append(
-            {
-                "Company": j.get("company", ""),
-                "Title": j.get("title", ""),
-                "Function": j.get("function", ""),
-                "Seniority": j.get("seniority_band") or j.get("seniority", ""),
-                "Location": j.get("location", ""),
-                "Change": j.get("change_type", ""),
-                "URL": j.get("job_url") or j.get("url") or "",
-            }
-        )
+        row = {
+            "Company": j.get("company", ""),
+            "Title": j.get("title", ""),
+            "Function": j.get("function", ""),
+            "Seniority": j.get("seniority_band") or j.get("seniority", ""),
+            "Location": j.get("location", ""),
+            "Change": j.get("change_type", ""),
+            "URL": j.get("job_url") or j.get("url") or "",
+        }
+        if show_category:
+            row = {"Category": j.get("category", ""), **row}
+        display.append(row)
     st.dataframe(
         display,
         use_container_width=True,
@@ -240,10 +247,6 @@ def render_key_insights(insight: dict) -> None:
         st.error(
             "AI brief unavailable for this week. Structured lists below are still live. "
             "Retry: `rivi generate-insights --week … --regenerate`"
-        )
-    if summary.get("run_status") == "partial":
-        st.warning(
-            f"Partial coverage — {summary.get('companies_failed') or 0} company scrape(s) failed."
         )
 
     # Stats strip (parity with FastAPI)
@@ -356,23 +359,20 @@ def render_key_insights(insight: dict) -> None:
         st.subheader("Removals / cooling")
         _job_table(removals, key="removals")
 
-    gaps = structured.get("coverage_gaps") or {}
-    if gaps:
-        st.subheader("Coverage gaps")
-        g1, g2, g3 = st.columns(3)
-        g1.metric("Eligible", gaps.get("eligible") or 0)
-        g2.metric("Missing career pages", gaps.get("missing_career_page_total") or 0)
-        g3.metric("Skipped", gaps.get("skipped") or 0)
-        fails = gaps.get("scrape_failures") or []
-        if fails:
-            st.caption("Scrape failures")
-            st.dataframe(fails, use_container_width=True, hide_index=True)
+
+def _companies_by_category(companies: list[dict]) -> dict[str, list[dict]]:
+    """Group eligible companies by registry category (extensible for future firm types)."""
+    grouped: dict[str, list[dict]] = {}
+    for c in companies:
+        cat = (c.get("category") or "").strip() or "Uncategorized"
+        grouped.setdefault(cat, []).append(c)
+    return dict(sorted(grouped.items(), key=lambda kv: (-len(kv[1]), kv[0])))
 
 
 def main() -> None:
     st.markdown(
         f"<h1 style='color:{RIVIERA_FLAMINGO};margin-bottom:0'>Rivi <span style='font-weight:500'>Key Insights</span></h1>"
-        "<p style='opacity:0.8;margin-top:0.25rem'>Weekly hiring signal across tracked asset managers and banks</p>",
+        "<p style='opacity:0.8;margin-top:0.25rem'>Weekly hiring signal by firm category</p>",
         unsafe_allow_html=True,
     )
 
@@ -380,6 +380,7 @@ def main() -> None:
     jobs, meta = load_jobs_from_db()
     weeks = load_week_ids()
     coverage = load_coverage()
+    by_category = _companies_by_category(companies)
 
     with st.sidebar:
         st.markdown("### Week")
@@ -392,6 +393,10 @@ def main() -> None:
         st.markdown("### Active set")
         st.metric("Eligible companies", registry.get("eligible") or len(companies))
         st.metric("In-scope open roles", len(jobs))
+        if by_category:
+            st.caption("By category")
+            for cat, rows in by_category.items():
+                st.caption(f"{cat}: {len(rows)}")
         skipped = registry.get("skipped") or 0
         if skipped:
             st.caption(f"{skipped} registry rows skipped (no career page / excluded)")
@@ -407,8 +412,8 @@ def main() -> None:
 
     insight = load_insight(week) if week else load_insight(None)
 
-    tab_insights, tab_jobs, tab_companies, tab_coverage = st.tabs(
-        ["Key Insights", "Jobs", "Companies", "Coverage"]
+    tab_insights, tab_jobs, tab_categories, tab_coverage = st.tabs(
+        ["Key Insights", "Jobs", "Categories", "Coverage"]
     )
 
     with tab_insights:
@@ -428,17 +433,20 @@ def main() -> None:
         else:
             from rivi.classifier import IN_SCOPE_FUNCTIONS
 
-            # Always offer the full in-scope set (incl. IT), plus any extra labels present.
             fns = sorted(
                 set(IN_SCOPE_FUNCTIONS)
                 | {j["function"] for j in jobs if j["function"]}
             )
+            category_opts = sorted({j["category"] for j in jobs if j.get("category")})
             companies_opts = sorted({j["company"] for j in jobs if j["company"]})
-            f1, f2, f3 = st.columns(3)
-            pick_co = f1.multiselect("Company", companies_opts)
-            pick_fn = f2.multiselect("Function", fns)
-            q = f3.text_input("Search title", "")
+            f1, f2, f3, f4 = st.columns(4)
+            pick_cat = f1.multiselect("Category", category_opts)
+            pick_co = f2.multiselect("Company", companies_opts)
+            pick_fn = f3.multiselect("Function", fns)
+            q = f4.text_input("Search title", "")
             view = jobs
+            if pick_cat:
+                view = [j for j in view if j.get("category") in pick_cat]
             if pick_co:
                 view = [j for j in view if j["company"] in pick_co]
             if pick_fn:
@@ -449,15 +457,42 @@ def main() -> None:
             st.caption(f"Showing {len(view)} of {len(jobs)} in-scope open roles")
             _job_table(view, key="all_jobs")
 
-    with tab_companies:
+    with tab_categories:
         st.caption(
-            f"Showing **{len(companies)} eligible** companies with career pages "
-            f"(skipped/non-scrapeable rows hidden)."
+            "Companies are grouped by registry category so new firm types "
+            "(e.g. insurers, fintech) can be added without changing the UI."
         )
-        if not companies:
+        if not by_category:
             st.write("No eligible companies found.")
         else:
-            st.dataframe(companies, use_container_width=True, hide_index=True)
+            metric_cols = st.columns(min(len(by_category), 4))
+            for i, (cat, rows) in enumerate(by_category.items()):
+                metric_cols[i % len(metric_cols)].metric(cat, len(rows))
+
+            cat_names = list(by_category.keys())
+            selected = st.selectbox("Browse category", cat_names, index=0)
+            rows = by_category.get(selected) or []
+            display = [
+                {
+                    "Company": r.get("company_name", ""),
+                    "Website": r.get("website", ""),
+                    "Career page": r.get("career_page", ""),
+                    "Status": r.get("career_page_status", ""),
+                }
+                for r in rows
+            ]
+            st.caption(f"{len(display)} eligible · {selected}")
+            st.dataframe(
+                display,
+                use_container_width=True,
+                hide_index=True,
+                column_config={
+                    "Website": st.column_config.LinkColumn("Website", display_text="Site"),
+                    "Career page": st.column_config.LinkColumn(
+                        "Career page", display_text="Careers"
+                    ),
+                },
+            )
 
     with tab_coverage:
         if not coverage:
@@ -477,7 +512,9 @@ def main() -> None:
                     {
                         "Category": name,
                         "Eligible": stats.get("eligible", 0),
-                        "Skipped / missing": stats.get("total", 0) - stats.get("eligible", 0),
+                        "Total in registry": stats.get("total", 0),
+                        "Skipped / missing": stats.get("total", 0)
+                        - stats.get("eligible", 0),
                     }
                     for name, stats in by_cat.items()
                 ]
