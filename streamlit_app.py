@@ -70,11 +70,16 @@ html, body, [class*="css"]  {{
 [data-testid="stSidebar"] {{
   background: linear-gradient(180deg, {NAVY} 0%, #070B14 100%);
   border-right: 1px solid rgba(255,255,255,0.06);
+  color: #E8EDF7;
 }}
-[data-testid="stSidebar"] * {{
-  color: #E8EDF7 !important;
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] span,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] strong {{
+  color: #E8EDF7;
 }}
-[data-testid="stSidebar"] .stCaption, [data-testid="stSidebar"] small {{
+[data-testid="stSidebar"] .stCaption,
+[data-testid="stSidebar"] small {{
   color: #94A3B8 !important;
 }}
 [data-testid="stSidebar"] .stSelectbox label,
@@ -89,6 +94,7 @@ html, body, [class*="css"]  {{
   border-radius: 10px !important;
   padding: 0.55rem 0.75rem !important;
   margin-bottom: 0.2rem !important;
+  color: #E8EDF7 !important;
 }}
 [data-testid="stSidebar"] [role="radiogroup"] label:hover {{
   background: rgba(255,255,255,0.06) !important;
@@ -109,10 +115,32 @@ html, body, [class*="css"]  {{
   background: #1D4ED8;
   color: white !important;
 }}
+/* Week selector: readable closed state */
 [data-testid="stSidebar"] div[data-baseweb="select"] > div {{
   background: {NAVY_SOFT} !important;
-  border-color: rgba(255,255,255,0.1) !important;
-  color: #E8EDF7 !important;
+  border: 1px solid rgba(255,255,255,0.22) !important;
+  color: #F8FAFC !important;
+  min-height: 2.4rem;
+}}
+[data-testid="stSidebar"] div[data-baseweb="select"] svg {{
+  fill: #F8FAFC !important;
+  color: #F8FAFC !important;
+}}
+[data-testid="stSidebar"] div[data-baseweb="select"] span,
+[data-testid="stSidebar"] div[data-baseweb="select"] div {{
+  color: #F8FAFC !important;
+}}
+/* Dropdown list renders in a portal — keep dark text on white menu */
+div[data-baseweb="popover"] li,
+div[data-baseweb="menu"] li,
+ul[role="listbox"] li,
+div[data-baseweb="popover"] li span {{
+  color: #0F172A !important;
+}}
+div[data-baseweb="popover"] li[aria-selected="true"],
+ul[role="listbox"] li[aria-selected="true"] {{
+  background: {BLUE_SOFT} !important;
+  color: {BLUE} !important;
 }}
 
 .block-container {{
@@ -297,38 +325,79 @@ html, body, [class*="css"]  {{
 .badge-red {{ background: #FEE2E2; color: #991B1B; }}
 .badge-blue {{ background: #DBEAFE; color: #1E40AF; }}
 
+.rivi-panel-head {{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+}}
+.rivi-panel-head h3 {{
+  margin: 0;
+}}
 .rivi-mover {{
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.65rem 0;
+  gap: 0.65rem;
+  padding: 0.45rem 0;
   border-bottom: 1px solid rgba(15,23,42,0.06);
 }}
 .rivi-mover:last-child {{ border-bottom: none; }}
 .rivi-avatar {{
-  width: 2.1rem;
-  height: 2.1rem;
-  border-radius: 10px;
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 8px;
   background: {BLUE_SOFT};
   color: {BLUE};
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
+  font-size: 0.8rem;
   flex-shrink: 0;
 }}
 .rivi-mover-meta {{
   flex: 1;
   min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
 }}
 .rivi-mover-meta strong {{
-  display: block;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: {TEXT};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }}
 .rivi-mover-meta span {{
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   color: {MUTED};
+  font-weight: 600;
+  white-space: nowrap;
+}}
+.rivi-spotlight {{
+  background: linear-gradient(160deg, #0F172A, #1E293B);
+  color: #F8FAFC;
+  border-radius: 18px;
+  padding: 1rem 1.2rem;
+  margin: 0 0 1.1rem 0;
+  border: 1px solid rgba(255,255,255,0.06);
+}}
+.rivi-spotlight .spot-label {{
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #94A3B8;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}}
+.rivi-spotlight p {{
+  margin: 0;
+  color: #E2E8F0;
+  font-size: 0.95rem;
+  line-height: 1.45;
 }}
 
 .rivi-alert {{
@@ -657,15 +726,8 @@ def render_dashboard(
     leadership_jobs = [
         j
         for j in jobs
-        if (j.get("seniority") or "").lower()
-        in {"head+", "director+", "vp+", "c-level", "head", "director", "vp", "c-level"}
-        or "+" in (j.get("seniority") or "")
-    ]
-    product_ai = [
-        j
-        for j in jobs
-        if (j.get("function") or "").lower()
-        in {"product", "ai / ml", "ai/ml", "engineering", "data"}
+        if "+" in (j.get("seniority") or "").lower()
+        or (j.get("seniority") or "").lower() in {"head", "director", "vp", "c-level"}
     ]
 
     _page_hero(
@@ -677,7 +739,12 @@ def render_dashboard(
     kpis = [
         _kpi_card("New roles", summary.get("new_count") or len(new_rows) or 0, "This week", "pill-green"),
         _kpi_card("Companies tracked", registry.get("eligible") or 0, "Eligible", "pill-blue"),
-        _kpi_card("Executive roles", summary.get("leadership_count") or len(lead) or len(leadership_jobs), "Head+", "pill-green"),
+        _kpi_card(
+            "Executive roles",
+            summary.get("leadership_count") or len(lead) or len(leadership_jobs),
+            "Head+",
+            "pill-green",
+        ),
         _kpi_card("In-scope openings", len(jobs), "Live", "pill-blue"),
         _kpi_card(
             "Companies OK",
@@ -689,37 +756,57 @@ def render_dashboard(
     ]
     st.markdown(f'<div class="rivi-kpi-grid">{"".join(kpis)}</div>', unsafe_allow_html=True)
 
+    brief = ((insight or {}).get("llm_brief") or "").strip()
+    if brief:
+        preview = brief if len(brief) <= 320 else brief[:320].rsplit(" ", 1)[0] + "…"
+        spot_body = _esc(preview)
+    else:
+        spot_body = "No AI brief yet — use Refresh Signals in the sidebar to generate one."
+    st.markdown(
+        f"""
+<div class="rivi-spotlight">
+  <div class="spot-label">Rivi AI Spotlight</div>
+  <p>{spot_body}</p>
+</div>
+        """,
+        unsafe_allow_html=True,
+    )
+
     left, right = st.columns([1.15, 1])
     with left:
-        st.markdown('<div class="rivi-panel"><h3>Top movers this week</h3>', unsafe_allow_html=True)
-        if hot:
-            st.markdown(
-                '<span class="rivi-badge badge-green">High activity</span>',
-                unsafe_allow_html=True,
+        movers_items = []
+        for h in hot[:5]:
+            name = h.get("company") or "Unknown"
+            roles = h.get("new_roles", 0)
+            movers_items.append(
+                f'<div class="rivi-mover">'
+                f'<div class="rivi-avatar">{_esc(name[:1].upper())}</div>'
+                f'<div class="rivi-mover-meta"><strong>{_esc(name)}</strong>'
+                f"<span>+{roles}</span></div></div>"
             )
-            movers_html = []
-            for h in hot[:5]:
-                name = h.get("company") or "Unknown"
-                initial = name[:1].upper()
-                roles = h.get("new_roles", 0)
-                movers_html.append(
-                    f'<div class="rivi-mover">'
-                    f'<div class="rivi-avatar">{_esc(initial)}</div>'
-                    f'<div class="rivi-mover-meta"><strong>{_esc(name)}</strong>'
-                    f"<span>+{roles} new in-scope roles</span></div>"
-                    f"</div>"
-                )
-            st.markdown("".join(movers_html) + "</div>", unsafe_allow_html=True)
-        else:
-            st.caption("No hottest-company rollup for this week yet.")
-            st.markdown("</div>", unsafe_allow_html=True)
+        movers_body = (
+            "".join(movers_items)
+            if movers_items
+            else '<p style="color:#64748B;margin:0.4rem 0 0;font-size:0.9rem">No movers this week.</p>'
+        )
+        st.markdown(
+            f"""
+<div class="rivi-panel">
+  <div class="rivi-panel-head">
+    <h3>Top movers</h3>
+    <span class="rivi-badge badge-green">High activity</span>
+  </div>
+  {movers_body}
+</div>
+            """,
+            unsafe_allow_html=True,
+        )
 
         st.markdown('<div class="rivi-panel"><h3>Function mix</h3>', unsafe_allow_html=True)
         mix = structured.get("function_mix") or {}
         if mix:
             st.bar_chart(mix, height=220)
         else:
-            # Fallback from open jobs
             counts: dict[str, int] = {}
             for j in jobs:
                 fn = j.get("function") or "Other"
@@ -734,37 +821,19 @@ def render_dashboard(
         st.markdown('<div class="rivi-panel"><h3>Category coverage</h3>', unsafe_allow_html=True)
         if by_category:
             cat_chart = {k: len(v) for k, v in by_category.items()}
-            st.bar_chart(cat_chart, height=180)
-            for cat, rows in by_category.items():
-                st.caption(f"{cat}: {len(rows)} eligible")
+            st.bar_chart(cat_chart, height=220)
+            st.caption(" · ".join(f"{cat}: {len(rows)}" for cat, rows in by_category.items()))
         else:
             st.caption("No categories loaded.")
         st.markdown("</div>", unsafe_allow_html=True)
 
-        brief = (insight or {}).get("llm_brief") or ""
-        st.markdown(
-            '<div class="rivi-panel rivi-panel-dark"><h3>Rivi AI Spotlight</h3>',
-            unsafe_allow_html=True,
-        )
-        if brief:
-            st.write(brief[:420] + ("…" if len(brief) > 420 else ""))
-        else:
-            st.write(
-                "No AI brief yet. Open AI Insights and regenerate with Groq to populate this spotlight."
-            )
-        st.markdown("</div>", unsafe_allow_html=True)
-
     st.markdown('<div class="rivi-panel"><h3>Role intelligence feed</h3>', unsafe_allow_html=True)
     st.caption(
-        f"Displaying {min(len(table_rows), 40)} of {len(table_rows)} roles"
+        f"{min(len(table_rows), 40)} roles"
         + (" · week deltas" if new_rows else " · open inventory")
     )
     _job_table(table_rows[:40], key="dashboard_jobs")
     st.markdown("</div>", unsafe_allow_html=True)
-
-    # Suppress unused warning for product_ai if empty - use as optional caption
-    if product_ai:
-        st.caption(f"{len(product_ai)} engineering / product / AI openings currently open.")
 
 
 def render_companies(by_category: dict[str, list[dict]], coverage: dict | None) -> None:
