@@ -50,6 +50,8 @@ ATS_HOST_HINTS = (
     "taleo.net",
     "oraclecloud.com",
     "recruiting.adp.com",
+    "eightfold.ai",
+    "careers.bankofamerica.com",
 )
 
 CAREER_KEYWORDS = (

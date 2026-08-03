@@ -90,7 +90,7 @@ Goldman Sachs Asset Management,Asset Managers,https://am.gs.com,,fail:404,,true,
 Guggenheim Investments,Asset Managers,https://www.guggenheiminvestments.com,https://www.guggenheiminvestments.com/firm/careers/,ok:200,auto,false,
 HL Investment Advisors,Asset Managers,,,no_website,,true,no_career_page
 Hamilton Lane,Asset Managers,https://www.hamiltonlane.com,https://www.hamiltonlane.com/en-us/careers,ok:200,auto,false,
-HarbourVest Partners,Asset Managers,https://www.harbourvest.com,https://www.harbourvest.com/us/en/about-harbourvest/careers,ok:200,auto,false,
+HarbourVest Partners,Asset Managers,https://www.harbourvest.com,https://harbourvest.wd5.myworkdayjobs.com/HVP,manual:ok,manual,false,
 Hartford Funds,Asset Managers,https://www.hartfordfunds.com,https://www.hartfordfunds.com/ex-pages/vanity/careers.html,ok:200,auto,false,
 Hartford Investment Management Company,Asset Managers,https://www.himco.com,https://www.jointhehartford.com/jobs/,manual:ok,manual,false,no_career_page
 Holocene Advisors,Asset Managers,https://www.holocene.com,https://www.holocene.com/careers,ok:200,auto,false,
@@ -104,7 +104,7 @@ JP Morgan Asset Management,Asset Managers,https://am.jpmorgan.com,https://am.jpm
 Jasper Ridge Partners,Asset Managers,https://www.jasperridge.com,https://www.jasperridge.com/careers,ok:200,auto,false,
 Jennison Associates,Asset Managers,https://www.jennison.com,https://www.jennison.com/campaignCountry/en/institutional/about-us/careers,ok:200,auto,false,
 LSV Asset Management,Asset Managers,https://www.lsvasset.com,,fail:404,,true,no_career_page
-Lazard (NYS: LAZ),Asset Managers,https://www.lazard.com,https://www.lazard.com/careers,ok:200,auto,false,
+Lazard (NYS: LAZ),Asset Managers,https://www.lazard.com,https://icbpjb.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/LazardProfessionalCareers/jobs,manual:ok,manual,false,
 Legal & General Investment Management America,Asset Managers,https://www.am.landg.us.com,https://am.landg.us.com/careers,ok:200,auto,false,
 Level III Capital,Asset Managers,https://www.l3cap.com,https://www.l3cap.com/about/careers,ok:200,auto,false,
 Lighthouse Investment Partners,Asset Managers,https://www.lighthousepartners.com,https://www.linkedin.com/company/lighthouse-investment-partners-llc/jobs/,manual:ok,manual,false,no_career_page
@@ -120,7 +120,7 @@ Mariner Wealth Advisors,Asset Managers,https://www.marinerwealthadvisors.com,htt
 MetLife Investment Management,Asset Managers,https://www.investments.metlife.com,https://www.metlifecareers.com/en_US/ml/SearchJobs?3_87_3=7418,manual:ok,manual,false,no_career_page
 Millennium Management,Asset Managers,https://www.mlp.com,https://www.mlp.com/careers/,ok:200,auto,false,
 Mirae Asset Global Investments (USA),Asset Managers,https://investments.miraeasset.us,,fail:404,,true,no_career_page
-Morgan Stanley Investment Management,Asset Managers,https://Subsidiary of Morgan Stanley,,fail:ConnectError,,true,no_career_page
+Morgan Stanley Investment Management,Asset Managers,https://www.morganstanley.com/im,https://morganstanley.eightfold.ai/careers?source=mscom,manual:ok,manual,false,
 NISA Investment Advisors,Asset Managers,https://www.nisa.com,https://careers.nisa.com,ok:200,auto,false,
 Natixis Investment Managers,Asset Managers,https://www.im.natixis.com,https://www.im.natixis.com/en-gb/about/open-positions,manual:ok,manual,false,no_career_page
 Neuberger Berman,Asset Managers,https://www.nb.com,https://www.nb.com/who-we-are/careers,ok:200,auto,false,
@@ -130,7 +130,7 @@ Newton Investment Management,Asset Managers,https://www.newtonim.com,https://www
 Northern Trust,Asset Managers,https://www.northerntrust.com,https://ntrs.wd1.myworkdayjobs.com/northerntrust,ok:200,auto,false,
 Nuveen,Asset Managers,https://www.nuveen.com,https://careers.tiaa.org:443/nuveen,ok:200,auto,false,
 Oakmark Funds,Asset Managers,https://www.oakmark.com,https://harrisassoc.com/careers/,ok:200,auto,false,
-Oaktree Capital Management,Asset Managers,https://www.oaktreecapital.com,https://www.oaktreecapital.com/careers,ok:200,auto,false,
+Oaktree Capital Management,Asset Managers,https://www.oaktreecapital.com,https://oaktree.wd1.myworkdayjobs.com/Oaktree,manual:ok,manual,false,
 PGIM,Asset Managers,https://www.pgim.com,https://jobs.pgim.com,ok:200,auto,false,
 PGIM Fixed Income,Asset Managers,https://pgimfixedincome.com,,fail:ConnectError,,true,no_career_page
 PGIM Quantitative Solutions,Asset Managers,https://www.pgimquantitativesolutions.com,https://www.pgim.com/campaignCountry/en/institutional/businesses/quantitative-solutions,ok:200,auto,false,
@@ -171,7 +171,7 @@ The Capital Group Companies,Asset Managers,https://www.capitalgroup.com,https://
 The D. E. Shaw Group,Asset Managers,https://www.deshaw.com,https://www.deshaw.com/careers,ok:200,auto,false,
 The PGIM Private Capital,Asset Managers,https://www.prudentialprivatecapital.com,https://www.prudentialprivatecapital.com/careers,ok:200,auto,false,
 The TCW Group,Asset Managers,https://www.tcw.com,https://www.tcw.com/careers,ok:200,auto,false,
-The Vanguard Group,Asset Managers,https://www.vanguard.com,https://www.vanguard.com/careers,ok:200,auto,false,
+The Vanguard Group,Asset Managers,https://www.vanguard.com,https://www.vanguardjobs.com/job-search-results/,manual:ok,manual,false,
 Thornburg Investment Management,Asset Managers,https://www.thornburg.com,https://www.thornburg.com/thornburg-investment-management-about-us/careers-culture/,ok:200,auto,false,
 Tidal Financial Group,Asset Managers,https://www.tidalfinancialgroup.com,https://ats.rippling.com/open-roles/jobs,ok:200,auto,false,
 Tudor Investment,Asset Managers,https://www.tudorfunds.com,https://job-boards.greenhouse.io/tudorgroup?t=0k73iy1,ok:200,auto,false,
@@ -186,14 +186,14 @@ Viking Global Investors,Asset Managers,https://www.vikingglobal.com,https://viki
 Virtus Investment Partners (NYS: VRTS),Asset Managers,https://www.virtus.com,https://www.virtus.com/careers,ok:200,auto,false,
 WCM Investment Management,Asset Managers,https://www.wcminvest.com,https://www.wcminvest.com/careers,ok:200,auto,false,
 Walleye Capital,Asset Managers,https://www.walleyecapital.com,https://www.walleyecapital.com/careers,ok:200,auto,false,
-Wellington Management,Asset Managers,https://www.wellington.com,https://www.wellington.com/en/about-us/careers,ok:200,auto,false,
+Wellington Management,Asset Managers,https://www.wellington.com,https://wellington.wd5.myworkdayjobs.com/en-GB/External,manual:ok,manual,false,
 WisdomTree (NYS: WT),Asset Managers,https://www.wisdomtree.com,https://www.wisdomtree.com/us/careers-at-wisdomtree,manual:ok,manual,false,no_career_page
 iCapital Advisors - affiiated advisor of iCapital Network,Asset Managers,https://icapital.com,https://icapital.com/careers/,ok:200,auto,false,
 ABG Sundal Collier (OSL: ABG),Banks,https://www.abgsc.com,https://www.abgsc.com/working-at-abgsc/,ok:200,auto,false,
 BB&T Capital Markets,Banks,https://www.bbtcapitalmarkets.com,https://careers.truist.com/us/en,ok:200,auto,false,
 BMO Capital Markets,Banks,https://capitalmarkets.bmo.com/en,,fail:403,,true,no_career_page
 BNP Paribas Corporate and Institutional Banking,Banks,https://cib.bnpparibas,,fail:TimeoutError,,true,no_career_page
-Bank of America (NYS: BAC),Banks,https://www.bankofamerica.com,https://careers.bankofamerica.com/en-us,ok:200,auto,false,
+Bank of America (NYS: BAC),Banks,https://www.bankofamerica.com,https://careers.bankofamerica.com/en-us/job-search?ref=search&search=getAllJobs&start=0&rows=10,manual:ok,manual,false,
 Barclays Investment Bank,Banks,https://www.ib.barclays,https://home.barclays/careers/,ok:200,auto,false,
 Benjamin F. Edwards & Company,Banks,https://www.benjaminfedwards.com,https://www.benjaminfedwards.com/careers/,ok:200,auto,false,
 Brown Brothers Harriman,Banks,https://www.bbh.com,https://www.bbh.com/us/en/careers.html,ok:200,auto,false,
@@ -210,38 +210,38 @@ Credit Agricole Corporate & Investment Bank,Banks,https://www.ca-cib.com,https:/
 Customers Bank (NYS: CUBI),Banks,https://www.customersbank.com,https://www.customersbank.com/join-our-team/,ok:200,auto,false,
 D.A. Davidson Companies,Banks,https://www.dadavidson.com,https://www.dadavidson.com/about-us/careers,ok:200,auto,false,
 DC Advisory,Banks,https://www.dcadvisory.com,,fail:403,,true,no_career_page
-Deutsche Bank (ETR: DBK),Banks,https://www.db.com,https://careers.db.com,ok:200,auto,false,
-Deutsche Bank Securities,Banks,,,no_website,,true,no_career_page
+Deutsche Bank (ETR: DBK),Banks,https://www.db.com,https://careers.db.com/professionals/search-roles/#/professional/results/?country=231 | https://careers.db.com/professionals/search-roles/#/professional/results/?country=71,manual:ok,manual,false,
+Deutsche Bank Securities,Banks,https://www.db.com,https://careers.db.com/professionals/search-roles/#/professional/results/?country=231 | https://careers.db.com/professionals/search-roles/#/professional/results/?country=71,manual:ok,manual,false,
 Eastdil Secured,Banks,https://www.eastdilsecured.com,https://www.eastdilsecured.com/careers/,ok:200,auto,false,
 Evercore Group (NYS: EVR),Banks,https://www.evercore.com,https://www.evercore.com/careers/,ok:200,auto,false,
 Financial Technology Partners,Banks,https://www.ftpartners.com,https://www.ftpartners.com/careers,ok:200,auto,false,
 Greenhill & Company,Banks,https://www.greenhill.com,https://www.mizuhogroup.com/americas/banking,ok:200,auto,false,
 Guggenheim Partners,Banks,https://www.guggenheimpartners.com,https://www.guggenheimpartners.com/firm/careers,ok:200,auto,false,
-HSBC Global Banking and Markets,Banks,,,no_website,,true,no_career_page
+HSBC Global Banking and Markets,Banks,https://www.hsbc.com,https://portal.careers.hsbc.com/careers?location=united%20kingdom | https://portal.careers.hsbc.com/careers?location=united%20states,manual:ok,manual,false,
 Haitong International Securities Group,Banks,https://www.htisec.com,https://www.htisec.com/careers,ok:200,auto,false,
-Harris Williams,Banks,https://www.harriswilliams.com,https://www.harriswilliams.com/careers,ok:200,auto,false,
+Harris Williams,Banks,https://www.harriswilliams.com,https://pnc.wd5.myworkdayjobs.com/HarrisWilliams,manual:ok,manual,false,
 Helaba Landesbank Hessen-Thüringen,Banks,https://www.helaba.com,https://www.helaba.com/de/karriere/jobs-stellenangebote.php,ok:200,auto,false,
 Houlihan Lokey (NYS: HLI),Banks,https://www.hl.com,https://hl.com/careers,ok:200,auto,false,
 IberiaBank,Banks,https://www.iberiabank.com,,fail:ConnectError,,true,no_career_page
-J.P. Morgan (New York),Banks,https://www.jpmorgan.com,https://www.jpmorganchase.com/careers?redirect=careers_jpm,ok:200,auto,false,
-JP Morgan Chase (NYS: JPM),Banks,https://www.jpmorganchase.com,https://www.jpmorganchase.com/careers?redirect=careers_jpm,ok:200,auto,false,
+J.P. Morgan (New York),Banks,https://www.jpmorgan.com,https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/jobs?location=United+States&locationId=300000000289738&locationLevel=country&mode=location | https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/jobs?location=United+Kingdom&locationId=300000000289276&locationLevel=country&mode=location,manual:ok,manual,false,
+JP Morgan Chase (NYS: JPM),Banks,https://www.jpmorganchase.com,https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/jobs?location=United+States&locationId=300000000289738&locationLevel=country&mode=location | https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/jobs?location=United+Kingdom&locationId=300000000289276&locationLevel=country&mode=location,manual:ok,manual,false,
 Janney (Philadelphia),Banks,https://www.janney.com,https://www.janney.com/careers,ok:200,auto,false,
 Jefferies Financial Group (NYS: JEF),Banks,https://www.jefferies.com,https://www.jefferies.com/careers/,ok:200,auto,false,
 KBCM Technology Group,Banks,https://www.pacific-crest.com,,fail:TimeoutError,,true,no_career_page
 "Keefe, Bruyette & Woods",Banks,https://www.kbw.com,,fail:404,,true,no_career_page
 KeyBank (NYS: KEY),Banks,https://www.key.com,https://keybank.wd5.myworkdayjobs.com/External_Career_Site,ok:200,auto,false,
-Lazard,Banks,https://www.lazard.com,https://www.lazard.com/careers,ok:200,auto,false,
+Lazard,Banks,https://www.lazard.com,https://icbpjb.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/LazardProfessionalCareers/jobs,manual:ok,manual,false,
 Leerink Partners,Banks,https://www.leerink.com,https://leerink.com/careers/,ok:200,auto,false,
 Lincoln International,Banks,https://www.lincolninternational.com,https://www.lincolninternational.com/careers-and-culture/careers/,ok:200,auto,false,
 Macquarie Group,Banks,https://Macquarie Group Limited | Global Financial Services,,fail:ConnectError,,true,no_career_page
 Marcus & Millichap (NYS: MMI),Banks,https://www.marcusmillichap.com,https://www.marcusmillichap.com/careers,ok:200,auto,false,
 Mizuho Americas,Banks,https://mizuhoamericas.com,https://www.mizuhogroup.com/americas/careers,ok:200,auto,false,
 Moelis & Company (NYS: MC),Banks,https://www.moelis.com,https://www.moelis.com/careers/,ok:200,auto,false,
-Morgan Stanley (NYS: MS),Banks,https://www.morganstanley.com,https://www.morganstanley.com/people,ok:200,auto,false,
+Morgan Stanley (NYS: MS),Banks,https://www.morganstanley.com,https://morganstanley.eightfold.ai/careers?source=mscom | https://morganstanley.eightfold.ai/careers?source=mscom&start=0&pid=549799125107&sort_by=timestamp,manual:ok,manual,false,
 NH Investment & Securities,Banks,https://www.nhsec.com,,fail:404,,true,no_career_page
 National Bank Financial Markets,Banks,https://www.nbfm.ca,https://www.nbc.ca/en/capitalmarkets.html,ok:200,auto,false,
 Nomura Holdings (TKS: 8604),Banks,https://www.nomura.com,https://careers.nomura.com,ok:200,auto,false,
-PJT Partners,Banks,https://www.pjtpartners.com,https://www.pjtpartners.com/careers,ok:200,auto,false,
+PJT Partners,Banks,https://www.pjtpartners.com,https://pjtpartners.wd1.myworkdayjobs.com/Careers,manual:ok,manual,false,
 Pareto Securities,Banks,https://www.paretosec.com,https://paretosec.com/our-firm/career,ok:200,auto,false,
 Perella Weinberg Partners (NAS: PWP),Banks,https://www.pwpartners.com,https://pwpartners.com/careers/,ok:200,auto,false,
 Pinnacle Financial Partners (NYS: PNFP),Banks,https://www.pnfp.com,,fail:403,,true,no_career_page
@@ -255,7 +255,7 @@ Santander Bank,Banks,https://www.santanderbank.com,https://www.santandercareers.
 Societe Generale (PAR: GLE),Banks,https://www.societegenerale.com,https://careers.societegenerale.com,ok:200,auto,false,
 Societe Generale Corporate & Investment Banking,Banks,https://www.wholesale.banking.societegenerale.com,https://wholesale.banking.societegenerale.com/en/,ok:200,auto,false,
 Solomon Partners (United States) - Multiple URL,Banks,https://www.solomonpartnersinc.com,https://solomonpartnersinc.com/,ok:200,auto,false,
-Standard Chartered,Banks,https://sc.com,https://www.sc.com/en/global-careers/,ok:200,auto,false,
+Standard Chartered,Banks,https://sc.com,https://jobs.standardchartered.com/go/Experienced-Professional-jobs/9783657/?&feedid=363857,manual:ok,manual,false,
 Stephens Inc,Banks,https://www.stephens.com,https://www.stephens.com/careers,ok:200,auto,false,
 SunTrust Bank,Banks,https://www.suntrust.com,https://careers.truist.com/us/en,ok:200,auto,true,Merged into Truist; no standalone careers board
 TD Securities,Banks,https://www.tdsecurities.com,https://www.tdsecurities.com/ca/en/404,ok:200,auto,false,

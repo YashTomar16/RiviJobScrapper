@@ -4,7 +4,6 @@ import logging
 import threading
 import time
 from urllib.parse import urlparse
-from urllib.robotparser import RobotFileParser
 
 import httpx
 
@@ -39,26 +38,81 @@ class DomainPacer:
             self._last[host] = time.monotonic()
 
 
-_robots_cache: dict[str, RobotFileParser | None] = {}
+# robots.txt URL -> Allow/Disallow rules for UA *, or None when missing/unreadable
+_robots_cache: dict[str, list[tuple[str, bool]] | None] = {}
 _robots_lock = threading.Lock()
+
+
+def _parse_robots_rules(text: str) -> list[tuple[str, bool]]:
+    """Parse Allow/Disallow rules for User-agent: * (longest-match ready).
+
+    Returns list of (path_prefix, is_allowed). Google-style longest match is
+    applied by callers — Python's RobotFileParser uses first-match and treats
+    ``Disallow: /`` as blocking every later ``Allow`` (breaks Eightfold/HSBC).
+    """
+    rules: list[tuple[str, bool]] = []
+    in_star = False
+    for raw in text.splitlines():
+        line = raw.split("#", 1)[0].strip()
+        if not line:
+            if in_star and rules:
+                # Blank line ends a group — keep collecting * only
+                pass
+            continue
+        lower = line.lower()
+        if lower.startswith("user-agent:"):
+            agent = line.split(":", 1)[1].strip()
+            in_star = agent == "*"
+            continue
+        if not in_star:
+            continue
+        if lower.startswith("allow:"):
+            path = line.split(":", 1)[1].strip() or "/"
+            # Strip end-anchor marker used by some boards (Allow: /$)
+            if path.endswith("$"):
+                path = path[:-1] or "/"
+            rules.append((path, True))
+        elif lower.startswith("disallow:"):
+            path = line.split(":", 1)[1].strip()
+            if path == "":
+                # Empty Disallow means allow all for this UA group
+                continue
+            rules.append((path, False))
+    return rules
+
+
+def _longest_match_allows(path: str, rules: list[tuple[str, bool]]) -> bool:
+    """Google/Bing longest-prefix match over Allow/Disallow rules."""
+    if not rules:
+        return True
+    best_len = -1
+    allowed = True
+    for prefix, is_allowed in rules:
+        if path.startswith(prefix) and len(prefix) > best_len:
+            best_len = len(prefix)
+            allowed = is_allowed
+    return allowed
 
 
 def robots_allows(url: str, *, timeout: float = 5.0, user_agent: str = USER_AGENT) -> bool:
     """Return False if robots.txt explicitly disallows the path for our UA.
 
     On fetch failure, allow (soft) — do not block the whole run on robots outage.
+    Uses longest-match Allow/Disallow (not urllib's first-match) so boards like
+    Eightfold (``Disallow: /`` + ``Allow: /careers``) are handled correctly.
     """
     parsed = urlparse(url)
     if not parsed.scheme or not parsed.netloc:
         return True
     base = f"{parsed.scheme}://{parsed.netloc}"
     robots_url = f"{base}/robots.txt"
+    path = parsed.path or "/"
 
     with _robots_lock:
         if robots_url in _robots_cache:
-            rp = _robots_cache[robots_url]
+            cached = _robots_cache[robots_url]
         else:
-            rp = RobotFileParser()
+            cached = None
             try:
                 with httpx.Client(timeout=timeout, follow_redirects=True) as client:
                     resp = client.get(
@@ -68,18 +122,18 @@ def robots_allows(url: str, *, timeout: float = 5.0, user_agent: str = USER_AGEN
                     if resp.status_code >= 400:
                         _robots_cache[robots_url] = None
                         return True
-                    rp.parse(resp.text.splitlines())
-                    _robots_cache[robots_url] = rp
+                    cached = _parse_robots_rules(resp.text)
+                    _robots_cache[robots_url] = cached
             except Exception as e:  # noqa: BLE001
                 logger.debug("robots.txt fetch failed for %s: %s", robots_url, e)
                 _robots_cache[robots_url] = None
                 return True
-            rp = _robots_cache[robots_url]
+            cached = _robots_cache[robots_url]
 
-    if rp is None:
+    if cached is None:
         return True
     try:
-        return bool(rp.can_fetch(user_agent, url))
+        return _longest_match_allows(path, cached)
     except Exception:  # noqa: BLE001
         return True
 

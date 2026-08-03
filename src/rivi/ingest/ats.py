@@ -366,6 +366,246 @@ def fetch_oracle_cloud_hcm(career_url: str, timeout: float) -> FetchResult:
     return FetchResult(jobs, "oracle_hcm", http_status)
 
 
+def _eightfold_domain_from_url(career_url: str, host: str) -> str:
+    """Infer Eightfold tenant domain from query or hostname."""
+    from urllib.parse import parse_qs
+
+    qs = parse_qs(urlparse(career_url).query)
+    if qs.get("domain"):
+        return qs["domain"][0]
+    # morganstanley.eightfold.ai → morganstanley.com
+    # portal.careers.hsbc.com → hsbc.com
+    host = host.lower()
+    if host.endswith(".eightfold.ai"):
+        tenant = host[: -len(".eightfold.ai")]
+        if tenant and "." not in tenant:
+            return f"{tenant}.com"
+    parts = host.split(".")
+    if len(parts) >= 2:
+        # portal.careers.hsbc.com → hsbc.com
+        return ".".join(parts[-2:])
+    return host
+
+
+def fetch_eightfold(career_url: str, timeout: float) -> FetchResult:
+    """Fetch Eightfold PCS careers boards (HSBC portal, Morgan Stanley, etc.)."""
+    from rivi.ingest.rate_limit import get_pacer
+    from urllib.parse import parse_qs
+
+    parsed = urlparse(career_url)
+    host = parsed.netloc
+    domain = _eightfold_domain_from_url(career_url, host)
+    qs = parse_qs(parsed.query)
+    location = (qs.get("location") or [""])[0]
+    base = f"{parsed.scheme}://{host}"
+    jobs: list[RawJob] = []
+    http_status = "200"
+
+    get_pacer().wait(career_url)
+    with _client(timeout) as client:
+        # Warm careers page for session cookies (required by some tenants)
+        client.get(
+            career_url if "/careers" in parsed.path else f"{base}/careers",
+            headers={"User-Agent": USER_AGENT, "Accept": "text/html"},
+        )
+
+        # Prefer apply/v2 (HSBC); fall back to pcsx/search (Morgan Stanley)
+        endpoints = [
+            ("apply", f"{base}/api/apply/v2/jobs"),
+            ("pcsx", f"{base}/api/pcsx/search"),
+        ]
+        chosen: str | None = None
+        for kind, api in endpoints:
+            params = {"domain": domain, "start": 0, "num": 1}
+            if location:
+                params["location"] = location
+            get_pacer().wait(api)
+            probe = client.get(
+                api,
+                params=params,
+                headers={
+                    "User-Agent": USER_AGENT,
+                    "Accept": "application/json",
+                    "Referer": career_url,
+                },
+            )
+            if probe.status_code == 200:
+                try:
+                    pdata = probe.json()
+                except Exception:  # noqa: BLE001
+                    continue
+                if kind == "apply" and isinstance(pdata.get("positions"), list):
+                    chosen = kind
+                    break
+                if kind == "pcsx" and isinstance((pdata.get("data") or {}).get("positions"), list):
+                    chosen = kind
+                    break
+            http_status = str(probe.status_code)
+
+        if chosen is None:
+            return FetchResult([], "eightfold", http_status, "no_eightfold_endpoint", False)
+
+        # apply/v2 often caps num at 10; pcsx accepts larger pages
+        page_size = 10 if chosen == "apply" else 50
+        start = 0
+        while start < 3000:
+            params = {"domain": domain, "start": start, "num": page_size}
+            if location:
+                params["location"] = location
+            api = f"{base}/api/apply/v2/jobs" if chosen == "apply" else f"{base}/api/pcsx/search"
+            get_pacer().wait(api)
+            resp = client.get(
+                api,
+                params=params,
+                headers={
+                    "User-Agent": USER_AGENT,
+                    "Accept": "application/json",
+                    "Referer": career_url,
+                },
+            )
+            http_status = str(resp.status_code)
+            if resp.status_code == 429:
+                time.sleep(2.0)
+                continue
+            if resp.status_code >= 400:
+                if start == 0:
+                    return FetchResult([], "eightfold", http_status, resp.text[:300], False)
+                break
+            try:
+                data = resp.json()
+            except Exception as e:  # noqa: BLE001
+                if start == 0:
+                    return FetchResult([], "eightfold", http_status, f"json_error:{e}", False)
+                break
+
+            if chosen == "apply":
+                positions = data.get("positions") or []
+                total = int(data.get("count") or 0)
+            else:
+                payload = data.get("data") or {}
+                positions = payload.get("positions") or []
+                total = int(payload.get("count") or 0)
+
+            if not positions:
+                break
+            for j in positions:
+                title = j.get("name") or j.get("posting_name") or ""
+                locs = j.get("locations") or []
+                loc = ""
+                if isinstance(locs, list) and locs:
+                    loc = locs[0] if isinstance(locs[0], str) else str(locs[0])
+                loc = loc or (j.get("location") or "")
+                pid = str(j.get("id") or j.get("ats_job_id") or j.get("atsJobId") or "")
+                job_url = (
+                    j.get("canonicalPositionUrl")
+                    or j.get("positionUrl")
+                    or (f"{base}/careers/job/{pid}" if pid else career_url)
+                )
+                if job_url.startswith("/"):
+                    job_url = f"{base}{job_url}"
+                jobs.append(
+                    RawJob(
+                        title=title,
+                        location=str(loc),
+                        job_url=job_url,
+                        external_id=pid,
+                        raw=j,
+                    )
+                )
+            start += len(positions)
+            if not positions or (total and start >= total):
+                break
+            time.sleep(0.25)
+
+    if not jobs:
+        return FetchResult([], "eightfold", http_status, "no_positions", False)
+    return FetchResult(jobs, "eightfold", http_status)
+
+
+def fetch_bank_of_america(career_url: str, timeout: float) -> FetchResult:
+    """Fetch Bank of America careers via jobssearchservlet.
+
+    Note: ``rows`` is an exclusive end index (not page size). Page 2 is
+    ``start=10&rows=20``, not ``start=10&rows=10``.
+    """
+    from rivi.ingest.rate_limit import get_pacer
+
+    parsed = urlparse(career_url)
+    base = f"{parsed.scheme}://{parsed.netloc}"
+    api = f"{base}/services/jobssearchservlet"
+    page_size = 50
+    jobs: list[RawJob] = []
+    http_status = "200"
+    seen: set[str] = set()
+
+    get_pacer().wait(career_url)
+    with _client(timeout) as client:
+        client.get(career_url, headers={"User-Agent": USER_AGENT, "Accept": "text/html"})
+        start = 0
+        total = 0
+        while start < 5000:
+            end = start + page_size
+            get_pacer().wait(api)
+            resp = client.get(
+                api,
+                params={"start": start, "rows": end, "search": "getAllJobs"},
+                headers={
+                    "User-Agent": USER_AGENT,
+                    "Accept": "application/json",
+                    "Referer": career_url,
+                },
+            )
+            http_status = str(resp.status_code)
+            if resp.status_code == 429:
+                time.sleep(2.0)
+                continue
+            if resp.status_code >= 400:
+                if start == 0:
+                    return FetchResult([], "bofa", http_status, resp.text[:300], False)
+                break
+            try:
+                data = resp.json()
+            except Exception as e:  # noqa: BLE001
+                if start == 0:
+                    return FetchResult([], "bofa", http_status, f"json_error:{e}", False)
+                break
+            batch = data.get("jobsList") or []
+            total = int(data.get("totalMatches") or total or 0)
+            if not batch:
+                break
+            new_count = 0
+            for j in batch:
+                title = j.get("postingTitle") or ""
+                city = j.get("city") or ""
+                country = j.get("country") or ""
+                loc = ", ".join(p for p in (city, country) if p)
+                rid = str(j.get("jobRequisitionId") or "")
+                if rid and rid in seen:
+                    continue
+                if rid:
+                    seen.add(rid)
+                new_count += 1
+                path = j.get("jcrURL") or ""
+                job_url = f"{base}{path}" if path.startswith("/") else (path or career_url)
+                jobs.append(
+                    RawJob(
+                        title=title,
+                        location=loc,
+                        job_url=job_url,
+                        external_id=rid,
+                        raw=j,
+                    )
+                )
+            start = end
+            if not new_count or (total and start >= total):
+                break
+            time.sleep(0.25)
+
+    if not jobs:
+        return FetchResult([], "bofa", http_status, "no_jobs", False)
+    return FetchResult(jobs, "bofa", http_status)
+
+
 def detect_and_fetch_ats(career_url: str, timeout: float) -> FetchResult | None:
     low = career_url.lower()
     parsed = urlparse(career_url)
@@ -375,6 +615,12 @@ def detect_and_fetch_ats(career_url: str, timeout: float) -> FetchResult | None:
 
     if "oraclecloud.com" in low and ("hcmUI/CandidateExperience" in career_url or "recruitingCE" in low):
         return fetch_oracle_cloud_hcm(career_url, timeout)
+
+    if "eightfold.ai" in low or "portal.careers.hsbc.com" in low:
+        return fetch_eightfold(career_url, timeout)
+
+    if "careers.bankofamerica.com" in low:
+        return fetch_bank_of_america(career_url, timeout)
 
     gh = re.search(r"boards\.greenhouse\.io/([^/?#]+)", low)
     if gh:
