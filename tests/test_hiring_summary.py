@@ -84,6 +84,20 @@ def test_company_hiring_summaries_includes_top_roles():
             "function": "Engineering",
             "category": "Startups",
         },
+        {
+            "company": "xAI",
+            "title": "IT Manager",
+            "seniority": "Manager",
+            "function": "IT",
+            "category": "Startups",
+        },
+        {
+            "company": "xAI",
+            "title": "Technology Lead",
+            "seniority": "IC",
+            "function": "Technology",
+            "category": "Startups",
+        },
     ]
     rows = company_hiring_summaries(jobs)
     xai = rows[0]
@@ -92,4 +106,31 @@ def test_company_hiring_summaries_includes_top_roles():
     assert xai["hiring_summary"].startswith(
         "Hiring for Director of Product + Head of Engineering +"
     )
-    assert "2 non-IC and 2 IC roles" in xai["hiring_summary"]
+    assert "3 non-IC and 3 IC roles" in xai["hiring_summary"]
+    assert xai["eng_tech"] == 3  # Engineering x2 + Technology x1
+    assert xai["product"] == 1
+    assert xai["it"] == 1
+    assert xai["ai"] == 1
+
+
+def test_company_hiring_summaries_includes_top_targets():
+    jobs = [
+        {
+            "company": "Uber",
+            "title": "VP Engineering",
+            "seniority": "VP",
+            "function": "Engineering",
+            "category": "Top Targets",
+        },
+        {
+            "company": "Lambda",
+            "title": "Software Engineer",
+            "seniority": "IC",
+            "function": "Engineering",
+            "category": "Startups",
+        },
+    ]
+    rows = company_hiring_summaries(jobs)
+    by_name = {r["company"]: r for r in rows}
+    assert "Uber" in by_name and by_name["Uber"]["category"] == "Top Targets"
+    assert "Lambda" in by_name and by_name["Lambda"]["category"] == "Startups"

@@ -1261,7 +1261,7 @@ def render_jobs(jobs: list[dict]) -> None:
 
     _page_hero(
         "Job Intelligence",
-        "Company hiring counts and in-scope open roles across tracked startups.",
+        "Company hiring counts and in-scope open roles across Startups and Top Targets.",
     )
     if not jobs:
         st.info("No in-scope jobs to show.")
@@ -1270,32 +1270,86 @@ def render_jobs(jobs: list[dict]) -> None:
     from rivi.classifier import IN_SCOPE_FUNCTIONS
 
     summaries = company_hiring_summaries(jobs)
-    with _section("Company hiring counts", badge=f"{len(summaries)} firms", badge_class="badge-blue"):
+    cat_opts = sorted({r.get("category") or "Uncategorized" for r in summaries})
+    n_startups = sum(1 for r in summaries if (r.get("category") or "") == "Startups")
+    n_targets = sum(1 for r in summaries if (r.get("category") or "") == "Top Targets")
+
+    with st.expander(
+        f"Company hiring counts · {len(summaries)} firms "
+        f"({n_startups} Startups · {n_targets} Top Targets)",
+        expanded=False,
+    ):
         st.caption(
-            "Per-company pulse from the latest scrape — headline shows the top senior "
-            "openings, then non-IC (Manager+) and IC counts across in-scope functions."
+            "Per-company pulse from the latest scrape — Eng/Tech, Product, IT, and AI "
+            "counts plus non-IC (Manager+) / IC totals. Includes Startups and Top Targets."
         )
+        fc1, fc2 = st.columns([1.2, 1.4])
+        with fc1:
+            pick_hiring_cat = st.multiselect(
+                "Category",
+                cat_opts,
+                default=[],
+                key="hiring_counts_category",
+                help="Filter Startups, Top Targets, or both",
+            )
+        with fc2:
+            company_q = st.text_input(
+                "Search company",
+                "",
+                key="hiring_counts_company_search",
+                placeholder="Type a company name…",
+            )
+
+        filtered = summaries
+        if pick_hiring_cat:
+            filtered = [
+                r
+                for r in filtered
+                if (r.get("category") or "Uncategorized") in pick_hiring_cat
+            ]
+        if company_q.strip():
+            ql = company_q.strip().lower()
+            filtered = [r for r in filtered if ql in (r.get("company") or "").lower()]
+
         hiring_display = [
             {
                 "Company": r["company"],
+                "Category": r.get("category") or "—",
                 "Total": r["total"],
+                "Eng/Tech": r.get("eng_tech", 0),
+                "Product": r.get("product", 0),
+                "IT": r.get("it", 0),
+                "AI": r.get("ai", 0),
                 "Non-IC": r["non_ic_count"],
                 "IC": r["ic_count"],
                 "Hiring summary": r["hiring_summary"],
-                "Functions": r["functions_label"],
             }
-            for r in summaries
+            for r in filtered
         ]
+        st.caption(
+            f"Showing {len(filtered)} of {len(summaries)} firms"
+            + (f" · category: {', '.join(pick_hiring_cat)}" if pick_hiring_cat else "")
+            + (f" · search: “{company_q.strip()}”" if company_q.strip() else "")
+        )
         st.dataframe(
             hiring_display,
             use_container_width=True,
             hide_index=True,
             column_config={
+                "Company": st.column_config.TextColumn("Company", width="medium"),
+                "Category": st.column_config.TextColumn("Category", width="small"),
                 "Total": st.column_config.NumberColumn("Total", width="small"),
+                "Eng/Tech": st.column_config.NumberColumn(
+                    "Eng/Tech", width="small", help="Engineering + Technology"
+                ),
+                "Product": st.column_config.NumberColumn("Product", width="small"),
+                "IT": st.column_config.NumberColumn("IT", width="small"),
+                "AI": st.column_config.NumberColumn(
+                    "AI", width="small", help="AI + Machine Learning"
+                ),
                 "Non-IC": st.column_config.NumberColumn("Non-IC", width="small"),
                 "IC": st.column_config.NumberColumn("IC", width="small"),
                 "Hiring summary": st.column_config.TextColumn("Hiring summary", width="large"),
-                "Functions": st.column_config.TextColumn("Functions", width="medium"),
             },
             key="company_hiring_counts",
         )

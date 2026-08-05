@@ -120,6 +120,10 @@ def company_hiring_summaries(jobs: list[dict[str, Any]]) -> list[dict[str, Any]]
         functions = [f for f, _ in sorted(fn_counts.items(), key=lambda kv: (-kv[1], kv[0]))]
         titles = top_senior_titles(roles, limit=2)
         total = ic + non_ic
+        eng_tech = fn_counts.get("Engineering", 0) + fn_counts.get("Technology", 0)
+        product = fn_counts.get("Product", 0)
+        it = fn_counts.get("IT", 0)
+        ai = fn_counts.get("AI", 0) + fn_counts.get("Machine Learning", 0)
         rows.append(
             {
                 "company": company,
@@ -127,6 +131,11 @@ def company_hiring_summaries(jobs: list[dict[str, Any]]) -> list[dict[str, Any]]
                 "total": total,
                 "ic_count": ic,
                 "non_ic_count": non_ic,
+                "eng_tech": eng_tech,
+                "product": product,
+                "it": it,
+                "ai": ai,
+                "function_counts": dict(fn_counts),
                 "top_titles": titles,
                 "functions": functions,
                 "functions_label": ", ".join(functions) if functions else "—",
