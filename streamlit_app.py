@@ -936,7 +936,7 @@ def render_ai_insights_dashboard(
 
     _page_hero(
         "AI Insights Dashboard",
-        "Hiring signals and market intelligence across tracked asset managers, banks, and startups.",
+        "Hiring signals and market intelligence across tracked startups.",
         chip=f"Week {week}" if week else "No week selected",
     )
 
@@ -1257,15 +1257,48 @@ def render_company_registry(
 
 
 def render_jobs(jobs: list[dict]) -> None:
+    from rivi.hiring_summary import company_hiring_summaries
+
     _page_hero(
         "Job Intelligence",
-        "Filter in-scope open roles across tracked firms — asset managers, banks, and startups.",
+        "Company hiring counts and in-scope open roles across tracked startups.",
     )
     if not jobs:
         st.info("No in-scope jobs to show.")
         return
 
     from rivi.classifier import IN_SCOPE_FUNCTIONS
+
+    summaries = company_hiring_summaries(jobs)
+    with _section("Company hiring counts", badge=f"{len(summaries)} firms", badge_class="badge-blue"):
+        st.caption(
+            "Per-company pulse from the latest scrape — non-IC = Manager and above; "
+            "functions are in-scope tech/product/data/AI families only."
+        )
+        hiring_display = [
+            {
+                "Company": r["company"],
+                "Total": r["total"],
+                "Non-IC": r["non_ic_count"],
+                "IC": r["ic_count"],
+                "Hiring summary": r["hiring_summary"],
+                "Functions": r["functions_label"],
+            }
+            for r in summaries
+        ]
+        st.dataframe(
+            hiring_display,
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "Total": st.column_config.NumberColumn("Total", width="small"),
+                "Non-IC": st.column_config.NumberColumn("Non-IC", width="small"),
+                "IC": st.column_config.NumberColumn("IC", width="small"),
+                "Hiring summary": st.column_config.TextColumn("Hiring summary", width="large"),
+                "Functions": st.column_config.TextColumn("Functions", width="medium"),
+            },
+            key="company_hiring_counts",
+        )
 
     fns = sorted(set(IN_SCOPE_FUNCTIONS) | {j["function"] for j in jobs if j["function"]})
     category_opts = sorted({j["category"] for j in jobs if j.get("category")})
@@ -1292,6 +1325,12 @@ def render_jobs(jobs: list[dict]) -> None:
         if q.strip():
             ql = q.strip().lower()
             view = [j for j in view if ql in (j["title"] or "").lower()]
+
+        # When a single company is selected, surface its hiring summary above the role list
+        if pick_co and len(pick_co) == 1:
+            match = next((r for r in summaries if r["company"] == pick_co[0]), None)
+            if match:
+                st.info(match["hiring_summary"])
 
         st.caption(f"Displaying {len(view)} of {len(jobs)} in-scope open roles")
         _job_table(view, key="all_jobs")
