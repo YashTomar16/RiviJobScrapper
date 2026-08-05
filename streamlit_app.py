@@ -1272,8 +1272,8 @@ def render_jobs(jobs: list[dict]) -> None:
     summaries = company_hiring_summaries(jobs)
     with _section("Company hiring counts", badge=f"{len(summaries)} firms", badge_class="badge-blue"):
         st.caption(
-            "Per-company pulse from the latest scrape — non-IC = Manager and above; "
-            "functions are in-scope tech/product/data/AI families only."
+            "Per-company pulse from the latest scrape — headline shows the top senior "
+            "openings, then non-IC (Manager+) and IC counts across in-scope functions."
         )
         hiring_display = [
             {
