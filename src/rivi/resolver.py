@@ -225,6 +225,7 @@ def resolve_careers(
     session: Session,
     *,
     company_name: str | None = None,
+    category: str | None = None,
     missing_only: bool = True,
     force: bool = False,
     concurrency: int = 8,
@@ -233,9 +234,13 @@ def resolve_careers(
     q = select(Company).order_by(Company.category, Company.name)
     if company_name:
         q = q.where(Company.name == company_name)
+    if category:
+        q = q.where(Company.category == category)
     rows = list(session.scalars(q))
     if company_name and not rows:
         raise LookupError(f"Company not found: {company_name}")
+    if category and not rows:
+        raise LookupError(f"No companies found for category: {category}")
 
     # Mark no-website rows
     now = datetime.now(timezone.utc)

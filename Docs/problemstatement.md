@@ -62,5 +62,8 @@ Exclude non-relevant functions such as:
 A centralized, automatically updated database of relevant technology leadership and specialist hiring activity that enables Riviera Partners' research and sales enablement teams to:
 
 - Identify client opportunities faster
+- Prioritize **Top Targets** (known clients) using past search/placement context alongside new openings
 - Reduce manual effort
 - Ensure no strategic hiring signals are missed
+
+See `Docs/top-targets.md` for the Top Targets cohort plan.

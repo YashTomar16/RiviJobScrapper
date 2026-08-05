@@ -27,6 +27,9 @@ Catalog of edge cases for Rivi, derived from `Docs/architecture.md` and `Docs/im
 | R6 | Company removed from Excel | Soft-archive in registry; stop scheduling; retain historical jobs/insights |
 | R7 | Manual career URL override vs auto-resolved URL | Manual override wins; mark `career_page_source = manual` |
 | R8 | Category only in Excel (Asset Managers / Banks) missing later | Default `category = unknown`; still allow ingest if career page exists |
+| R8a | Top Targets company already in registry under another category | Prefer `category = Top Targets` when both apply (v1 single category); keep same `JobPosting` history |
+| R8b | Past opportunity row with unknown `company_name` | **Flag**; do not invent a company — fix name to match registry before import |
+| R8c | Multiple past opportunities for one Top Target | One `opportunities.csv` row per search/placement; join on `company_name` |
 | R9 | Tickers / suffixes in names (`NYS: BAC`) | Keep display name as-is; normalize separately for matching/search |
 | R10 | Trailing whitespace / odd Unicode in names | Trim + NFKC normalize on import |
 

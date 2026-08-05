@@ -12,12 +12,22 @@ Automate career-page monitoring and maintain an up-to-date repository of relevan
 
 ## Company input
 
-Company coverage comes from an Excel datasheet that will be provided. Each row includes:
+Company coverage comes from Excel / CSV registry sources. Each row includes:
 
 - Company name
 - Company website
+- Category (cohort tag)
 
-The system uses these entries to locate and monitor each company's career page, then ingest open roles from that page.
+### Categories
+
+| Category | Meaning |
+|----------|---------|
+| `Startups` | Primary coverage list already in `data/companies.csv` |
+| `Top Targets` | Top Riviera client companies — see `Docs/top-targets.md` and `data/top_targets/` |
+
+**Top Targets** also carry past Riviera opportunities (searches/placements) in `data/top_targets/opportunities.csv`. That history is relationship context for prioritization; it is not scraped job data.
+
+The system uses registry entries to locate and monitor each company's career page, then ingest open roles from that page. Cohorts can be scraped selectively (e.g. `rivi scrape --category "Top Targets"`).
 
 ## What the system does
 

@@ -91,8 +91,8 @@ Also available at `/api/export/{week_id}` and `/api/export/{week_id}?format=csv`
 ## Layout
 
 ```
-Docs/           # product & technical docs
-data/           # companies seed, rivi.db, reports/
+Docs/           # product & technical docs (incl. top-targets.md)
+data/           # companies seed, rivi.db, reports/, top_targets/ intake
 logs/           # rivi.log + runs/ + alerts/
 src/rivi/       # package (ingest, insights, alerts, export, web)
 tests/

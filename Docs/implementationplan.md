@@ -17,6 +17,7 @@ Plan for building Rivi from the architecture in `Docs/architecture.md`, using ex
 | Phase 2 ingest MVP + classifier | Done |
 | Phase 3 diffs, weekly, Groq, API + UI | Done |
 | Phase 4 alerts, export, deep-dive, scrape polish, auth, UI | Done |
+| Top Targets cohort intake templates + docs | Ready (awaiting company + opportunity data) |
 
 ---
 
@@ -262,6 +263,37 @@ Plan for building Rivi from the architecture in `Docs/architecture.md`, using ex
 
 ---
 
+## Phase 5 — Top Targets cohort (in progress)
+
+**Goal:** Add Riviera’s top client companies under `category = Top Targets`, attach past opportunity history, then scrape/classify career pages like the rest of the registry.
+
+**Spec:** `Docs/top-targets.md` · **Intake:** `data/top_targets/`
+
+### Tasks
+
+- [x] Document cohort + workflow (`Docs/top-targets.md`)
+- [x] Add intake templates (`data/top_targets/companies.csv`, `opportunities.csv`)
+- [x] Fill intake from Jul 2026 Public+PE-backed placements Excel (102 companies / 629 placements)
+- [x] Upsert companies into DB / `data/companies.csv` with `category = Top Targets`
+- [x] Resolve career pages for Top Targets (**94 ready / 8 manual** — see `data/reports/top_targets_career_coverage.md`)
+- [x] Patch manuals where URLs provided (Amobee/Nexxen, Redpin, Aspen, Capital One, DoorDash)
+- [ ] Patch remaining 8 manual career URLs (`rivi set-career-page`)
+- [x] `rivi scrape --category "Top Targets"` (+ resume eBay/Zappos/Zendesk) → **438 in-scope** open roles
+- [ ] (Optional) Surface past opportunities on company detail / Key Insights prioritization
+- [ ] Re-tune empty boards (Zendesk, robots-blocked Okta/Bumble, LinkedIn Aspen, etc.)
+
+### Exit criteria
+
+- Every Top Target company is in the registry with category tag
+- Past opportunities stored and joinable by `company_name`
+- Eligible Top Targets scraped; in-scope roles visible in Jobs / Insights
+
+### Depends on
+
+- Phase 1–2 (registry + scrape + classifier)
+
+---
+
 ## Workstream map (parallelism)
 
 ```
@@ -289,6 +321,7 @@ Classifier (2c) can proceed in parallel with ingest (2b) using fixture titles.
 | **M2** | Manual scrape + classified jobs for eligible set |
 | **M3** | Weekly run → Key Insights UI (structured + Groq) |
 | **M4** | Alerts, export, deeper enablement |
+| **M5** | Top Targets clients ingested + scraped with past-opportunity context |
 
 ---
 
@@ -347,6 +380,6 @@ Then expand scrape to all eligible companies and add scheduler.
 
 - Candidate sourcing / resume search  
 - Apply-to-job / ATS write-back  
-- CRM replacement  
-- Companies outside the provided registry  
+- CRM replacement (past opportunities are light context only, not a full CRM)  
 - Ingesting Sales, Marketing, Finance, HR, Legal, Operations roles as primary signal  
+- Inventing job postings from past-opportunity notes (scraped careers pages only)  

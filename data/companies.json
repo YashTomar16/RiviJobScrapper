@@ -410,16 +410,6 @@
     "skip_reason": ""
   },
   {
-    "company_name": "Hulu",
-    "category": "Startups",
-    "website": "https://www.hulu.com",
-    "career_page": "https://jobs.disneycareers.com/search-jobs/Hulu",
-    "career_page_status": "manual:ok",
-    "career_page_source": "manual",
-    "skip": false,
-    "skip_reason": ""
-  },
-  {
     "company_name": "Indigo",
     "category": "Startups",
     "website": "https://www.indigoag.com",
@@ -994,6 +984,1026 @@
     "category": "Startups",
     "website": "https://x.ai",
     "career_page": "https://job-boards.greenhouse.io/xai",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "8x8",
+    "category": "Top Targets",
+    "website": "https://www.8x8.com",
+    "career_page": "https://www.8x8.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "A Place for Mom",
+    "category": "Top Targets",
+    "website": "http://www.aplaceformom.com",
+    "career_page": "https://www.aplaceformom.com/about/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "ABOUT YOU",
+    "category": "Top Targets",
+    "website": "https://aboutyou.com",
+    "career_page": "https://www.aboutyou.com/about-us/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "ASOS",
+    "category": "Top Targets",
+    "website": "http://www.asos.com",
+    "career_page": "https://www.asoscareers.com/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "AVIV Group",
+    "category": "Top Targets",
+    "website": "https://www.aviv-group.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Achieve",
+    "category": "Top Targets",
+    "website": "https://www.achieve.com",
+    "career_page": "https://careers.achieve.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Affirm",
+    "category": "Top Targets",
+    "website": "https://www.affirm.com",
+    "career_page": "https://www.affirm.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Airbnb",
+    "category": "Top Targets",
+    "website": "https://www.airbnb.com",
+    "career_page": "https://careers.airbnb.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Altvia",
+    "category": "Top Targets",
+    "website": "https://altvia.com",
+    "career_page": "https://altvia.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Amobee",
+    "category": "Top Targets",
+    "website": "https://nexxen.com",
+    "career_page": "https://nexxen.com/careers/careers-opportunities/",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Ancestry",
+    "category": "Top Targets",
+    "website": "http://ancestry.com",
+    "career_page": "https://careers.ancestry.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Asurion",
+    "category": "Top Targets",
+    "website": "http://www.asurion.com",
+    "career_page": "https://careers.asurion.com/us/en",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Atlassian",
+    "category": "Top Targets",
+    "website": "https://www.atlassian.com",
+    "career_page": "https://www.atlassian.com/company/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "AutoScout24",
+    "category": "Top Targets",
+    "website": "http://www.autoscout24.de",
+    "career_page": "",
+    "career_page_status": "fail:403",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Avalara",
+    "category": "Top Targets",
+    "website": "http://www.avalara.com",
+    "career_page": "https://careers.avalara.com/careers-home/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "BILL",
+    "category": "Top Targets",
+    "website": "http://www.bill.com",
+    "career_page": "https://www.bill.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Banyan Software",
+    "category": "Top Targets",
+    "website": "https://banyansoftware.com",
+    "career_page": "https://banyansoftware.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Bond (fractional aviation solution)",
+    "category": "Top Targets",
+    "website": "https://bond.co",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "BrightDrop",
+    "category": "Top Targets",
+    "website": "https://www.gobrightdrop.com",
+    "career_page": "https://search-careers.gm.com/en/jobs/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Bumble",
+    "category": "Top Targets",
+    "website": "http://bumble.com",
+    "career_page": "https://careers.bumble.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "CCC Information Services",
+    "category": "Top Targets",
+    "website": "http://www.cccis.com",
+    "career_page": "https://www.cccis.com/about/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Capital One",
+    "category": "Top Targets",
+    "website": "http://www.capitalone.com",
+    "career_page": "https://www.capitalonecareers.com/category/engineering-jobs/234/29016/1 | https://www.capitalonecareers.com/category/technology-jobs/234/4412/1 | https://www.capitalonecareers.com/category/product-jobs/234/60799/1",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Cast & Crew Entertainment Services",
+    "category": "Top Targets",
+    "website": "http://www.castandcrew.com",
+    "career_page": "https://www.castandcrew.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Credit Acceptance",
+    "category": "Top Targets",
+    "website": "http://www.creditacceptance.com",
+    "career_page": "https://creditacceptance.wd5.myworkdayjobs.com/Credit_Acceptance",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Cruise",
+    "category": "Top Targets",
+    "website": "http://www.getcruise.com",
+    "career_page": "https://www.gm.com/innovation/autonomous-driving",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Datadog",
+    "category": "Top Targets",
+    "website": "https://www.datadoghq.com",
+    "career_page": "https://careers.datadoghq.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Datto",
+    "category": "Top Targets",
+    "website": "http://datto.com",
+    "career_page": "https://www.kaseya.com/careers/jobs/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Diligent (Software Development, IP Portco)",
+    "category": "Top Targets",
+    "website": "http://diligent.com",
+    "career_page": "https://www.diligent.com/company/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "DoorDash",
+    "category": "Top Targets",
+    "website": "http://www.doordash.com",
+    "career_page": "https://careersatdoordash.com/job-search/",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Dropbox",
+    "category": "Top Targets",
+    "website": "https://www.dropbox.com",
+    "career_page": "https://www.dropbox.jobs/en/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Elastic",
+    "category": "Top Targets",
+    "website": "https://www.elastic.co",
+    "career_page": "https://jobs.elastic.co",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Ellucian",
+    "category": "Top Targets",
+    "website": "http://www.ellucian.com",
+    "career_page": "https://careers.ellucian.com/careers-home",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Eurowag",
+    "category": "Top Targets",
+    "website": "http://www.eurowag.com",
+    "career_page": "https://www.eurowag.com/company/career",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Fastly",
+    "category": "Top Targets",
+    "website": "http://www.fastly.com",
+    "career_page": "https://www.fastly.com/about/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Five Below",
+    "category": "Top Targets",
+    "website": "http://www.fivebelow.com",
+    "career_page": "https://careers.fivebelow.com/us/en",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Five9",
+    "category": "Top Targets",
+    "website": "http://www.five9.com",
+    "career_page": "https://www.five9.com/about/careers/jobs",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Flexera",
+    "category": "Top Targets",
+    "website": "https://www.flexera.com",
+    "career_page": "https://flexerasoftware.wd1.myworkdayjobs.com/FlexeraSoftware",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "GitHub",
+    "category": "Top Targets",
+    "website": "https://github.com",
+    "career_page": "https://www.github.careers/careers-home",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "GoPro",
+    "category": "Top Targets",
+    "website": "https://gopro.com",
+    "career_page": "https://jobs.gopro.com/en/us?",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Google",
+    "category": "Top Targets",
+    "website": "https://www.google.com",
+    "career_page": "https://www.google.com/about/careers/applications/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Grammarly",
+    "category": "Top Targets",
+    "website": "https://superhuman.com",
+    "career_page": "https://superhuman.com/company/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Groupon",
+    "category": "Top Targets",
+    "website": "http://www.groupon.com",
+    "career_page": "https://www.grouponcareers.com/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Grubhub",
+    "category": "Top Targets",
+    "website": "http://www.grubhub.com",
+    "career_page": "https://careers.grubhub.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "HoodCPA's",
+    "category": "Top Targets",
+    "website": "https://hoodcpas.com",
+    "career_page": "",
+    "career_page_status": "fail:503",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "HubSpot",
+    "category": "Top Targets",
+    "website": "http://www.hubspot.com",
+    "career_page": "https://www.hubspot.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Hulu",
+    "category": "Top Targets",
+    "website": "https://www.hulu.com",
+    "career_page": "https://jobs.disneycareers.com/search-jobs/Hulu",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Hyland",
+    "category": "Top Targets",
+    "website": "http://www.hyland.com",
+    "career_page": "https://www.hyland.com/en/company/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "InMarket",
+    "category": "Top Targets",
+    "website": "http://www.inmarket.com",
+    "career_page": "https://inmarket.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Independence Pet Holdings",
+    "category": "Top Targets",
+    "website": "https://www.independencepetgroup.com",
+    "career_page": "https://www.independencepetgroup.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Infoblox",
+    "category": "Top Targets",
+    "website": "http://www.infoblox.com",
+    "career_page": "https://www.infoblox.com/company/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "InformData",
+    "category": "Top Targets",
+    "website": "https://www.informdata.com",
+    "career_page": "https://www.informdata.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Inseego",
+    "category": "Top Targets",
+    "website": "http://www.inseego.com",
+    "career_page": "https://inseego.com/company/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Insightsoftware",
+    "category": "Top Targets",
+    "website": "https://www.insightsoftware.com",
+    "career_page": "https://insightsoftware.com/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Lantern",
+    "category": "Top Targets",
+    "website": "https://lanterncare.com",
+    "career_page": "http://lanterncare.com/about-us/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Life360",
+    "category": "Top Targets",
+    "website": "http://www.life360.com",
+    "career_page": "https://www.life360.com/en-us/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "LinkedIn",
+    "category": "Top Targets",
+    "website": "https://www.linkedin.com",
+    "career_page": "https://careers.linkedin.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "LogicMonitor",
+    "category": "Top Targets",
+    "website": "http://www.logicmonitor.com",
+    "career_page": "https://www.logicmonitor.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Lytx",
+    "category": "Top Targets",
+    "website": "http://www.lytx.com",
+    "career_page": "https://www.lytx.com/about-us/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "McAfee",
+    "category": "Top Targets",
+    "website": "http://www.mcafee.com",
+    "career_page": "https://careers.mcafee.com/home",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Merative",
+    "category": "Top Targets",
+    "website": "https://www.merative.com",
+    "career_page": "https://www.merative.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Model N",
+    "category": "Top Targets",
+    "website": "http://www.modeln.com",
+    "career_page": "https://www.modeln.com/company/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Move",
+    "category": "Top Targets",
+    "website": "http://www.move.com",
+    "career_page": "",
+    "career_page_status": "fail:403",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "NetDocuments",
+    "category": "Top Targets",
+    "website": "http://netdocuments.com",
+    "career_page": "https://www.netdocuments.com/company/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Nielsen",
+    "category": "Top Targets",
+    "website": "https://www.nielsen.com",
+    "career_page": "https://www.nielsen.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Octus (fka Reorg)",
+    "category": "Top Targets",
+    "website": "https://octus.com",
+    "career_page": "https://octus.com/company/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Okta",
+    "category": "Top Targets",
+    "website": "http://www.okta.com",
+    "career_page": "https://careers.okta.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Oracle",
+    "category": "Top Targets",
+    "website": "https://www.oracle.com",
+    "career_page": "https://careers.oracle.com/en/sites/jobsearch",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "PDI Technologies",
+    "category": "Top Targets",
+    "website": "https://pditechnologies.com",
+    "career_page": "https://pditechnologies.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "PagerDuty",
+    "category": "Top Targets",
+    "website": "http://www.pagerduty.com",
+    "career_page": "https://careers.pagerduty.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Palo Alto Networks",
+    "category": "Top Targets",
+    "website": "http://www.paloaltonetworks.com",
+    "career_page": "https://jobs.paloaltonetworks.com/en",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Panasonic Avionics",
+    "category": "Top Targets",
+    "website": "http://www.panasonic.aero",
+    "career_page": "https://www.panasonic.aero/join-us",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "PayPal",
+    "category": "Top Targets",
+    "website": "https://www.paypal.com/home",
+    "career_page": "https://careers.pypl.com/home/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "PracticeTek",
+    "category": "Top Targets",
+    "website": "https://practicetek.com",
+    "career_page": "https://www.practicetek.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Real Chemistry",
+    "category": "Top Targets",
+    "website": "https://www.realchemistry.com",
+    "career_page": "https://www.realchemistry.com/careers/working-at-rc/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Redfin",
+    "category": "Top Targets",
+    "website": "https://www.redfin.com",
+    "career_page": "https://careers.rocket.com/us/en/teams/real-estate",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Redpin (fka Currencies Direct)",
+    "category": "Top Targets",
+    "website": "https://www.redpincompany.com",
+    "career_page": "https://www.redpincompany.com/careers#open-roles",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "ResMed",
+    "category": "Top Targets",
+    "website": "http://www.resmed.com",
+    "career_page": "https://careers.resmed.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Revolution Medicines",
+    "category": "Top Targets",
+    "website": "https://www.revmed.com",
+    "career_page": "https://www.revmed.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Sonos DO NOT REPRESENT",
+    "category": "Top Targets",
+    "website": "http://www.sonos.com",
+    "career_page": "https://sonos.wd1.myworkdayjobs.com/Sonos",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Standard Industries",
+    "category": "Top Targets",
+    "website": "https://www.standardindustries.com",
+    "career_page": "https://standardindustries.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Storable",
+    "category": "Top Targets",
+    "website": "https://www.storable.com",
+    "career_page": "",
+    "career_page_status": "fail:403",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Superbet Group",
+    "category": "Top Targets",
+    "website": "https://superbetgroup.com",
+    "career_page": "https://www.super.xyz/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Tempo",
+    "category": "Top Targets",
+    "website": "https://www.tempo.io",
+    "career_page": "https://www.tempo.io/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Ten-X (fka Auction.com)",
+    "category": "Top Targets",
+    "website": "http://ten-x.com",
+    "career_page": "",
+    "career_page_status": "fail:403",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "The Aspen Group",
+    "category": "Top Targets",
+    "website": "https://www.teamtag.com",
+    "career_page": "https://www.linkedin.com/jobs/search/?f_C=79870456&geoId=103644278",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "The New York Times",
+    "category": "Top Targets",
+    "website": "https://www.nytimes.com",
+    "career_page": "https://www.nytco.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Trellix",
+    "category": "Top Targets",
+    "website": "http://www.trellix.com",
+    "career_page": "https://careers.trellix.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Tricentis",
+    "category": "Top Targets",
+    "website": "https://tricentis.com",
+    "career_page": "https://www.tricentis.com/company/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "TrueCommerce",
+    "category": "Top Targets",
+    "website": "http://www.truecommerce.com",
+    "career_page": "https://www.truecommerce.com/about-us/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "TubeMogul",
+    "category": "Top Targets",
+    "website": "https://advertising.adobe.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Twilio",
+    "category": "Top Targets",
+    "website": "https://www.twilio.com",
+    "career_page": "https://jobs.twilio.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Uber",
+    "category": "Top Targets",
+    "website": "http://www.uber.com",
+    "career_page": "https://jobs.uber.com/en/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Upwork",
+    "category": "Top Targets",
+    "website": "https://www.upwork.com",
+    "career_page": "https://www.upwork.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Vista Equity Partners",
+    "category": "Top Targets",
+    "website": "https://www.vistaequitypartners.com",
+    "career_page": "https://www.vistaequitypartners.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Waymo",
+    "category": "Top Targets",
+    "website": "https://waymo.com",
+    "career_page": "https://careers.withwaymo.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Weight Watchers",
+    "category": "Top Targets",
+    "website": "https://www.weightwatchers.com",
+    "career_page": "https://www.weightwatchers.com/us/ww-corporate-careers?",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Wendy's",
+    "category": "Top Targets",
+    "website": "https://www.wendys.com",
+    "career_page": "https://wendys-careers.com/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Xero Inc",
+    "category": "Top Targets",
+    "website": "http://xero.com",
+    "career_page": "https://careers.xero.com",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Yahoo! Inc",
+    "category": "Top Targets",
+    "website": "http://www.yahoo.com",
+    "career_page": "https://www.yahooinc.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Zappos",
+    "category": "Top Targets",
+    "website": "http://www.zappos.com",
+    "career_page": "https://www.amazon.jobs/en/search?base_query=zappos&business_category%5B%5D=subsidiaries",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Zendesk",
+    "category": "Top Targets",
+    "website": "https://www.zendesk.com",
+    "career_page": "https://www.zendesk.com/company/careers/",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "eBay",
+    "category": "Top Targets",
+    "website": "https://www.ebay.com",
+    "career_page": "https://jobs.ebayinc.com/us/en/search-results",
     "career_page_status": "manual:ok",
     "career_page_source": "manual",
     "skip": false,

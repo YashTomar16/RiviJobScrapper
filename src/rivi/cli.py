@@ -131,6 +131,11 @@ def import_companies_cmd(
 @app.command("resolve-careers")
 def resolve_careers_cmd(
     company: Optional[str] = typer.Option(None, "--company", help="Resolve a single company"),
+    category: Optional[str] = typer.Option(
+        None,
+        "--category",
+        help='Limit to a category (e.g. "Top Targets")',
+    ),
     missing_only: bool = typer.Option(
         True,
         "--missing-only/--all",
@@ -153,6 +158,7 @@ def resolve_careers_cmd(
             summary = resolve_careers(
                 session,
                 company_name=company,
+                category=category,
                 missing_only=missing_only and not force,
                 force=force,
                 concurrency=workers,

@@ -37,20 +37,27 @@ Located under `data/`:
 | `Job_Scrape.xlsx` | Source Excel (Asset Managers, Banks sheets) |
 | `companies.csv` | Normalized registry: name, category, website, career page, status |
 | `companies.json` | Same registry as JSON |
+| `top_targets/companies.csv` | Intake for top-client companies (`category = Top Targets`) |
+| `top_targets/opportunities.csv` | Past Riviera searches/placements per Top Target company |
 
 **Registry fields today**
 
 | Field | Description |
 |-------|-------------|
 | `company_name` | Display / join key |
-| `category` | e.g. Asset Managers, Banks |
+| `category` | Cohort tag: `Startups`, `Top Targets`, Asset Managers, Banks, … |
 | `website` | Normalized company homepage |
 | `career_page` | Resolved careers URL (empty if unresolved) |
 | `career_page_status` | Probe result (`ok:200`, `fail:404`, `no_website`, …) |
 
+**Categories**
+
+- **Startups** — current main scrape cohort in `companies.csv`
+- **Top Targets** — top Riviera clients; past opportunity history lives under `data/top_targets/` (see `Docs/top-targets.md`). Scrape with `--category "Top Targets"` after career pages are resolved.
+
 **Baseline coverage (phase 1 probe)**
 
-- 267 companies total
+- 267 companies total (historical Excel set)
 - 163 with reachable career pages
 - 104 unresolved (no site, 404, blocked, etc.)
 
@@ -254,6 +261,11 @@ Structured aggregates are computed at the **end of each weekly scheduler run**, 
 ```
 Company
   id, name, category, website, career_page, career_page_status, updated_at
+  # category includes "Top Targets" for top-client cohort
+
+PastOpportunity (file-backed v1: data/top_targets/opportunities.csv)
+  company_name, opportunity_title, function, seniority, year, outcome, notes
+  # relationship context — not scraped jobs; optional DB model later
 
 ScrapeRun
   id, week_id, started_at, finished_at, status, stats_json
