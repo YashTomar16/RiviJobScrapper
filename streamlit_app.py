@@ -1302,12 +1302,17 @@ def render_jobs(jobs: list[dict]) -> None:
 
     fns = sorted(set(IN_SCOPE_FUNCTIONS) | {j["function"] for j in jobs if j["function"]})
     category_opts = sorted({j["category"] for j in jobs if j.get("category")})
-    companies_opts = sorted({j["company"] for j in jobs if j["company"]})
     seniority_opts = sorted({j["seniority"] for j in jobs if j.get("seniority")})
 
     with _section("Browse openings"):
         f1, f2, f3, f4, f5 = st.columns([1.1, 1.2, 1, 1, 1.2])
         pick_cat = f1.multiselect("Function family / Category", category_opts)
+
+        # Company options follow selected category tags so counts stay in sync
+        companies_pool = jobs
+        if pick_cat:
+            companies_pool = [j for j in jobs if j.get("category") in pick_cat]
+        companies_opts = sorted({j["company"] for j in companies_pool if j["company"]})
         pick_co = f2.multiselect("Company", companies_opts)
         pick_fn = f3.multiselect("Function", fns)
         pick_sen = f4.multiselect("Seniority", seniority_opts)
@@ -1332,7 +1337,29 @@ def render_jobs(jobs: list[dict]) -> None:
             if match:
                 st.info(match["hiring_summary"])
 
-        st.caption(f"Displaying {len(view)} of {len(jobs)} in-scope open roles")
+        n_companies = len({j["company"] for j in view if j.get("company")})
+        n_companies_all = len({j["company"] for j in jobs if j.get("company")})
+        tag_label = ", ".join(pick_cat) if pick_cat else "All categories"
+
+        c1, c2 = st.columns(2)
+        with c1:
+            st.metric(
+                "Open roles shown",
+                len(view),
+                delta=f"of {len(jobs)} in-scope total",
+                delta_color="off",
+            )
+        with c2:
+            st.metric(
+                f"Companies shown ({tag_label})",
+                n_companies,
+                delta=f"of {n_companies_all} with openings",
+                delta_color="off",
+            )
+        st.caption(
+            f"{tag_label}: {len(view)} open roles across {n_companies} companies "
+            f"(filtered from {len(jobs)} roles · {n_companies_all} companies)"
+        )
         _job_table(view, key="all_jobs")
 
 
