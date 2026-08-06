@@ -1,5 +1,505 @@
 [
   {
+    "company_name": "ARIS",
+    "category": "Cross-Selling",
+    "website": "https://aris.com",
+    "career_page": "https://jobs.dayforcehcm.com/aris/ARISPORTAL?searchText=Product",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Aerospike",
+    "category": "Cross-Selling",
+    "website": "https://aerospike.com",
+    "career_page": "https://ats.rippling.com/aerospike-inc/jobs",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Allocate",
+    "category": "Cross-Selling",
+    "website": "https://allocate.co",
+    "career_page": "https://www.allocate.co/careers",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Amerit Fleet Solutions",
+    "category": "Cross-Selling",
+    "website": "https://ameritfleetsolutions.com",
+    "career_page": "https://careers-ameritfleet.icims.com/jobs/search?ss=1&hashed=-435679995",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Arrive",
+    "category": "Cross-Selling",
+    "website": "https://arrive.com",
+    "career_page": "https://careers.arrive.com/jobs?split_view=true&query=&department=Technology",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Automated Financial Systems",
+    "category": "Cross-Selling",
+    "website": "https://afsvision.com",
+    "career_page": "https://afsvision.rec.pro.ukg.net/AUT1502AUTF/JobBoard/7ca9d941-9d62-46ea-949b-92d86f47cf67/?q=&o=postedDateDesc",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Avalara",
+    "category": "Cross-Selling",
+    "website": "https://avalara.com",
+    "career_page": "https://app.careerpuck.com/job-board/avalara?locationId=Ay7uiUOA&departmentId=EyM5EW3S",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Beacon Software",
+    "category": "Cross-Selling",
+    "website": "https://beaconsoftware.com",
+    "career_page": "https://www.beaconsoftware.com/careers",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Blackstone Group",
+    "category": "Cross-Selling",
+    "website": "https://blackstone.com",
+    "career_page": "https://blackstone.wd1.myworkdayjobs.com/en-US/Blackstone_Careers?REC_ESI_Skill_is_Business_Unit_Extended=7674c604ae970153f60625117b110aa4",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Citian",
+    "category": "Cross-Selling",
+    "website": "https://citiansolutions.com",
+    "career_page": "https://job-boards.greenhouse.io/citian",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Cockroach Labs",
+    "category": "Cross-Selling",
+    "website": "https://cockroachlabs.com",
+    "career_page": "https://www.cockroachlabs.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Crux Climate",
+    "category": "Cross-Selling",
+    "website": "https://crux.com",
+    "career_page": "https://jobs.ashbyhq.com/cruxclimate",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "CycloMedia Technology",
+    "category": "Cross-Selling",
+    "website": "https://cyclomedia.com",
+    "career_page": "https://cyclomediatechnology.recruitee.com/",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "DNSFilter",
+    "category": "Cross-Selling",
+    "website": "https://dnsfilter.com",
+    "career_page": "https://www.dnsfilter.com/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Diligent",
+    "category": "Cross-Selling",
+    "website": "https://diligent.com",
+    "career_page": "https://job-boards.greenhouse.io/diligentcorporation",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Ease.io",
+    "category": "Cross-Selling",
+    "website": "https://ease.io",
+    "career_page": "https://www.ease.io/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Enable",
+    "category": "Cross-Selling",
+    "website": "https://enable.com",
+    "career_page": "https://jobs.lever.co/enable",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Envestnet",
+    "category": "Cross-Selling",
+    "website": "https://envestnet.com",
+    "career_page": "https://careers.envestnet.com/search/product-technology/jobs",
+    "career_page_status": "manual:fail:403",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "FICO",
+    "category": "Cross-Selling",
+    "website": "https://fico.com",
+    "career_page": "https://fico.wd1.myworkdayjobs.com/External?jobFamilyGroup=a46e175d937b106cdb2f901ef52e94e9&jobFamilyGroup=a46e175d937b106cdb2fbd87114194f5",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "G-Research",
+    "category": "Cross-Selling",
+    "website": "https://gresearch.co.uk",
+    "career_page": "https://www.gresearch.com/vacancies/?specialism%5B%5D=software-engineering",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Goradar",
+    "category": "Cross-Selling",
+    "website": "https://goradar.com",
+    "career_page": "https://goradar.com/jobs/",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Granola",
+    "category": "Cross-Selling",
+    "website": "https://granola.ai",
+    "career_page": "https://www.granola.ai/jobs",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "H.I.G. Capital",
+    "category": "Cross-Selling",
+    "website": "https://hig.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Hippo Insurance",
+    "category": "Cross-Selling",
+    "website": "https://hippo.com",
+    "career_page": "https://www.hippo.com/careers",
+    "career_page_status": "manual:fail:403",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "HubSpot",
+    "category": "Cross-Selling",
+    "website": "https://hubspot.com",
+    "career_page": "https://www.hubspot.com/careers/jobs?hubs_signup-cta=careers-nav-cta&page=1",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "IG Group",
+    "category": "Cross-Selling",
+    "website": "https://iggroup.com",
+    "career_page": "https://ig.wd103.myworkdayjobs.com/EXT_IG?jobFamilyGroup=d12822c1d3f81001db65b08a175a0000&jobFamilyGroup=d12822c1d3f81001db65943a57ab0000&jobFamilyGroup=d12822c1d3f81001db65a2b0aecc0000",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Instructure Inc",
+    "category": "Cross-Selling",
+    "website": "https://instructure.com",
+    "career_page": "https://www.instructure.com/about/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "J.F. Lehman & Company",
+    "category": "Cross-Selling",
+    "website": "https://jflpartners.com",
+    "career_page": "",
+    "career_page_status": "fail:404",
+    "career_page_source": "",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Junior.AI",
+    "category": "Cross-Selling",
+    "website": "https://myjunior.ai",
+    "career_page": "https://junior.ai/careers",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Legora",
+    "category": "Cross-Selling",
+    "website": "https://legora.com",
+    "career_page": "https://legora.com/careers",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "LinkedIn",
+    "category": "Cross-Selling",
+    "website": "https://linkedin.com",
+    "career_page": "https://www.linkedin.com/jobs/search-results/?keywords=jobs&origin=JOB_SEARCH_PAGE_JOB_FILTER&referralSearchId=mymqiHaeKeapi3WuYalwnw%3D%3D&start=75&geoId=103644278&f_C=1337",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Logex",
+    "category": "Cross-Selling",
+    "website": "https://logex.com",
+    "career_page": "https://logex.recruitee.com/",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Mercer Advisors",
+    "category": "Cross-Selling",
+    "website": "https://merceradvisors.com",
+    "career_page": "https://job-boards.greenhouse.io/merceradvisors",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Metropolis",
+    "category": "Cross-Selling",
+    "website": "https://metropolis.io",
+    "career_page": "https://job-boards.greenhouse.io/metropolis?offices%5B%5D=4023693003&offices%5B%5D=4025886003&offices%5B%5D=4022016003&offices%5B%5D=4038941003&offices%5B%5D=4025895003&offices%5B%5D=4000809003&offices%5B%5D=4138808003&offices%5B%5D=4061848003&offices%5B%5D=4016056003&offices%5B%5D=4000767003&offices%5B%5D=4026486003&offices%5B%5D=4021374003&offices%5B%5D=4025891003&offices%5B%5D=4133745003&offices%5B%5D=4038568003&page=1",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Mobile.de GmbH",
+    "category": "Cross-Selling",
+    "website": "https://mobile.de",
+    "career_page": "https://mobilede.careers.hibob.com/jobs?department=266385154",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "NetBrain Technologies",
+    "category": "Cross-Selling",
+    "website": "https://netbraintech.com",
+    "career_page": "https://www.netbrain.com/about/careers/openings/",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Perkbox",
+    "category": "Cross-Selling",
+    "website": "https://perkbox.com",
+    "career_page": "https://perkboxvivup.teamtailor.com/jobs",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Pipedrive",
+    "category": "Cross-Selling",
+    "website": "https://pipedrive.com",
+    "career_page": "https://jobs.lever.co/pipedrive",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Planview, Inc.",
+    "category": "Cross-Selling",
+    "website": "https://planview.com",
+    "career_page": "https://careers.planview.com/careers-home/jobs?page=1&categories=Product%20Development%7CProduct%20Management",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "PowerGEM",
+    "category": "Cross-Selling",
+    "website": "https://power-gem.com",
+    "career_page": "https://power-gem.co/careers/",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Qualus",
+    "category": "Cross-Selling",
+    "website": "https://qualuscorp.com",
+    "career_page": "https://talent.qualuscorp.com/jobs?categories=Engineering%20%26%20Advisory&page=3",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Spok Inc",
+    "category": "Cross-Selling",
+    "website": "https://spok.com",
+    "career_page": "https://www.spok.com/careers/all-open-positions/",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Storable",
+    "category": "Cross-Selling",
+    "website": "https://storable.com",
+    "career_page": "https://www.storable.com/about-us/culture/careers/",
+    "career_page_status": "manual:fail:403",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Tudor Investments",
+    "category": "Cross-Selling",
+    "website": "https://tudor.com",
+    "career_page": "https://www.tudor.com/careers/",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Uber",
+    "category": "Cross-Selling",
+    "website": "https://uber.com",
+    "career_page": "https://jobs.uber.com/en/jobs/?search=Engineer&team=Engineer&countries=United%20States&countries=United%20Kingdom&page=2&pagesize=10",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Watchtower Labs",
+    "category": "Cross-Selling",
+    "website": "https://watchtowerlabs.ai",
+    "career_page": "https://www.watchtowerlabs.ai/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "World of Books",
+    "category": "Cross-Selling",
+    "website": "https://worldofbooks.com",
+    "career_page": "https://jobs.dayforcehcm.com/en-GB/wobgroup/CANDIDATEPORTAL?departmentId=189",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Zenity",
+    "category": "Cross-Selling",
+    "website": "https://zenity.io",
+    "career_page": "https://zenity.io/careers",
+    "career_page_status": "ok:200",
+    "career_page_source": "auto",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "Zywave Inc",
+    "category": "Cross-Selling",
+    "website": "https://zywave.com",
+    "career_page": "https://secure4.saashr.com/ta/6165823.careers?CareersSearch=&lang=en-US",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
+    "company_name": "easybill (Platin 2412 GmbH)",
+    "category": "Cross-Selling",
+    "website": "https://easybill.de",
+    "career_page": "https://join.com/companies/easybill",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
+  },
+  {
     "company_name": "6sense",
     "category": "Startups",
     "website": "https://6sense.com",
@@ -1793,11 +2293,11 @@
     "company_name": "Storable",
     "category": "Top Targets",
     "website": "https://www.storable.com",
-    "career_page": "",
-    "career_page_status": "fail:403",
-    "career_page_source": "",
-    "skip": true,
-    "skip_reason": "No public career page (403)"
+    "career_page": "https://www.storable.com/about-us/culture/careers/",
+    "career_page_status": "manual:ok",
+    "career_page_source": "manual",
+    "skip": false,
+    "skip_reason": ""
   },
   {
     "company_name": "Superbet Group",

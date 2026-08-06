@@ -1,0 +1,359 @@
+{
+  "category": "Cross-Selling",
+  "total": 50,
+  "ok": 45,
+  "failed_or_missing": 5,
+  "missing_career_page": 2,
+  "companies": [
+    {
+      "company_name": "ARIS",
+      "career_page": "https://jobs.dayforcehcm.com/aris/ARISPORTAL?searchText=Product",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Aerospike",
+      "career_page": "https://ats.rippling.com/aerospike-inc/jobs",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Allocate",
+      "career_page": "https://www.allocate.co/careers",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Amerit Fleet Solutions",
+      "career_page": "https://careers-ameritfleet.icims.com/jobs/search?ss=1&searchCategory=8730",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Arrive",
+      "career_page": "https://careers.arrive.com/jobs?split_view=true&query=&department=Technology",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Automated Financial Systems",
+      "career_page": "https://afsvision.rec.pro.ukg.net/AUT1502AUTF/JobBoard/7ca9d941-9d62-46ea-949b-92d86f47cf67/?q=&o=postedDateDesc",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Avalara",
+      "career_page": "https://app.careerpuck.com/job-board/avalara?locationId=Ay7uiUOA&departmentId=EyM5EW3S",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Beacon Software",
+      "career_page": "https://www.beaconsoftware.com/careers",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Blackstone Group",
+      "career_page": "https://blackstone.wd1.myworkdayjobs.com/en-US/Blackstone_Careers?REC_ESI_Skill_is_Business_Unit_Extended=7674c604ae970153f60625117b110aa4",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Citian",
+      "career_page": "https://www.citian.co/careers",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Cockroach Labs",
+      "career_page": "https://www.cockroachlabs.com/careers/",
+      "career_page_source": "auto",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Crux Climate",
+      "career_page": "https://www.crux.com/careers?ashby_department_id=d3b975f8-24e1-4e84-b77e-87382e45acc8",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "CycloMedia Technology",
+      "career_page": "https://cyclomediatechnology.recruitee.com/",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "DNSFilter",
+      "career_page": "https://www.dnsfilter.com/careers",
+      "career_page_source": "auto",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Diligent",
+      "career_page": "https://www.diligent.com/company/jobs",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Ease.io",
+      "career_page": "https://www.ease.io/careers/",
+      "career_page_source": "auto",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Enable",
+      "career_page": "https://jobs.lever.co/enable",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Envestnet",
+      "career_page": "https://careers.envestnet.com/search/product-technology/jobs",
+      "career_page_source": "manual",
+      "probe_status": "fail:403",
+      "final_url": ""
+    },
+    {
+      "company_name": "FICO",
+      "career_page": "https://fico.wd1.myworkdayjobs.com/External?jobFamilyGroup=a46e175d937b106cdb2f901ef52e94e9&jobFamilyGroup=a46e175d937b106cdb2fbd87114194f5",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "G-Research",
+      "career_page": "https://www.gresearch.com/vacancies/",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Goradar",
+      "career_page": "https://goradar.com/jobs/",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Granola",
+      "career_page": "https://www.granola.ai/jobs",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "H.I.G. Capital",
+      "career_page": "",
+      "career_page_source": "",
+      "probe_status": "missing",
+      "final_url": ""
+    },
+    {
+      "company_name": "Hippo Insurance",
+      "career_page": "https://www.hippo.com/careers",
+      "career_page_source": "manual",
+      "probe_status": "fail:403",
+      "final_url": ""
+    },
+    {
+      "company_name": "HubSpot",
+      "career_page": "https://www.hubspot.com/careers/jobs?hubs_signup-cta=careers-nav-cta&page=1",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "IG Group",
+      "career_page": "https://ig.wd103.myworkdayjobs.com/EXT_IG?jobFamilyGroup=d12822c1d3f81001db65b08a175a0000&jobFamilyGroup=d12822c1d3f81001db65943a57ab0000&jobFamilyGroup=d12822c1d3f81001db65a2b0aecc0000",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Instructure Inc",
+      "career_page": "https://www.instructure.com/about/careers",
+      "career_page_source": "auto",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "J.F. Lehman & Company",
+      "career_page": "",
+      "career_page_source": "",
+      "probe_status": "missing",
+      "final_url": ""
+    },
+    {
+      "company_name": "Junior.AI",
+      "career_page": "https://junior.ai/careers",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Legora",
+      "career_page": "https://legora.com/careers",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "LinkedIn",
+      "career_page": "https://www.linkedin.com/jobs/search-results/?keywords=jobs&origin=JOB_SEARCH_PAGE_JOB_FILTER&referralSearchId=mymqiHaeKeapi3WuYalwnw%3D%3D&start=75&geoId=103644278&f_C=1337",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": "https://www.linkedin.com/uas/login?session_redirect=%2Fjobs%2Fsearch-results%2F%3Fkeywords%3Djobs%26origin%3DJOB_SEARCH_PAGE_JOB_FILTER%26referralSearchId%3DmymqiHaeKeapi3WuYalwnw%253D%253D%26start%3D75%26geoId%3D103644278%26f_C%3D1337&skipRedirect=true"
+    },
+    {
+      "company_name": "Logex",
+      "career_page": "https://logex.recruitee.com/",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Mercer Advisors",
+      "career_page": "https://job-boards.greenhouse.io/merceradvisors",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Metropolis",
+      "career_page": "https://job-boards.greenhouse.io/metropolis?offices%5B%5D=4023693003&offices%5B%5D=4025886003&offices%5B%5D=4022016003&offices%5B%5D=4038941003&offices%5B%5D=4025895003&offices%5B%5D=4000809003&offices%5B%5D=4138808003&offices%5B%5D=4061848003&offices%5B%5D=4016056003&offices%5B%5D=4000767003&offices%5B%5D=4026486003&offices%5B%5D=4021374003&offices%5B%5D=4025891003&offices%5B%5D=4133745003&offices%5B%5D=4038568003&page=1",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Mobile.de GmbH",
+      "career_page": "https://mobilede.careers.hibob.com/jobs?department=266385154",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "NetBrain Technologies",
+      "career_page": "https://www.netbrain.com/about/careers/openings/",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Perkbox",
+      "career_page": "https://perkboxvivup.teamtailor.com/jobs",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Pipedrive",
+      "career_page": "https://careers.pipedrive.com/auth/login?return_url=https%3A%2F%2Fcareers.pipedrive.com%2F",
+      "career_page_source": "auto",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Planview, Inc.",
+      "career_page": "https://careers.planview.com/careers-home/jobs?page=1&categories=Product%20Development%7CProduct%20Management",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "PowerGEM",
+      "career_page": "https://power-gem.co/careers/",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Qualus",
+      "career_page": "https://talent.qualuscorp.com/jobs?categories=Engineering%20%26%20Advisory&page=3",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Spok Inc",
+      "career_page": "https://www.spok.com/careers/",
+      "career_page_source": "auto",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Storable",
+      "career_page": "https://www.storable.com/about-us/culture/careers/",
+      "career_page_source": "manual",
+      "probe_status": "fail:403",
+      "final_url": ""
+    },
+    {
+      "company_name": "Tudor Investments",
+      "career_page": "https://www.tudor.com/careers/",
+      "career_page_source": "auto",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Uber",
+      "career_page": "https://jobs.uber.com/en/jobs/?search=Engineer&team=Engineer&countries=United%20States&countries=United%20Kingdom&page=2&pagesize=10",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Watchtower Labs",
+      "career_page": "https://www.watchtowerlabs.ai/careers",
+      "career_page_source": "auto",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "World of Books",
+      "career_page": "https://jobs.dayforcehcm.com/en-GB/wobgroup/CANDIDATEPORTAL?departmentId=189",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Zenity",
+      "career_page": "https://zenity.io/careers",
+      "career_page_source": "auto",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "Zywave Inc",
+      "career_page": "https://secure4.saashr.com/ta/6165823.careers?CareersSearch=&lang=en-US",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    },
+    {
+      "company_name": "easybill (Platin 2412 GmbH)",
+      "career_page": "https://join.com/companies/easybill",
+      "career_page_source": "manual",
+      "probe_status": "ok:200",
+      "final_url": ""
+    }
+  ]
+}

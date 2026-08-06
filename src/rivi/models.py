@@ -25,9 +25,13 @@ def utcnow() -> datetime:
 
 class Company(Base):
     __tablename__ = "companies"
+    __table_args__ = (
+        # Same company may appear in multiple cohorts (e.g. Top Targets + Cross-Selling).
+        UniqueConstraint("name", "category", name="uq_company_name_category"),
+    )
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    name: Mapped[str] = mapped_column(String(512), unique=True, nullable=False, index=True)
+    name: Mapped[str] = mapped_column(String(512), nullable=False, index=True)
     category: Mapped[str] = mapped_column(String(128), default="", index=True)
     website: Mapped[str] = mapped_column(String(1024), default="")
     career_page: Mapped[str] = mapped_column(Text, default="")
@@ -160,3 +164,26 @@ def make_session_factory(database_url: str):
 def init_db(database_url: str) -> None:
     engine = make_engine(database_url)
     Base.metadata.create_all(engine)
+    _migrate_company_name_category_unique(engine)
+
+
+def _migrate_company_name_category_unique(engine) -> None:
+    """Allow the same company name under multiple categories (SQLite-safe)."""
+    if not str(engine.url).startswith("sqlite"):
+        return
+    from sqlalchemy import text
+
+    with engine.begin() as conn:
+        indexes = conn.execute(text("PRAGMA index_list('companies')")).fetchall()
+        # PRAGMA index_list: seq, name, unique, origin, partial
+        by_name = {row[1]: row for row in indexes}
+        legacy = by_name.get("ix_companies_name")
+        if legacy is not None and legacy[2]:  # unique index on name only
+            conn.execute(text("DROP INDEX IF EXISTS ix_companies_name"))
+            conn.execute(text("CREATE INDEX IF NOT EXISTS ix_companies_name ON companies (name)"))
+        conn.execute(
+            text(
+                "CREATE UNIQUE INDEX IF NOT EXISTS uq_company_name_category "
+                "ON companies (name, category)"
+            )
+        )

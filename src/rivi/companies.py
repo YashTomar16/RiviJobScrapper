@@ -141,7 +141,13 @@ def upsert_companies(session: Session, records: list[CompanyRecord]) -> tuple[in
     now = datetime.now(timezone.utc)
 
     for rec in records:
-        existing = session.scalar(select(CompanyRow).where(CompanyRow.name == rec.company_name))
+        # Match on name + category so the same company can live in multiple cohorts.
+        existing = session.scalar(
+            select(CompanyRow).where(
+                CompanyRow.name == rec.company_name,
+                CompanyRow.category == rec.category,
+            )
+        )
         if existing is None:
             session.add(
                 CompanyRow(
@@ -288,14 +294,33 @@ def import_from_excel(session: Session, path: Path) -> ImportResult:
     return summarize_records(str(path.resolve()), db_records, inserted, updated)
 
 
+def _resolve_company_row(
+    session: Session,
+    company_name: str,
+    category: str | None = None,
+) -> CompanyRow:
+    q = select(CompanyRow).where(CompanyRow.name == company_name)
+    if category is not None:
+        q = q.where(CompanyRow.category == category)
+    rows = list(session.scalars(q))
+    if not rows:
+        hint = f" in category {category!r}" if category else ""
+        raise LookupError(f"Company not found: {company_name}{hint}")
+    if len(rows) > 1 and category is None:
+        cats = ", ".join(sorted({r.category for r in rows}))
+        raise LookupError(
+            f"Multiple rows for {company_name!r} ({cats}); pass category to disambiguate"
+        )
+    return rows[0]
+
+
 def set_career_page_manual(
     session: Session,
     company_name: str,
     career_page: str,
+    category: str | None = None,
 ) -> CompanyRow:
-    row = session.scalar(select(CompanyRow).where(CompanyRow.name == company_name))
-    if row is None:
-        raise LookupError(f"Company not found: {company_name}")
+    row = _resolve_company_row(session, company_name, category)
     row.career_page = career_page.strip()
     row.career_page_status = "manual:ok"
     row.career_page_source = "manual"
@@ -310,10 +335,9 @@ def set_company_skip(
     company_name: str,
     skip: bool,
     reason: str = "",
+    category: str | None = None,
 ) -> CompanyRow:
-    row = session.scalar(select(CompanyRow).where(CompanyRow.name == company_name))
-    if row is None:
-        raise LookupError(f"Company not found: {company_name}")
+    row = _resolve_company_row(session, company_name, category)
     row.skip = skip
     row.skip_reason = reason if skip else ""
     row.updated_at = datetime.now(timezone.utc)
@@ -321,8 +345,15 @@ def set_company_skip(
     return row
 
 
-def find_company(session: Session, company_name: str) -> CompanyRow | None:
-    return session.scalar(select(CompanyRow).where(CompanyRow.name == company_name))
+def find_company(
+    session: Session,
+    company_name: str,
+    category: str | None = None,
+) -> CompanyRow | None:
+    try:
+        return _resolve_company_row(session, company_name, category)
+    except LookupError:
+        return None
 
 
 def list_companies(session: Session) -> list[CompanyRow]:

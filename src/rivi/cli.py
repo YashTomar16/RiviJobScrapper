@@ -194,6 +194,11 @@ def set_career_page_cmd(
         "--url",
         help="Careers / jobs URL (repeat for multiple boards; stored pipe-separated)",
     ),
+    category: Optional[str] = typer.Option(
+        None,
+        "--category",
+        help="Disambiguate when the same name exists in multiple categories",
+    ),
 ) -> None:
     """Manually set a company's career page (wins over auto-resolve)."""
     settings = get_settings()
@@ -205,14 +210,15 @@ def set_career_page_cmd(
     combined = " | ".join(urls)
     with session_scope(settings) as session:
         try:
-            row = set_career_page_manual(session, company, combined)
-            name, career = row.name, row.career_page
+            row = set_career_page_manual(session, company, combined, category=category)
+            name, career, cat = row.name, row.career_page, row.category
         except LookupError as e:
             console.print(f"[red]{e}[/red]")
             raise typer.Exit(code=1) from e
         _sync_exports(session)
     console.print(
-        f"[green]OK[/green] Manual career page for [cyan]{name}[/cyan]:\n  {career}"
+        f"[green]OK[/green] Manual career page for [cyan]{name}[/cyan] "
+        f"([{cat}]):\n  {career}"
     )
 
 
@@ -221,20 +227,27 @@ def skip_company_cmd(
     company: str = typer.Option(..., "--company", help="Exact company name"),
     reason: str = typer.Option("", "--reason", help="Why this company is skipped"),
     unskip: bool = typer.Option(False, "--unskip", help="Clear skip flag"),
+    category: Optional[str] = typer.Option(
+        None,
+        "--category",
+        help="Disambiguate when the same name exists in multiple categories",
+    ),
 ) -> None:
     """Mark a company skipped (or clear skip) for ingest."""
     settings = get_settings()
     setup_logging(settings)
     with session_scope(settings) as session:
         try:
-            row = set_company_skip(session, company, skip=not unskip, reason=reason)
-            name = row.name
+            row = set_company_skip(
+                session, company, skip=not unskip, reason=reason, category=category
+            )
+            name, cat = row.name, row.category
         except LookupError as e:
             console.print(f"[red]{e}[/red]")
             raise typer.Exit(code=1) from e
         _sync_exports(session)
     state = "unskipped" if unskip else "skipped"
-    console.print(f"[green]OK[/green] {name} {state}.")
+    console.print(f"[green]OK[/green] {name} [{cat}] {state}.")
 
 
 @app.command("coverage-report")
