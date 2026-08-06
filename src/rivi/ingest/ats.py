@@ -22,10 +22,15 @@ def _client(timeout: float) -> httpx.Client:
     )
 
 
-def fetch_greenhouse(board_token: str, timeout: float) -> FetchResult:
+def fetch_greenhouse(
+    board_token: str,
+    timeout: float,
+    *,
+    department_ids: list[int] | None = None,
+) -> FetchResult:
     from rivi.ingest.rate_limit import get_pacer
 
-    url = f"https://boards-api.greenhouse.io/v1/boards/{board_token}/jobs"
+    url = f"https://boards-api.greenhouse.io/v1/boards/{board_token}/jobs?content=true"
     get_pacer().wait(url)
     with _client(timeout) as client:
         resp = client.get(url)
@@ -38,6 +43,10 @@ def fetch_greenhouse(board_token: str, timeout: float) -> FetchResult:
         data = resp.json()
         jobs: list[RawJob] = []
         for j in data.get("jobs", []):
+            if department_ids:
+                deps = j.get("departments") or []
+                if not any(int(d.get("id") or 0) in department_ids for d in deps):
+                    continue
             loc = ""
             if isinstance(j.get("location"), dict):
                 loc = j["location"].get("name") or ""
@@ -606,9 +615,15 @@ def fetch_bank_of_america(career_url: str, timeout: float) -> FetchResult:
     return FetchResult(jobs, "bofa", http_status)
 
 
+def _greenhouse_department_ids(career_url: str) -> list[int]:
+    ids = re.findall(r"departments(?:%5B%5D|\[\])=(\d+)", career_url, flags=re.I)
+    return [int(x) for x in ids]
+
+
 def detect_and_fetch_ats(career_url: str, timeout: float) -> FetchResult | None:
     low = career_url.lower()
     parsed = urlparse(career_url)
+    gh_depts = _greenhouse_department_ids(career_url)
 
     if "myworkdayjobs.com" in low:
         return fetch_workday(career_url, timeout)
@@ -624,14 +639,14 @@ def detect_and_fetch_ats(career_url: str, timeout: float) -> FetchResult | None:
 
     gh = re.search(r"boards\.greenhouse\.io/([^/?#]+)", low)
     if gh:
-        return fetch_greenhouse(gh.group(1), timeout)
+        return fetch_greenhouse(gh.group(1), timeout, department_ids=gh_depts or None)
     gh2 = re.search(r"job-boards\.greenhouse\.io/([^/?#]+)", low)
     if gh2:
-        return fetch_greenhouse(gh2.group(1), timeout)
+        return fetch_greenhouse(gh2.group(1), timeout, department_ids=gh_depts or None)
     # Embedded Greenhouse board token in query (?for=token) or path fragments
     gh3 = re.search(r"[?&]for=([a-z0-9_-]+)", low)
     if gh3 and "greenhouse" in low:
-        return fetch_greenhouse(gh3.group(1), timeout)
+        return fetch_greenhouse(gh3.group(1), timeout, department_ids=gh_depts or None)
 
     lever = re.search(r"jobs\.lever\.co/([^/?#]+)", low)
     if lever:

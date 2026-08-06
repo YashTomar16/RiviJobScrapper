@@ -83,7 +83,7 @@ FUNCTION_PATTERNS: list[tuple[str, str]] = [
     (r"\b(engineering manager|director of engineering|vp engineering|head of engineering|cto|chief technology)\b", "Engineering"),
     (r"\b(product manager|product owner|product lead|product management|head of product|director of product|vp product|chief product|cpo|group product design|product design manager)\b", "Product"),
     # IT before broader Technology so "IT Manager" / "CIO" land in IT.
-    (r"\b(\bit\b|information technology|it architect|it manager|it director|it operations|it support|it infrastructure|chief information|\bcio\b|crm technology)\b", "IT"),
+    (r"\b(\bit\b|information technology|it architect|it manager|it director|it operations|it support|it infrastructure|service desk analyst|help desk|chief information|\bcio\b|crm technology)\b", "IT"),
     (r"\b(technologist|technology|solutions architect|solutions architecture|enterprise architect|technical architect)\b", "Technology"),
     (r"\b(engineer|developer|programmer|architect)\b", "Engineering"),
     (r"\b(research scientist|applied scientist)\b", "AI"),
@@ -93,7 +93,8 @@ FUNCTION_PATTERNS: list[tuple[str, str]] = [
 SALES_ENGINEER_RE = re.compile(r"\b(sales engineer|pre[- ]?sales|solutions consultant|customer engineer)\b", re.I)
 
 SENIORITY_PATTERNS: list[tuple[str, str]] = [
-    (r"\b(chief technology officer|chief product officer|chief ai officer|chief data officer|chief information officer)\b", "C-level"),
+    (r"\b(chief technology officer|chief product officer|chief ai officer|chief data officer|chief information officer|chief information security officer)\b", "C-level"),
+    (r"\(ciso\)", "C-level"),
     # Standalone CxO titles only — not "CIO Office" / "Office of the CIO" (stripped above).
     (r"(?:^|[,/\s])(cto|cpo|cdo|cio)(?:$|[,/\s])", "C-level"),
     (r"\b(senior vice president|\bsvp\b)\b", "SVP"),

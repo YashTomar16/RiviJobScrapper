@@ -163,3 +163,10 @@ def test_platform_management_director():
     assert c.in_scope
     assert c.function == "Engineering"
     assert c.seniority_band == "Director"
+
+
+def test_ciso_is_c_level_it():
+    c = classify_title("Chief Information Security Officer (CISO)", "Austin, TX")
+    assert c.in_scope
+    assert c.function == "IT"
+    assert c.seniority_band == "C-level"
