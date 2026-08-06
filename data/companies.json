@@ -443,7 +443,7 @@
     "company_name": "Uber",
     "category": "Cross-Selling",
     "website": "https://uber.com",
-    "career_page": "https://jobs.uber.com/en/jobs/?search=Engineer&team=Engineer&countries=United%20States&countries=United%20Kingdom&page=2&pagesize=10",
+    "career_page": "https://jobs.uber.com/en/",
     "career_page_status": "manual:ok",
     "career_page_source": "manual",
     "skip": false,

@@ -128,3 +128,24 @@ def test_head_of_crm_technology_is_it():
     c = classify_title("Vice President, Head of CRM Technology")
     assert c.in_scope
     assert c.function == "IT"
+
+
+def test_director_product_management():
+    c = classify_title("Director, Product Management - Ads", "San Francisco, CA, United States")
+    assert c.in_scope
+    assert c.function == "Product"
+    assert c.seniority_band == "Director"
+
+
+def test_group_product_design_manager():
+    c = classify_title("Group Product Design Manager, Rider Verticals", "San Francisco, CA")
+    assert c.in_scope
+    assert c.function == "Product"
+    assert c.seniority_band == "Manager"
+
+
+def test_solutions_architecture_manager():
+    c = classify_title("Senior Manager, Solutions Architecture", "London, England")
+    assert c.in_scope
+    assert c.function == "Technology"
+    assert c.seniority_band == "Senior Manager"

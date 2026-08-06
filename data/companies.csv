@@ -43,7 +43,7 @@ Qualus,Cross-Selling,https://qualuscorp.com,https://talent.qualuscorp.com/jobs?c
 Spok Inc,Cross-Selling,https://spok.com,https://www.spok.com/careers/all-open-positions/,manual:ok,manual,false,
 Storable,Cross-Selling,https://storable.com,https://www.storable.com/about-us/culture/careers/,manual:fail:403,manual,false,
 Tudor Investments,Cross-Selling,https://tudor.com,https://www.tudor.com/careers/,ok:200,auto,false,
-Uber,Cross-Selling,https://uber.com,https://jobs.uber.com/en/jobs/?search=Engineer&team=Engineer&countries=United%20States&countries=United%20Kingdom&page=2&pagesize=10,manual:ok,manual,false,
+Uber,Cross-Selling,https://uber.com,https://jobs.uber.com/en/,manual:ok,manual,false,
 Watchtower Labs,Cross-Selling,https://watchtowerlabs.ai,https://www.watchtowerlabs.ai/careers,ok:200,auto,false,
 World of Books,Cross-Selling,https://worldofbooks.com,https://jobs.dayforcehcm.com/en-GB/wobgroup/CANDIDATEPORTAL?departmentId=189,manual:ok,manual,false,
 Zenity,Cross-Selling,https://zenity.io,https://zenity.io/careers,ok:200,auto,false,
