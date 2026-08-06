@@ -149,3 +149,17 @@ def test_solutions_architecture_manager():
     assert c.in_scope
     assert c.function == "Technology"
     assert c.seniority_band == "Senior Manager"
+
+
+def test_software_engineering_sr_director():
+    c = classify_title("Software Engineering - Sr. Director", "United States")
+    assert c.in_scope
+    assert c.function == "Engineering"
+    assert c.seniority_band == "Senior Director"
+
+
+def test_platform_management_director():
+    c = classify_title("Platform Management - Director", "United States")
+    assert c.in_scope
+    assert c.function == "Engineering"
+    assert c.seniority_band == "Director"

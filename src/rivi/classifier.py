@@ -79,7 +79,7 @@ FUNCTION_PATTERNS: list[tuple[str, str]] = [
     (r"\b(machine learning|ml engineer|ml scientist|deep learning)\b", "Machine Learning"),
     (r"\b(\bai\b|artificial intelligence|genai|generative ai|llm)\b", "AI"),
     (r"\b(data scientist|data science|data engineer|data engineering|analytics engineer|business intelligence|bi engineer|data analyst|quantitative analyst|quant analyst)\b", "Data"),
-    (r"\b(software engineer|swe\b|backend|front[- ]?end|full[- ]?stack|site reliability|sre\b|devops|platform engineer|infrastructure engineer|security engineer|cloud engineer|mobile engineer|ios|android|qa engineer|test engineer|quality engineer|systems engineer|desktop engineering|application support|quantitative developer|quant developer)\b", "Engineering"),
+    (r"\b(software engineer|software engineering|swe\b|backend|front[- ]?end|full[- ]?stack|site reliability|sre\b|devops|platform engineer|platform management|infrastructure engineer|security engineer|cloud engineer|mobile engineer|ios|android|qa engineer|test engineer|quality engineer|systems engineer|desktop engineering|application support|quantitative developer|quant developer)\b", "Engineering"),
     (r"\b(engineering manager|director of engineering|vp engineering|head of engineering|cto|chief technology)\b", "Engineering"),
     (r"\b(product manager|product owner|product lead|product management|head of product|director of product|vp product|chief product|cpo|group product design|product design manager)\b", "Product"),
     # IT before broader Technology so "IT Manager" / "CIO" land in IT.

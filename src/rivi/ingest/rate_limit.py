@@ -81,6 +81,17 @@ def _parse_robots_rules(text: str) -> list[tuple[str, bool]]:
     return rules
 
 
+def _path_matches_rule(path: str, prefix: str) -> bool:
+    """Match robots path rules, including ``*/segment/`` wildcards."""
+    if "*" in prefix:
+        inner = prefix.strip("*").strip("/")
+        if not inner:
+            return True
+        needle = f"/{inner}/"
+        return needle in path or path.startswith(f"/{inner}")
+    return path.startswith(prefix)
+
+
 def _longest_match_allows(path: str, rules: list[tuple[str, bool]]) -> bool:
     """Google/Bing longest-prefix match over Allow/Disallow rules."""
     if not rules:
@@ -88,7 +99,7 @@ def _longest_match_allows(path: str, rules: list[tuple[str, bool]]) -> bool:
     best_len = -1
     allowed = True
     for prefix, is_allowed in rules:
-        if path.startswith(prefix) and len(prefix) > best_len:
+        if _path_matches_rule(path, prefix) and len(prefix) > best_len:
             best_len = len(prefix)
             allowed = is_allowed
     return allowed
